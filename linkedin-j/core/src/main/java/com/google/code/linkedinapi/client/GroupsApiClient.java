@@ -17,6 +17,7 @@
 package com.google.code.linkedinapi.client;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import com.google.code.linkedinapi.client.enumeration.CommentField;
@@ -31,6 +32,7 @@ import com.google.code.linkedinapi.schema.Group;
 import com.google.code.linkedinapi.schema.GroupMembership;
 import com.google.code.linkedinapi.schema.GroupMemberships;
 import com.google.code.linkedinapi.schema.Groups;
+import com.google.code.linkedinapi.schema.MembershipStateCode;
 import com.google.code.linkedinapi.schema.Post;
 import com.google.code.linkedinapi.schema.PostCategoryCode;
 import com.google.code.linkedinapi.schema.Posts;
@@ -86,6 +88,17 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 * @return the group memberships
 	 */
 	public GroupMemberships getGroupMemberships(Set<GroupMembershipField> groupMembershipFields, int start, int count);
+	
+	
+	/**
+	 * 
+	 * @param groupMembershipFields
+	 * @param membershipStates
+	 * @param start
+	 * @param count
+	 * @return
+	 */
+	public GroupMemberships getGroupMemberships(Set<GroupMembershipField> groupMembershipFields, List<String> membershipStateCodes, int start, int count);
 	
 	/**
 	 * Gets the group memberships.
@@ -245,6 +258,20 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 */
 	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count, PostSortOrder order, PostCategoryCode category);
 	
+	
+	/**
+	 * 
+	 * @param groupId
+	 * @param role
+	 * @param postFields
+	 * @param start
+	 * @param count
+	 * @param order
+	 * @param category
+	 * @return
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, String role, int start, int count, PostSortOrder order, PostCategoryCode category);
+	
 	/**
 	 * Gets the posts by group.
 	 * 
@@ -392,6 +419,8 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 */
 	public void createPost(String groupId, String title, String summary);
 	
+	public String createPostCustom(String groupId, String title, String summary);
+	
 	/**
 	 * Like post.
 	 * 
@@ -461,6 +490,15 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 * @param comment the comment
 	 */
 	public void addPostComment(String postId, String comment);
+	
+	/**
+	 * 
+	 * @param postId
+	 * @param comment
+	 * @return
+	 */
+	public String addPostCommentCustom(String postId, String comment);
+	
 	
 	/**
 	 * Delete post comment.

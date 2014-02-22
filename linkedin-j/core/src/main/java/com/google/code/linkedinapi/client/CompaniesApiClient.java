@@ -85,6 +85,10 @@ public interface CompaniesApiClient extends LinkedInAuthenticationClient {
 	 */
 	public Companies getCompaniesByEmailDomain(String emailDomain);
 	
+	
+	
+	public Companies getAdministeredCompanies();
+	
 	/**
 	 * Gets the companies by email domain.
 	 * 

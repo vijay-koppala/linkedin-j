@@ -1,19 +1,3 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema;
 
@@ -32,6 +16,7 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}id" minOccurs="0"/>
  *         &lt;element ref="{}universal-name" minOccurs="0"/>
  *         &lt;element ref="{}description"/>
+ *         &lt;element ref="{}industries"/>
  *         &lt;element name="industry" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element ref="{}logo-url"/>
  *         &lt;element ref="{}name"/>
@@ -125,6 +110,26 @@ public interface Company
      *     
      */
     void setDescription(String value);
+
+    /**
+     * Gets the value of the industries property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Industries }
+     *     
+     */
+    Industries getIndustries();
+
+    /**
+     * Sets the value of the industries property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Industries }
+     *     
+     */
+    void setIndustries(Industries value);
 
     /**
      * Gets the value of the industry property.

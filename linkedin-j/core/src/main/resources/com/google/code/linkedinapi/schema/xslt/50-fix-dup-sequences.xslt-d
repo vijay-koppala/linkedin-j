@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+				version="1.0">
+  <xsl:output method="xml" indent="yes"/>
+  
+  <xsl:template match="@*|node()">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+  
+  <!--
+  
+  <xsl:template match="/xs:schema/xs:element/xs:complexType">
+  	<xsl:for-each select="./xs:sequence[not(@minOccurs) && not (@maxOccurs)]">
+  		<xsl:element name="xs:sequence">
+	  		<xsl:call-template name="xxx">
+	  			<xsl:with-param name="value" select="."/>
+	  		</xsl:call-template>
+  		</xsl:element>
+  	</xsl:for-each>
+  </xsl:template>
+  
+  <xsl:template name="xxx">
+  	<xsl:param name="value"/>
+  	
+  	<xsl:copy>
+  		<xsl:apply
+  	</xsl:copy>
+  </xsl:template>
+  
+  
+  --><!--
+  
+  <xsl:key name="atts-by-name" match="@*" use="name()"/>
+  <xsl:template match="xs:complexType">
+    <xsl:copy>
+      <xsl:copy-of select="@*"/>
+      
+      <xsl:call-template name="merge">
+        <xsl:with-param name="elements" select="*"/>
+      </xsl:call-template>
+    </xsl:copy>
+  </xsl:template>
+  
+  
+  <xsl:template name="merge">
+    <xsl:param name="elements"/>
+    <xsl:for-each select="$elements">
+      <xsl:variable name="same-elements" select="$elements[name()=name(current()) and count(@*)=count(current()/@*) and count(@*[. = key('atts-by-name',name())[generate-id(..)=generate-id(current())]])=count(@*)]"/>
+      <xsl:if test="generate-id($same-elements[1]) = generate-id()">
+        <xsl:copy>
+          <xsl:copy-of select="@*"/>
+          <xsl:call-template name="merge">
+            <xsl:with-param name="elements" select="$same-elements/*"/>
+          </xsl:call-template>
+        </xsl:copy>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:template>
+  --><!-- 
+  
+  	Changing 
+  		<xs:sequence minOccurs="0">
+  			<xs:element ref="xxx"/>
+  		</xs:sequence>
+  		
+  	to,
+  		<xs:element ref="xxx" minOccurs="0"/>
+  		
+  	It works, but we don't need it.
+   -->
+  
+  <!--
+  
+  <xsl:template match="xs:sequence[@minOccurs='0']">
+  	<xsl:variable name="minOccursValue"><xsl:value-of select="@minOccurs"/></xsl:variable>
+  	<xsl:for-each select="./xs:element">
+  		<xsl:copy>
+  			<xsl:attribute name="minOccurs"><xsl:value-of select="$minOccursValue"/></xsl:attribute>
+	      <xsl:apply-templates select="@*|node()"/>
+	    </xsl:copy>
+  	</xsl:for-each>
+  </xsl:template>
+  
+	-->
+
+<!--
+
+	The following is trying to flattening nested <xs:sequence>s
+		<xs:sequence>
+			<xs:element ref="xxx"/>
+			<xs:sequence>
+				<xs:element ref="yyy"/>
+			</xs:sequence>
+		</xs:sequence> 
+	
+	To,
+	<xs:sequence>
+		<xs:element ref="xxx"/>
+		<xs:element ref="yyy"/>
+	</xs:sequence>
+	
+	Careful, when some of them has @minOccurs and the others don't.What to do? At the end of the day,it doesn't matter, because nothing is required.
+ -->
+
+<!--
+  <xsl:template match="xs:sequence">
+    <xsl:choose>
+      <xsl:when test="name(..) = 'xs:sequence'">
+        <xsl:apply-templates select="@*|node()"/>
+      </xsl:when>
+      <xsl:otherwise>
+	    <xsl:copy>
+	      <xsl:apply-templates select="@*|node()"/>
+	    </xsl:copy>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+-->
+
+</xsl:stylesheet>

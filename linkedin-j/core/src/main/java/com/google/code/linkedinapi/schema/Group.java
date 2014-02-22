@@ -1,19 +1,3 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema;
 
@@ -33,10 +17,12 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}name"/>
  *         &lt;element ref="{}short-description"/>
  *         &lt;element ref="{}description"/>
+ *         &lt;element ref="{}location"/>
  *         &lt;element ref="{}relation-to-viewer"/>
  *         &lt;element ref="{}counts-by-category"/>
  *         &lt;element ref="{}is-open-to-non-members"/>
- *         &lt;element name="category" type="{}GroupCategory"/>
+ *         &lt;element name="category" type="{}group-category"/>
+ *         &lt;element ref="{}website-url"/>
  *         &lt;element ref="{}site-group-url"/>
  *         &lt;element ref="{}contact-email"/>
  *         &lt;element ref="{}locale"/>
@@ -138,6 +124,26 @@ public interface Group
     void setDescription(String value);
 
     /**
+     * Gets the value of the location property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Location }
+     *     
+     */
+    Location getLocation();
+
+    /**
+     * Sets the value of the location property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Location }
+     *     
+     */
+    void setLocation(Location value);
+
+    /**
      * Gets the value of the relationToViewer property.
      * 
      * @return
@@ -208,6 +214,26 @@ public interface Group
      *     
      */
     void setCategory(GroupCategory value);
+
+    /**
+     * Gets the value of the websiteUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getWebsiteUrl();
+
+    /**
+     * Sets the value of the websiteUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setWebsiteUrl(String value);
 
     /**
      * Gets the value of the siteGroupUrl property.

@@ -1,19 +1,3 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema;
 
@@ -36,6 +20,8 @@ package com.google.code.linkedinapi.schema;
  *         &lt;element ref="{}relation-to-viewer" minOccurs="0"/>
  *         &lt;element ref="{}api-standard-profile-request"/>
  *         &lt;element ref="{}site-standard-profile-request"/>
+ *         &lt;element ref="{}name" minOccurs="0"/>
+ *         &lt;element ref="{}person" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -188,5 +174,45 @@ public interface Author
      *     
      */
     void setSiteStandardProfileRequest(SiteStandardProfileRequest value);
+
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getName();
+
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setName(String value);
+
+    /**
+     * Gets the value of the person property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Person }
+     *     
+     */
+    Person getPerson();
+
+    /**
+     * Sets the value of the person property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Person }
+     *     
+     */
+    void setPerson(Person value);
 
 }

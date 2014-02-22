@@ -17,7 +17,9 @@
 package com.google.code.linkedinapi.client.enumeration;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Nabeel Mukhtar
@@ -32,6 +34,42 @@ public enum GroupMembershipField implements CompositeEnum<GroupMembershipField> 
 	GROUP_ID("id", GROUP),
 	
 	GROUP_NAME("name", GROUP),
+	
+	GROUP_SHORT_DESCRIPTION("short-description", GROUP),
+	
+    GROUP_DESCRIPTION("description", GROUP),
+    
+    GROUP_VIEWER("relation-to-viewer", GROUP),
+    
+    GROUP_VIEWER_STATE("membership-state",GROUP_VIEWER),
+    
+    GROUP_VIEWER_ACTIONS("available-actions",GROUP_VIEWER),
+    
+    GROUP_COUNTS_BY_CATEGORY("counts-by-category", GROUP),
+    
+    GROUP_IS_OPEN_TO_NON_MEMBERS("is-open-to-non-members", GROUP),
+    
+    GROUP_CATEGORY("category", GROUP),
+    
+    GROUP_WEBSITE_URL("website-url", GROUP),
+    
+    GROUP_GROUP_SITE_GROUP_URL("site-group-url", GROUP),
+    
+    GROUP_CONTACT_EMAIL("contact-email", GROUP),
+    
+    GROUP_LOCALE("locale", GROUP),
+    
+    GROUP_LOCATION("location", GROUP),
+    
+    GROUP_LOCATION_COUNTRY("country", GROUP_LOCATION),
+    
+    GROUP_LOCATION_POSTAL_CODE("postal-code", GROUP_LOCATION),
+    
+    GROUP_ALLOW_MEMBER_INVITES("allow-member-invites", GROUP),
+    
+    GROUP_SMALL_LOGO_URL("small-logo-url", GROUP),
+    
+    GROUP_LARGE_LOGO_URL("large-logo-url", GROUP),
 
 	MEMBERSHIP_STATE("membership-state", null),
 	
@@ -46,6 +84,7 @@ public enum GroupMembershipField implements CompositeEnum<GroupMembershipField> 
 	EMAIL_ANNOUNCEMENTS_FROM_MANAGERS("email-announcements-from-managers", null),
 	
 	EMAIL_FOR_EVERY_NEW_POST("email-for-every-new-post", null),
+	
 	POSTS("posts", null);
     
     /**
@@ -100,6 +139,18 @@ public enum GroupMembershipField implements CompositeEnum<GroupMembershipField> 
 	 */
 	public static GroupMembershipField fromString(String symbol) {
 		return stringToEnum.get(symbol);
+	}
+	
+	/**
+	 *
+	 * @return Returns GroupFields available for connections.
+	 */
+	public static Set<GroupMembershipField> valuesForConnections() {
+		final Set<GroupMembershipField> valuesForConnections = new HashSet<GroupMembershipField>();
+		for (GroupMembershipField field : values()) {
+			valuesForConnections.add(field);
+		}
+		return valuesForConnections;
 	}
 
 	@Override

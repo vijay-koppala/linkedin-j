@@ -1,19 +1,3 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema.impl;
 
@@ -22,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -72,11 +57,13 @@ public class JobImpl
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NMTOKEN")
     protected String id;
     @XmlElement(name = "partner-job-id", required = true)
     protected String partnerJobId;
     @XmlElement(name = "contract-id", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long contractId;
     @XmlElement(name = "customer-job-code")
     protected String customerJobCode;
@@ -97,6 +84,7 @@ public class JobImpl
     protected String skillsAndExperience;
     @XmlElement(name = "expiration-timestamp", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long expirationTimestamp;
     @XmlElement(name = "job-poster", required = true, type = JobPosterImpl.class)
     protected JobPosterImpl jobPoster;
@@ -104,12 +92,14 @@ public class JobImpl
     protected String locationDescription;
     @XmlElement(name = "posting-timestamp", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long postingTimestamp;
     @XmlElement(required = true)
     protected String salary;
     @XmlElement(name = "site-job-request", required = true, type = SiteJobRequestImpl.class)
     protected SiteJobRequestImpl siteJobRequest;
     @XmlElement(name = "site-job-url", required = true)
+    @XmlSchemaType(name = "anyURI")
     protected String siteJobUrl;
     @XmlElement(name = "referral-bonus")
     protected String referralBonus;
@@ -118,6 +108,7 @@ public class JobImpl
     @XmlElement(name = "how-to-apply", type = HowToApplyImpl.class)
     protected HowToApplyImpl howToApply;
     @XmlElement(name = "tracking-pixel-url")
+    @XmlSchemaType(name = "anyURI")
     protected String trackingPixelUrl;
     @XmlElement(type = RenewalImpl.class)
     protected RenewalImpl renewal;

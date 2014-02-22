@@ -2,7 +2,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
     extensionBindingPrefixes="xjc"
-    schemaLocation="linkedin-api-schema.xsd" node="/xs:schema">
+    schemaLocation="linkedin-api-schema-new.xsd" node="/xs:schema">
 	<globalBindings localScoping="toplevel" generateValueClass="false">
 		<javaType name="double" xmlType="xs:double"/>
 		<javaType name="long" xmlType="xs:integer"/>
@@ -82,7 +82,7 @@
 			<typesafeEnumMember name="EXPERT" value="expert"/>
 		</typesafeEnumClass>
 	</bindings>
-	<bindings node="//xs:element[@name='facet']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+	<bindings node="//xs:element[@name='facet']/xs:complexType//xs:sequence/xs:element[@name='code']/xs:simpleType">
 		<typesafeEnumClass name="FacetType">
 			<typesafeEnumMember name="LOCATION" value="location"/>
 			<typesafeEnumMember name="INDUSTRY" value="industry"/>
@@ -240,7 +240,7 @@
 			<typesafeEnumMember name="LINKEDIN_JOB" value="linkedin-job"/>
 		</typesafeEnumClass>
 	</bindings>
-	<bindings node="//xs:complexType[@name='GroupCategory']/xs:sequence/xs:element[@name='code']/xs:simpleType">
+	<bindings node="//xs:complexType[@name='group-category']/xs:sequence/xs:element[@name='code']/xs:simpleType">
 		<typesafeEnumClass name="GroupCategoryCode">
 			<typesafeEnumMember name="ALUMNI" value="alumni"/>
 			<typesafeEnumMember name="CORPORATE" value="corporate"/>
@@ -251,12 +251,57 @@
 			<typesafeEnumMember name="OTHER" value="other"/>
 		</typesafeEnumClass>
 	</bindings>
+	
+	
+	<!--
 	<bindings node="//xs:element[@name='post']/xs:complexType/xs:sequence/xs:element[@name='type']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
 		<typesafeEnumClass name="PostTypeCode">
 			<typesafeEnumMember name="STANDARD" value="standard"/>
 			<typesafeEnumMember name="NEWS" value="news"/>
 		</typesafeEnumClass>
 	</bindings>
+	-->
+	<bindings node="//xs:complexType[@name='post-type']/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="PostTypeCode">
+			<typesafeEnumMember name="STANDARD" value="standard"/>
+			<typesafeEnumMember name="NEWS" value="news"/>
+		</typesafeEnumClass>
+	</bindings>
+	
+	
+	
+	<bindings node="//xs:complexType[@name='patent-status']/xs:sequence/xs:element[@name='id']/xs:simpleType">
+		<typesafeEnumClass name="PatentStatusId">
+			<typesafeEnumMember name="PATENT_APPLICATION" value="0"/>
+			<typesafeEnumMember name="PATENT_GRANTED" value="1"/>
+		</typesafeEnumClass>
+	</bindings>
+	
+	<bindings node="//xs:complexType[@name='patent-status']/xs:sequence/xs:element[@name='name']/xs:simpleType">
+		<typesafeEnumClass name="PatentStatusName">
+			<typesafeEnumMember name="PATENT_APPLICATION" value="Application"/>
+			<typesafeEnumMember name="PATENT_GRANTED" value="Patent"/>
+		</typesafeEnumClass>
+	</bindings>
+	
+	<!--
+	<bindings node="//xs:element[@name='action']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
+		<typesafeEnumClass name="AvailableActionType">
+			<typesafeEnumMember name="ADD_POST" value="Add-post"/>
+			<typesafeEnumMember name="LEAVE" value="Leave"/>
+			<typesafeEnumMember name="VIEW_POSTS" value="View-posts"/>
+			<typesafeEnumMember name="ADD_COMMENT" value="add-comment"/>
+			<typesafeEnumMember name="FLAG_AS_INAPPROPRIATE" value="flag-as-inappropriate"/>
+			<typesafeEnumMember name="CATEGORIZE_AS_JOB" value="categorize-as-job"/>
+			<typesafeEnumMember name="CATEGORIZE_AS_PROMOTION" value="categorize-as-promotion"/>
+			<typesafeEnumMember name="FOLLOW" value="follow"/>
+			<typesafeEnumMember name="LIKE" value="like"/>
+			<typesafeEnumMember name="REPLY_PRIVATELY" value="reply-privately"/>
+			<typesafeEnumMember name="DELETE" value="delete"/>
+		</typesafeEnumClass>
+	</bindings>
+	-->
+	
 	<bindings node="//xs:element[@name='updates']/xs:complexType/xs:sequence/xs:element[@ref='update']">
 		<property name="updateList"/>
 	</bindings>
@@ -403,5 +448,8 @@
 	</bindings>
 	<bindings node="//xs:element[@name='groups']/xs:complexType/xs:sequence/xs:element[@ref='group']">
 		<property name="groupList"/>
+	</bindings>
+	<bindings node="//xs:element[@name='counts-by-category']/xs:complexType/xs:sequence/xs:element[@ref='count-for-category']">
+		<property name="countByCategoryList"/>
 	</bindings>
 </bindings>

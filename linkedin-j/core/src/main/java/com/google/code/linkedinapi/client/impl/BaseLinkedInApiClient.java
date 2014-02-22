@@ -18,6 +18,7 @@ package com.google.code.linkedinapi.client.impl;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -44,10 +45,11 @@ import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.Parameter;
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls;
-import com.google.code.linkedinapi.client.constant.ParameterNames;
 import com.google.code.linkedinapi.client.constant.LinkedInApiUrls.LinkedInApiUrlBuilder;
+import com.google.code.linkedinapi.client.constant.ParameterNames;
 import com.google.code.linkedinapi.client.enumeration.CommentField;
 import com.google.code.linkedinapi.client.enumeration.CompanyField;
+import com.google.code.linkedinapi.client.enumeration.CompanyUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ConnectionModificationType;
 import com.google.code.linkedinapi.client.enumeration.FacetField;
 import com.google.code.linkedinapi.client.enumeration.GroupField;
@@ -113,6 +115,7 @@ import com.google.code.linkedinapi.schema.SchemaElementFactory;
 import com.google.code.linkedinapi.schema.Share;
 import com.google.code.linkedinapi.schema.UpdateComment;
 import com.google.code.linkedinapi.schema.UpdateComments;
+import com.google.code.linkedinapi.schema.Updates;
 import com.google.code.linkedinapi.schema.Visibility;
 import com.google.code.linkedinapi.schema.VisibilityType;
 
@@ -1022,6 +1025,20 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return readResponse(UpdateComments.class, callApiMethod(apiUrl));
     }
+    
+    @Override
+    public UpdateComments getNetworkUpdateCommentsCustom(String networkUpdateId, Long start, Long count) {
+        assertNotNullOrEmpty("network update id", networkUpdateId);
+        assertNotNull("start", start);
+        assertNotNull("count", count);
+
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.NETWORK_UPDATE_COMMENTS);
+        
+        String                apiUrl  = builder.withField(ParameterNames.UPDATE_KEY, networkUpdateId)
+        		.withField(ParameterNames.START, String.valueOf(start)).withField(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+        
+        return readResponse(UpdateComments.class, callApiMethod(apiUrl));
+    }
 
     /**
      * {@inheritDoc}
@@ -1153,7 +1170,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
                       HttpURLConnection.HTTP_CREATED);
     }
-
+    
     /**
      * {@inheritDoc}
      */
@@ -1913,6 +1930,55 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 		postShare(commentText, title, description, url, imageUrl, visibilityType, false);		
 	}
 	
+	
+	@Override
+	public String postShareCustom1(String commentText, VisibilityType visibility) {
+		return postShareCustom3(commentText, null, null, null, null, visibility, false);
+	}
+
+	@Override
+	public String postShareCustom2(String commentText, String title, String description, String url,
+			String imageUrl, VisibilityType visibility) {
+		return postShareCustom3(commentText, title, description, url, imageUrl, visibility, false);
+	}
+	
+	@Override
+	public String postShareCustom3(String commentText, String title, String description, String url,
+			String imageUrl, VisibilityType visibilityType, boolean postToTwitter) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_SHARE);
+        if (postToTwitter) {
+        	builder.withParameter("post-twitter", "true");
+        }
+        String                apiUrl  = builder.buildUrl();
+        Share share = OBJECT_FACTORY.createShare();
+        share.setComment(commentText);
+        if(title != null && url != null) {
+        	Content content = OBJECT_FACTORY.createContent();
+        	content.setTitle(title);
+        	content.setDescription(description);
+            content.setSubmittedUrl(url);
+            content.setSubmittedImageUrl(imageUrl);
+            share.setContent(content);
+        }
+        
+        Visibility visibility = OBJECT_FACTORY.createVisibility();
+        visibility.setCode(visibilityType);
+        share.setVisibility(visibility);
+        Map<String, List<String>> fields = callApiMethodForHeaders(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_CREATED);
+        String location = null;
+    	for(String key: fields.keySet()) {
+    		if("Location".equalsIgnoreCase(key) && fields.get(key) != null && fields.get(key).size() > 0) {
+    			location = fields.get(key).get(0);
+    			if(location != null && location.lastIndexOf("/") > 0) {
+    				location = location.substring(location.lastIndexOf("/")+1);
+    			}
+    		}
+    	}
+        return location;
+	}
+
+	
 	@Override
 	public void postShare(String commentText, String title, String description, String url,
 			String imageUrl, VisibilityType visibilityType, boolean postToTwitter) {
@@ -2614,6 +2680,14 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return readResponse(Companies.class, callApiMethod(apiUrl));
 	}
+	
+	@Override
+	public Companies getAdministeredCompanies() {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_ADMINISTERED_COMPANIES);
+        String                apiUrl  = builder.withEmptyField(ParameterNames.FIELD_SELECTORS).buildUrl();
+
+        return readResponse(Companies.class, callApiMethod(apiUrl));
+	}
 
 	@Override
 	public Companies getCompaniesByEmailDomain(String emailDomain, Set<CompanyField> companyFields) {
@@ -3282,6 +3356,46 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         callApiMethod(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
                 HttpURLConnection.HTTP_CREATED);
 	}
+	
+    @Override
+    public String addPostCommentCustom(String postId, String commentText){
+    	LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.ADD_POST_COMMENT);
+        String                apiUrl  = builder.withField("postId", postId).buildUrl();
+        Comment 			  comment = OBJECT_FACTORY.createComment();
+        comment.setText(commentText);
+        
+        Map<String, List<String>> fields = callApiMethodForHeaders(apiUrl, marshallObject(comment), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                new int[]{HttpURLConnection.HTTP_CREATED, HttpURLConnection.HTTP_ACCEPTED});
+        
+        String location = null;
+        String requestId = null;
+    	for(String key: fields.keySet()) {
+    		if("Location".equalsIgnoreCase(key) && fields.get(key) != null && fields.get(key).size() > 0) {
+    			location = fields.get(key).get(0);
+    			if(location != null && location.lastIndexOf("/") > 0) {
+    				location = location.substring(location.lastIndexOf("/")+1);
+    			}
+    		} else if("x-li-request-id".equalsIgnoreCase(key) && fields.get(key) != null && fields.get(key).size() > 0) {
+    			requestId = fields.get(key).get(0);
+    		}
+    	}
+    	
+    	//You might say how is this possible? Well, linked in decides whether to really publish it based on some group settings
+    	//If the settings are configured to make your posts through a review process, we don't really get an id. If we are
+    	// here that means that we sent it to linked in successfully and we don't have an Id. So, I am sending some random id to
+    	// identify these posts. We will end up with duplicate content(another content will be created by the crawlers(, but we 
+    	// cannot do anything about it.
+    	if(location == null) {
+    		if(requestId == null) {
+    			location = "WD_NO_KEY_REQ_"+System.currentTimeMillis();
+    		} else {
+    			location = "WD_NO_KEY_"+requestId;
+    		}
+    	}
+    	
+        return location;
+    }
+
 
 	@Override
 	public void createPost(String groupId, String title, String summary) {
@@ -3294,6 +3408,45 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         callApiMethod(apiUrl, marshallObject(post), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
                 HttpURLConnection.HTTP_CREATED);
 	}
+	
+	@Override
+    public String createPostCustom(String groupId, String title, String summary){
+    	LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.CREATE_POST);
+        String                apiUrl  = builder.withField(ParameterNames.ID, groupId).buildUrl();
+        Post         		  post = OBJECT_FACTORY.createPost();
+        post.setTitle(title);
+        post.setSummary(summary);
+        Map<String, List<String>> fields = callApiMethodForHeaders(apiUrl, marshallObject(post), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                new int[]{HttpURLConnection.HTTP_CREATED, HttpURLConnection.HTTP_ACCEPTED});
+        
+        String location = null;
+        String requestId = null;
+    	for(String key: fields.keySet()) {
+    		if("Location".equalsIgnoreCase(key) && fields.get(key) != null && fields.get(key).size() > 0) {
+    			location = fields.get(key).get(0);
+    			if(location != null && location.lastIndexOf("/") > 0) {
+    				location = location.substring(location.lastIndexOf("/")+1);
+    			}
+    		} else if("x-li-request-id".equalsIgnoreCase(key) && fields.get(key) != null && fields.get(key).size() > 0) {
+    			requestId = fields.get(key).get(0);
+    		}
+    	}
+    	
+    	//You might say how is this possible? Well, linked in decides whether to really publish it based on some group settings
+    	//If the settings are configured to make your posts through a review process, we don't really get an id. If we are
+    	// here that means that we sent it to linked in successfully and we don't have an Id. So, I am sending some random id to
+    	// identify these posts. We will end up with duplicate content(another content will be created by the crawlers(, but we 
+    	// cannot do anything about it.
+    	if(location == null) {
+    		if(requestId == null) {
+    			location = "WD_NO_KEY_REQ_"+System.currentTimeMillis();
+    		} else {
+    			location = "WD_NO_KEY_"+requestId;
+    		}
+    	}
+
+        return location;
+    }
 
 	@Override
 	public void deleteGroupSuggestion(String groupId) {
@@ -3397,6 +3550,17 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 			int count) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
         String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupMembershipFields).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
+	public GroupMemberships getGroupMemberships(
+			Set<GroupMembershipField> groupMembershipFields, List<String> memberShipSateCodes, int start,
+			int count) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_GROUP_MEMBERSHIPS);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, groupMembershipFields).withParameter(ParameterNames.START, String.valueOf(start))
+        		.withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameters(ParameterNames.MEMBERSHIP_STATE, memberShipSateCodes).buildUrl();
 
         return readResponse(GroupMemberships.class, callApiMethod(apiUrl));
 	}
@@ -3564,6 +3728,18 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 	}
 	
 	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, String role, int start, int count,
+			PostSortOrder order, PostCategoryCode category) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId)
+        		.withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count))
+        		.withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.CATEGORY, category.value())
+        		.withParameter("role", role).buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
+	@Override
 	public Posts getPostsByGroup(String groupId, int start, int count,
 			Date modifiedSince) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
@@ -3706,6 +3882,26 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected <T> T readResponse(Class<T> clazz, InputStream is) {
+    	BufferedInputStream bis = new BufferedInputStream(is);
+    	try {
+        	byte[] b = new byte[4096];
+        	StringBuilder sb = new StringBuilder();
+        	try {
+        		int n;
+	        	while((n = bis.read(b)) != -1) {
+	        		sb.append(new String(b, 0, n));
+	        	}
+        	}catch(Exception e) {
+        		//logger.error("Error Parsing the LinkedIn API response -- "  + e.getMessage());
+        	}
+        	//logger.debug("LinkedIn API Response: \n" + sb.toString());
+        	System.out.println("LinkedIn API Response: \n" + sb.toString());
+        	is = new ByteArrayInputStream(sb.toString().getBytes());
+        } finally {
+            closeStream(bis);
+        }
+        //return is;
+        
         try {
             return unmarshallObject(clazz, is);
         } finally {
@@ -3752,6 +3948,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
+            
+            System.out.println("LinkedIn API URL : " + apiUrl);
+            
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
 
             if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
@@ -3802,43 +4001,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     protected InputStream callApiMethod(String apiUrl, String xmlContent, String contentType, HttpMethod method,
             int expected) {
         try {
-            LinkedInOAuthService oAuthService =
-                LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
-                    apiConsumer.getConsumerSecret());
-            URL               url     = new URL(apiUrl);
-            HttpURLConnection request = (HttpURLConnection) url.openConnection();
-
-            if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
-                request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
-            }
-
-            if (ApplicationConstants.READ_TIMEOUT > -1) {
-                request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
-            }
-
-            for (String headerName : requestHeaders.keySet()) {
-                request.setRequestProperty(headerName, requestHeaders.get(headerName));
-            }
-
-            request.setRequestMethod(method.fieldName());
-            request.setDoOutput(true);
-            oAuthService.signRequestWithToken(request, accessToken);
-
-            if (contentType != null) {
-                request.setRequestProperty("Content-Type", contentType);
-            }
-
-            if (xmlContent != null) {
-                PrintWriter out = new PrintWriter(new OutputStreamWriter(request.getOutputStream(), UTF_8_CHAR_SET));
-
-                out.print(xmlContent);
-                out.flush();
-                out.close();
-            }
-
-            request.connect();
-
-            if (request.getResponseCode() != expected) {
+        	HttpURLConnection request = sendRequest(apiUrl, xmlContent, contentType, method);
+        	
+        	if (request.getResponseCode() != expected) {
                 Error error = readResponse(Error.class,
                                            getWrappedInputStream(request.getErrorStream(),
                                                GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
@@ -3851,6 +4016,82 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         } catch (IOException e) {
             throw new LinkedInApiClientException(e);
         }
+    }
+    
+    
+    protected Map<String, List<String>> callApiMethodForHeaders(String apiUrl, String xmlContent, String contentType, HttpMethod method,
+            int expected) {
+    	return callApiMethodForHeaders(apiUrl, xmlContent, contentType, method, new int[]{expected});
+    }
+    
+    protected Map<String, List<String>> callApiMethodForHeaders(String apiUrl, String xmlContent, String contentType, HttpMethod method,
+            int[] expectedCodes) {
+    	try {
+        	HttpURLConnection request = sendRequest(apiUrl, xmlContent, contentType, method);
+        	int resultCode = request.getResponseCode();
+        	
+        	boolean found  = false;
+        	for(int expectedCode: expectedCodes) {
+        		if(expectedCode == resultCode) {
+        			found = true;
+        			break;
+        		}
+        	}
+        	
+        	if(found) {
+        		return request.getHeaderFields();
+        	} 
+    	    
+        	Error error = readResponse(Error.class,
+                    getWrappedInputStream(request.getErrorStream(),
+                        GZIP_ENCODING.equalsIgnoreCase(request.getContentEncoding())));
+
+    	    throw createLinkedInApiClientException(error);
+            
+                        
+        } catch (IOException e) {
+            throw new LinkedInApiClientException(e);
+        }
+    }
+    
+    private HttpURLConnection sendRequest(String apiUrl, String xmlContent, String contentType, HttpMethod method) throws IOException{
+        LinkedInOAuthService oAuthService =
+                LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
+                    apiConsumer.getConsumerSecret());
+        URL               url     = new URL(apiUrl);
+        HttpURLConnection request = (HttpURLConnection) url.openConnection();
+
+        if (ApplicationConstants.CONNECT_TIMEOUT > -1) {
+            request.setConnectTimeout(ApplicationConstants.CONNECT_TIMEOUT);
+        }
+
+        if (ApplicationConstants.READ_TIMEOUT > -1) {
+            request.setReadTimeout(ApplicationConstants.READ_TIMEOUT);
+        }
+
+        for (String headerName : requestHeaders.keySet()) {
+            request.setRequestProperty(headerName, requestHeaders.get(headerName));
+        }
+
+        request.setRequestMethod(method.fieldName());
+        request.setDoOutput(true);
+        oAuthService.signRequestWithToken(request, accessToken);
+
+        if (contentType != null) {
+            request.setRequestProperty("Content-Type", contentType);
+        }
+
+        if (xmlContent != null) {
+            PrintWriter out = new PrintWriter(new OutputStreamWriter(request.getOutputStream(), UTF_8_CHAR_SET));
+
+            out.print(xmlContent);
+            out.flush();
+            out.close();
+        }
+
+        request.connect();
+        return request;
+    	
     }
 
     /**
@@ -4076,4 +4317,33 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected abstract SchemaElementFactory<?> createObjectFactory();
+    
+    
+    @Override
+    public Updates getCompanyUpdates(String companyId) {
+    	LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.COMPANY_UPDATES);
+        String                apiUrl  = builder.withField(ParameterNames.ID, companyId).buildUrl();
+
+        return readResponse(Updates.class, callApiMethod(apiUrl));
+    }
+    
+    @Override
+    public Updates getCompanyUpdates(String companyId, CompanyUpdateType eventType) {
+    	LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.COMPANY_UPDATES);
+        String                apiUrl  = builder.withField(ParameterNames.ID, companyId)
+        		.withParameter("event-type", eventType.fieldName()).buildUrl();
+
+        return readResponse(Updates.class, callApiMethod(apiUrl));
+    }
+    
+    @Override
+    public Updates getCompanyUpdates(String companyId, CompanyUpdateType eventType, int start, int count) {
+    	LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.COMPANY_UPDATES);
+        String                apiUrl  = builder.withField(ParameterNames.ID, companyId)
+        		.withParameter("event-type", eventType.fieldName())
+        		.withParameter(ParameterNames.START, String.valueOf(start))
+        		.withParameter(ParameterNames.COUNT, String.valueOf(count)).buildUrl();
+
+        return readResponse(Updates.class, callApiMethod(apiUrl));
+    }
 }

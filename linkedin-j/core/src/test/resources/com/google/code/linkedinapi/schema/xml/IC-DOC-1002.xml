@@ -1,0 +1,428 @@
+<person>
+	<id>3456B</id>
+	<first-name>Nabeel</first-name>
+	<last-name>Siddiqui</last-name>
+	<headline>I am here.</headline>
+	<location>
+		<name>Karachi</name>
+		<country>
+			<code>PK</code>
+		</country>
+	</location>
+	<industry>Information Technology</industry>
+	<distance>3</distance>
+	<relation-to-viewer>
+		<distance>2</distance>
+		<num-related-connections>10</num-related-connections>
+		<related-connections/>
+	</relation-to-viewer>
+	<num-recommenders>5</num-recommenders>
+	<current-status>Feeling good.</current-status>
+	<current-status-timestamp>1259737200000</current-status-timestamp>
+	<connections total="55" />
+	<num-connections>12</num-connections>
+	<num-connections-capped>false</num-connections-capped>	
+	<summary>All connections.</summary>
+    <public-profile-url>http://www.linkedin.com/in/adnanurooj</public-profile-url>	
+  <interests>AOP, Open Source frameworks, Design Patterns</interests>
+  <associations>jjjjjj</associations>
+  <honors>Guest speaker for the software conference.</honors>
+  <specialties>Specialities for guest speaker for the software conference.</specialties>
+  <proposal-comments>proposal comments</proposal-comments>
+	<positions total="2">
+		<position>
+			<id>1234A</id>
+			<title>Software Architect</title>
+			<summary>I was a software architect.</summary>
+			<start-date>
+				<year>2002</year>
+				<month>12</month>
+			</start-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software House</type>
+				<name>E-dev Technologies</name>
+				<industry>Information Technology</industry>
+			</company>
+		</position>
+		<position>
+			<id>1234B</id>
+			<title>Senior Software Architect</title>
+			<summary>I am a software architect.</summary>
+			<start-date>
+				<year>2003</year>
+				<month>11</month>
+			</start-date>
+			<end-date>
+				<year>2005</year>
+				<month>12</month>
+			</end-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software Houses</type>
+				<name>Creative Chaos</name>
+				<industry>Software Development</industry>
+			</company>
+		</position>
+	</positions>
+	<three-current-positions total="2">
+		<position>
+			<id>1234A</id>
+			<title>Software Architect</title>
+			<summary>I was a software architect.</summary>
+			<start-date>
+				<year>2002</year>
+				<month>12</month>
+			</start-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software House</type>
+				<name>E-dev Technologies</name>
+				<industry>Information Technology</industry>
+			</company>
+		</position>
+		<position>
+			<id>1234B</id>
+			<title>Senior Software Architect</title>
+			<summary>I am a software architect.</summary>
+			<start-date>
+				<year>2003</year>
+				<month>11</month>
+			</start-date>
+			<end-date>
+				<year>2005</year>
+				<month>12</month>
+			</end-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software Houses</type>
+				<name>Creative Chaos</name>
+				<industry>Software Development</industry>
+			</company>
+		</position>
+	</three-current-positions>
+	<three-past-positions total="2">
+		<position>
+			<id>1234A</id>
+			<title>Software Architect</title>
+			<summary>I was a software architect.</summary>
+			<start-date>
+				<year>2002</year>
+				<month>12</month>
+			</start-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software House</type>
+				<name>E-dev Technologies</name>
+				<industry>Information Technology</industry>
+			</company>
+		</position>
+		<position>
+			<id>1234B</id>
+			<title>Senior Software Architect</title>
+			<summary>I am a software architect.</summary>
+			<start-date>
+				<year>2003</year>
+				<month>11</month>
+			</start-date>
+			<end-date>
+				<year>2005</year>
+				<month>12</month>
+			</end-date>
+			<is-current>true</is-current>
+			<company>
+				<type>Software Houses</type>
+				<name>Creative Chaos</name>
+				<industry>Software Development</industry>
+			</company>
+		</position>
+	</three-past-positions>
+	
+	<publications total="3">
+		<publication>
+			<id>1234</id>
+			<title>publication 1</title>
+			<publisher>
+				<name>pub name</name>
+			</publisher>
+			<authors/>
+			<date>
+				<day>12</day>
+				<month>12</month>
+				<year>2009</year>
+			</date>
+			<url>http://www.google.com</url>
+			<summary>summary</summary>
+		</publication>
+		<publication>
+			<id>1234</id>
+			<title>publication 1</title>
+			<publisher>
+				<name>pub name</name>
+			</publisher>
+			<authors/>
+			<date>
+				<day>12</day>
+				<month>12</month>
+				<year>2009</year>
+			</date>
+			<url>http://www.google.com</url>
+			<summary>summary</summary>
+		</publication>
+		<publication>
+	      <id>4</id>
+	      <title>Open office publication</title>
+	      <date>
+	        <year>2008</year>
+	        <month>2</month>
+	        <day>4</day>
+	      </date>
+	    </publication>
+	</publications>
+	<patents total="4">
+		<patent>
+			<id>patent1</id>
+			<title>Patent Title</title>
+			<summary>Patent Summary</summary>
+			<number>US-4334234</number>
+			<status>
+				<id>0</id>
+				<name>Application</name>
+			</status>
+			<office>
+				<name>iCentris</name>
+			</office>
+			<inventors/>
+			<date>
+				<year>2009</year>
+			</date>
+			<url>http://www.google.com</url>
+		</patent>
+		<patent>
+			<id>patent2</id>
+			<title>Patent Title</title>
+			<summary>Patent Summary</summary>
+			<number>US-4334234</number>
+			<office>
+				<name>iCentris</name>
+			</office>
+			<inventors/>
+			<date>
+				<day>12</day>
+				<month>12</month>
+				<year>2009</year>
+			</date>
+			<url>http://www.google.com</url>
+		</patent>
+		<patent>
+			<id>patent2</id>
+			<title>Patent Title</title>
+			<summary>Patent Summary</summary>
+			<number>US-4334234</number>
+			<office>
+				<name>iCentris</name>
+			</office>
+			<inventors/>
+			<date></date>
+			<url>http://www.google.com</url>
+		</patent>
+		<patent>
+	      <id>10</id>
+	      <title>Pending Patent</title>
+	      <date>
+	        <year>2008</year>
+	        <month>2</month>
+	        <day>2</day>
+	      </date>
+	    </patent>
+	</patents>
+	<languages total="3">
+		<language>
+			<id>java</id>
+			<language>
+				<name>JAVA</name>
+			</language>
+			<proficiency>
+				<level>elementary</level>
+				<name>Elementary proficiency</name>
+			</proficiency>
+		</language>
+		<language>
+			<id>C</id>
+			<language>
+				<name>C language</name>
+			</language>
+			<proficiency>
+				<level>elementary</level>
+				<name>Elementary proficiency</name>
+			</proficiency>
+		</language>
+		<language>
+	      <id>12</id>
+	      <language>
+	        <name>English</name>
+	      </language>
+	    </language>
+	</languages>
+	<skills total="3">
+		<skill>
+			<id>skill1</id>
+			<skill>
+				<name>Mad Skill</name>
+			</skill>
+			<proficiency>
+				<level>beginner</level>
+				<name>Beginner</name>
+			</proficiency>
+			<years>
+				<id>year1</id>
+				<name>2+</name>
+			</years>
+		</skill>
+		<skill>
+			<id>skill2</id>
+			<skill>
+				<name>Mad Skill</name>
+			</skill>
+			<proficiency>
+				<level>beginner</level>
+				<name>Beginner</name>
+			</proficiency>
+			<years>
+				<id>year2</id>
+				<name>8+</name>
+			</years>
+		</skill>
+		<skill>
+	      <id>7</id>
+	      <skill>
+	        <name>Product Development</name>
+	      </skill>
+	    </skill>
+	</skills>
+	<certifications total="2">
+		<certification>
+			<id>scp</id>
+			<name>Sun Certified Progrmmer</name>
+			<authority>
+				<name>Oracle</name>
+			</authority>
+			<number>2</number>
+			<start-date>
+				<day>12</day>
+				<month>12</month>
+				<year>2009</year>
+			</start-date>
+			<end-date>
+				<day>12</day>
+				<month>12</month>
+				<year>2009</year>
+			</end-date>
+		</certification>
+		<certification>
+			<id>scp</id>
+			<name>Sun Certified Progrmmer</name>
+			<authority>
+				<name>Oracle</name>
+			</authority>
+			<number>2</number>
+			<start-date>
+				<day>12</day>
+				<month>12</month>
+				<year>2009</year>
+			</start-date>
+			<end-date>
+				<day>12</day>
+				<month>12</month>
+				<year>2009</year>
+			</end-date>
+		</certification>
+		<certification>
+	      <id>1</id>
+	      <name>SSL</name>
+	    </certification>
+	</certifications>
+	
+	
+	<educations total="2">
+		<education>
+			<id>7890N</id>
+			<school-name>N.E.D. University</school-name>
+			<degree>B.E. Computer Science</degree>
+			<start-date>
+				<year>1995</year>
+			</start-date>
+			<end-date>
+				<year>2000</year>
+			</end-date>
+			<notes>asd fasdf asf asf asdf</notes>
+			<activities>asdf asdf </activities>
+			<field-of-study>ff fffsd</field-of-study>
+		</education>
+		<education>
+			<id>8921N</id>
+			<school-name>FAST NU</school-name>
+			<degree>MS Computer Science</degree>
+			<start-date>
+				<year>1991</year>
+			</start-date>
+			<end-date>
+				<year>1994</year>
+			</end-date>
+			<notes>asd fasdf asf asf asd asdf asdfasdfasl fj lsadf jslafjsajfasdf f</notes>
+			<activities>asdf asdf asdflasjd lfkjasdfj lsajdflsjalfjlasfjlasjfljasdf</activities>
+			<field-of-study>ff fffsd asf jsalkdfjslafjasjlf jlsajdflj asldf</field-of-study>
+		</education>
+	</educations>
+	<member-url-resources>
+		<member-url>
+			<url>http://gapinginfinity.blogspot.com</url>
+			<name>My Blog</name>
+		</member-url>
+		<member-url>
+			<url>http://twitter.com/gapinginfinity</url>
+			<name>Twitter</name>
+		</member-url>
+	</member-url-resources>
+	<api-standard-profile-request>
+		<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name</url>
+	      <headers total="1">
+	        <http-header>
+	          <name>x-li-auth-token</name>
+	          <value>name:5CMz</value>
+	        </http-header>
+	        <http-header>
+	          <name>dummy</name>
+	          <value>name:5CMz</value>
+	        </http-header>
+	      </headers>
+	</api-standard-profile-request>
+	<site-standard-profile-request>
+		<url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name</url>
+	</site-standard-profile-request>
+	<picture-url>http://www.linkedin.com/profile?viewProfile=&amp;key=48356646&amp;authToken=Epxm&amp;authType=name</picture-url>
+  <im-accounts total="1">
+    <im-account>
+      <im-account-type>aim</im-account-type>
+      <im-account-name>nabeelmukhtar</im-account-name>
+    </im-account>
+  </im-accounts>
+  <twitter-accounts total="1">
+    <twitter-account>
+      <provider-account-id>23198636</provider-account-id>
+      <provider-account-name>nabeelmukhtar</provider-account-name>
+    </twitter-account>
+  </twitter-accounts>
+  <date-of-birth>
+    <year>1977</year>
+    <month>3</month>
+    <day>5</day>
+  </date-of-birth>
+  <main-address>A-63, Federal B. Area, Block 9</main-address>
+  <phone-numbers total="1">
+    <phone-number>
+      <phone-type>home</phone-type>
+      <phone-number>6323131</phone-number>
+    </phone-number>
+  </phone-numbers>
+</person>

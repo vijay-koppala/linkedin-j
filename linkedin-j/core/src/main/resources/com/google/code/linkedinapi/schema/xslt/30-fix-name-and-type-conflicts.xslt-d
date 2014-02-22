@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+				version="1.0">
+  <xsl:output method="xml" indent="yes"/>
+  
+  <xsl:template match="@*|node()">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+  
+  
+  <!-- Fix "error/status"-->
+  <xsl:template match="/xs:schema/xs:element[@name='error']/xs:complexType//xs:sequence/xs:element[@ref='status']">
+  	<xs:element name="status" type="xs:integer"/>
+  </xsl:template>
+  
+  
+  <!-- Fix "person/industry"-->
+  <xsl:template match="/xs:schema/xs:element[@name='person']/xs:complexType//xs:sequence/xs:element[@ref='industry']">
+  	<xs:element name="industry" type="xs:string"/>
+  </xsl:template>
+  
+  <!-- Fix "company/industry"-->
+  <xsl:template match="/xs:schema/xs:element[@name='company']/xs:complexType//xs:sequence/xs:element[@ref='industry']">
+  	<xs:element name="industry" type="xs:string"/>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='industry']/xs:complexType//xs:sequence/xs:element[@ref='code']">
+  	<xs:element ref="code"/>
+  </xsl:template>
+  
+  
+  <!-- Fix "person/specialties"-->
+  <xsl:template match="/xs:schema/xs:element[@name='person']/xs:complexType//xs:sequence/xs:element[@ref='specialties']">
+  	<xs:element name="specialties" type="xs:string"/>
+  </xsl:template>
+  
+  
+  <!-- Fix "type/code"-->
+  <xsl:template match="/xs:schema/xs:element[@name='type']/xs:complexType//xs:sequence/xs:element[@ref='code']">
+  	<xs:element name="code" type="xs:string"/>
+  </xsl:template>
+  
+  <!-- Fix "company/type" -->
+  <xsl:template match="/xs:schema/xs:element[@name='company']/xs:complexType//xs:sequence/xs:element[@ref='type']">
+  	<xs:element name="type" type="xs:string"/>
+  </xsl:template>
+  
+  
+  <!-- Fix "update-comment/comment"-->
+  <xsl:template match="/xs:schema/xs:element[@name='update-comment']/xs:complexType//xs:sequence/xs:element[@ref='comment']">
+  	<xs:element name="comment" type="xs:string"/>
+  </xsl:template>
+  
+  
+  <!-- Fix "share/comment"-->
+  <xsl:template match="/xs:schema/xs:element[@name='share']/xs:complexType//xs:sequence/xs:element[@ref='comment']">
+  	<xs:element name="comment" type="xs:string"/>
+  </xsl:template>
+  
+  
+  <!-- Fix "current-share/comment" -->
+  <xsl:template match="/xs:schema/xs:element[@name='current-share']/xs:complexType//xs:sequence/xs:element[@ref='comment']">
+  	<xs:element name="comment" type="xs:string"/>
+  </xsl:template>
+  
+  
+  <!-- Fix "mixed" for "phone-number"-->
+  <xsl:template match="/xs:schema/xs:element[@name='phone-numbers']/xs:complexType//xs:sequence/xs:element[@ref='phone-number']">
+  	<xs:element minOccurs="0" maxOccurs="unbounded" ref="phone-number"/>
+  </xsl:template>
+  
+  <!-- Fix "phone-number/phone-number"-->
+  <xsl:template match="/xs:schema/xs:element[@name='phone-number']/xs:complexType//xs:sequence/xs:element[@ref='phone-number']">
+  	<xs:element name="phone-number" type="xs:string"/>  
+  </xsl:template>
+  
+  <!-- Changing definition to allow multiple twitter accounts -->
+  <xsl:template match="/xs:schema/xs:element[@name='twitter-accounts']/xs:complexType//xs:sequence/xs:element[@ref='twitter-account']">
+  	<xs:element minOccurs="0" maxOccurs="unbounded" ref="twitter-account"/>
+  </xsl:template>
+  
+  <!-- Changing definition to allow multiple im-accounts -->
+  <xsl:template match="/xs:schema/xs:element[@name='im-accounts']/xs:complexType//xs:sequence/xs:element[@ref='im-account']">
+  	<xs:element minOccurs="0" maxOccurs="unbounded" ref="im-account"/>
+  </xsl:template>
+  
+  <!-- Changing definition to allow multiple email-domain -->
+  <xsl:template match="/xs:schema/xs:element[@name='email-domains']/xs:complexType//xs:sequence/xs:element[@ref='email-domain']">
+  	<xs:element minOccurs="0" maxOccurs="unbounded" ref="email-domain"/>
+  </xsl:template>
+  
+  <!-- Changing definition to allow multiple sales-persons -->
+  <xsl:template match="/xs:schema/xs:element[@name='sales-persons']/xs:complexType//xs:sequence/xs:element[@ref='person']">
+  	<xs:element minOccurs="0" maxOccurs="unbounded" ref="person"/>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='group']/xs:complexType//xs:sequence/xs:element[@ref='category']">
+  	<xs:element name="person" type="group-category"/>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='authors']/xs:complexType//xs:sequence/xs:element[@ref='author']">
+  	<xs:element name="author" type="publication-author" minOccurs="0" maxOccurs="unbounded"/>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='language']/xs:complexType//xs:sequence/xs:element[@ref='language']">
+  	<xs:element name="language" type="name-type"/>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='skill']/xs:complexType//xs:sequence/xs:element[@ref='skill']">
+  	<xs:element name="skill" type="name-type"/>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='company']/xs:complexType//xs:sequence/xs:element[@ref='status']">
+  	<xs:element name="status" type="company-status"/>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='patent']/xs:complexType//xs:sequence/xs:element[@ref='status']">
+  	<xs:element name="status" type="patent-status"/>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='product']/xs:complexType//xs:sequence/xs:element[@ref='type']">
+  	<xs:element name="type" type="product-type"/>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='postal-code']">
+  	<xs:element name="postal-code" type="xs:string"/>
+  </xsl:template>
+  
+  
+    
+  <!-- Fix "Or" methods for "phone-number"-->
+  <!--
+  <xsl:template match="/xs:schema/xs:element[@name='phone-number']/xs:complexType/xs:choice">
+  	<xs:sequence>
+  		<xsl:apply-templates select="node()"/>
+  	</xs:sequence>
+  </xsl:template>
+  -->
+  
+  
+  <!-- Fix "Or" methods for "comment"-->
+  <!--
+  <xsl:template match="/xs:schema/xs:element[@name='comment']/xs:complexType/xs:choice">
+  	<xs:sequence>
+  		<xsl:apply-templates select="node()"/>
+  	</xs:sequence>
+  </xsl:template>
+  -->
+  
+  <!-- Fix "Or" methods for "date"-->
+  <!--<xsl:template match="/xs:schema/xs:element[@name='date']/xs:complexType/xs:choice">
+  	<xs:sequence>
+  		<xsl:apply-templates select="node()"/>
+  	</xs:sequence>
+  </xsl:template>
+  -->
+  
+  <!--
+  
+  <xsl:template match="/xs:schema/xs:element[@name='start-date']/xs:complexType/xs:sequence/xs:choice">
+  	<xsl:apply-templates select="node()"/>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='end-date']/xs:complexType/xs:sequence/xs:choice">
+  	<xsl:apply-templates select="node()"/>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='status']/xs:complexType/xs:choice">
+  	<xs:sequence>
+  		<xsl:apply-templates select="node()"/>
+  	</xs:sequence>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='person']/xs:complexType/xs:sequence/xs:choice">
+  	<xs:sequence>
+  		<xsl:apply-templates select="node()"/>
+  	</xs:sequence>
+  </xsl:template>
+  
+  -->  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--
+  	<xsl:template match="@mixed"/> will delete mixed attribute all over the place. But doing step by step is good 
+   -->
+  <!--
+  <xsl:template match="/xs:schema/xs:element[@name='status']/xs:complexType[@mixed='true']">
+  	<xsl:copy>
+  		<xsl:apply-templates select="*|node()"/>
+  	</xsl:copy>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='type']/xs:complexType[@mixed='true']">
+  	<xsl:copy>
+  		<xsl:apply-templates select="*|node()"/> no @ in select which doesn't select attributes 
+  	</xsl:copy>
+  </xsl:template>
+  <xsl:template match="/xs:schema/xs:element[@name='phone-number']/xs:complexType[@mixed='true']">
+  	<xsl:copy>
+  		<xsl:apply-templates select="*|node()"/>
+  	</xsl:copy>
+  </xsl:template>
+  <xsl:template match="/xs:schema/xs:element[@name='comment']/xs:complexType[@mixed='true']">
+  	<xsl:copy>
+  		<xsl:apply-templates select="*|node()"/>
+  	</xsl:copy>
+  </xsl:template>
+  -->
+</xsl:stylesheet>

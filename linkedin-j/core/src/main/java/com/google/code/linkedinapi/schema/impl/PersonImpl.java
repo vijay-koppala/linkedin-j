@@ -1,19 +1,3 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema.impl;
 
@@ -23,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -97,7 +82,8 @@ import com.google.code.linkedinapi.schema.TwitterAccounts;
     "twitterAccounts",
     "dateOfBirth",
     "mainAddress",
-    "phoneNumbers"
+    "phoneNumbers",
+    "proposalComments"
 })
 @XmlRootElement(name = "person")
 public class PersonImpl
@@ -106,6 +92,7 @@ public class PersonImpl
 
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NMTOKEN")
     protected String id;
     @XmlElement(name = "first-name")
     protected String firstName;
@@ -123,15 +110,19 @@ public class PersonImpl
     protected CurrentShareImpl currentShare;
     @XmlElement(type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long distance;
     @XmlElement(name = "current-status-timestamp", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long currentStatusTimestamp;
     @XmlElement(name = "num-recommenders", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long numRecommenders;
     @XmlElement(name = "num-connections", type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long numConnections;
     @XmlElement(name = "num-connections-capped")
     protected Boolean numConnectionsCapped;
@@ -139,6 +130,7 @@ public class PersonImpl
     protected RelationToViewerImpl relationToViewer;
     protected String summary;
     @XmlElement(name = "public-profile-url")
+    @XmlSchemaType(name = "anyURI")
     protected String publicProfileUrl;
     protected String interests;
     protected String associations;
@@ -169,6 +161,7 @@ public class PersonImpl
     @XmlElement(name = "site-standard-profile-request", type = SiteStandardProfileRequestImpl.class)
     protected SiteStandardProfileRequestImpl siteStandardProfileRequest;
     @XmlElement(name = "picture-url")
+    @XmlSchemaType(name = "anyURI")
     protected String pictureUrl;
     @XmlElement(name = "recommendations-given", type = RecommendationsGivenImpl.class)
     protected RecommendationsGivenImpl recommendationsGiven;
@@ -188,7 +181,10 @@ public class PersonImpl
     protected String mainAddress;
     @XmlElement(name = "phone-numbers", type = PhoneNumbersImpl.class)
     protected PhoneNumbersImpl phoneNumbers;
+    @XmlElement(name = "proposal-comments")
+    protected String proposalComments;
     @XmlAttribute
+    @XmlSchemaType(name = "anySimpleType")
     protected String path;
 
     public String getId() {
@@ -533,6 +529,14 @@ public class PersonImpl
 
     public void setPhoneNumbers(PhoneNumbers value) {
         this.phoneNumbers = ((PhoneNumbersImpl) value);
+    }
+
+    public String getProposalComments() {
+        return proposalComments;
+    }
+
+    public void setProposalComments(String value) {
+        this.proposalComments = value;
     }
 
     public String getPath() {

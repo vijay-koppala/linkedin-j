@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+				version="1.0">
+  <xsl:output method="xml" indent="yes"/>
+  
+  <xsl:template match="@*|node()">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+    </xsl:copy>
+  </xsl:template>
+    
+  <xsl:template match="/xs:schema/xs:element[@name='company-type']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+  	<xs:element name="code">
+  		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="C"/>
+				<xs:enumeration value="D"/>
+				<xs:enumeration value="E"/>
+				<xs:enumeration value="G"/>
+				<xs:enumeration value="N"/>
+				<xs:enumeration value="O"/>
+				<xs:enumeration value="P"/>
+				<xs:enumeration value="S"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='connect-type']">
+  	<xs:element name="connect-type">
+  		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="friend"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='content-type']">
+  	<xs:element name="connect-type">
+  		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="linkedin-html"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+    
+  
+  <xsl:template match="/xs:schema/xs:element[@name='proficiency']/xs:complexType/xs:sequence/xs:element[@ref='level']">
+  	<xs:element name="level">
+  		<xs:simpleType>
+          <xs:restriction base="xs:string">
+          	<xs:enumeration value="elementary"/>
+            <xs:enumeration value="limited_working"/>
+            <xs:enumeration value="professional_working"/>
+            <xs:enumeration value="full_professional"/>
+            <xs:enumeration value="native_or_bilingual"/>
+            <xs:enumeration value="beginner"/>
+            <xs:enumeration value="intermediate"/>
+            <xs:enumeration value="advanced"/>
+            <xs:enumeration value="expert"/>
+          </xs:restriction>
+        </xs:simpleType>
+  	</xs:element>
+  </xsl:template>
+  
+  <!-- Since we are adjust proficiency/level above, inline to the proficiency we don't need a separate element "level" -->
+  <xsl:template match="/xs:schema/xs:element[@name='level']"/>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='connect-type']">
+  	<xs:element name="connect-type">
+  		<xs:simpleType>
+          <xs:restriction base="xs:string">
+          	<xs:enumeration value="friend"/>
+          </xs:restriction>
+        </xs:simpleType>
+  	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='content-type']">
+  	<xs:element name="content-type">
+  		<xs:simpleType>
+          <xs:restriction base="xs:string">
+          	<xs:enumeration value="linkedin-html"/>
+          </xs:restriction>
+        </xs:simpleType>
+  	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='experience-level']/xs:complexType//xs:sequence/xs:element[@ref='code']">
+	<xs:element name="code">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="0"/>
+				<xs:enumeration value="1"/>
+				<xs:enumeration value="2"/>
+				<xs:enumeration value="3"/>
+				<xs:enumeration value="4"/>
+				<xs:enumeration value="5"/>
+				<xs:enumeration value="6"/>
+		  	</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='facet']/xs:complexType//xs:sequence/xs:element[@ref='code']">
+  	<xs:element name="code">
+  		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+			<xs:enumeration value="location"/>
+			<xs:enumeration value="industry"/>
+			<xs:enumeration value="network"/>
+			<xs:enumeration value="language"/>
+			<xs:enumeration value="current-company"/>
+			<xs:enumeration value="past-company"/>
+			<xs:enumeration value="school"/>
+			<xs:enumeration value="company-size"/>
+			<xs:enumeration value="num-followers-range"/>
+			<xs:enumeration value="fortune"/>
+			<xs:enumeration value="company"/>
+			<xs:enumeration value="date-posted"/>
+			<xs:enumeration value="job-function"/>
+			<xs:enumeration value="experience-level"/>
+			<xs:enumeration value="salary"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='im-account-type']">
+	  <xs:element name="im-account-type">
+		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+			<xs:enumeration value="aim"/>
+			<xs:enumeration value="gtalk"/>
+			<xs:enumeration value="icq"/>
+			<xs:enumeration value="msn"/>
+			<xs:enumeration value="skype"/>
+			<xs:enumeration value="yahoo"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	  </xs:element>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='job-function']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+  	<xs:element name="code">
+  		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+			<xs:enumeration value="acct"/>
+			<xs:enumeration value="adm"/>
+			<xs:enumeration value="advr"/>
+			<xs:enumeration value="anls"/>
+			<xs:enumeration value="art"/>
+			<xs:enumeration value="bd"/>
+			<xs:enumeration value="cnsl"/>
+			<xs:enumeration value="cust"/>
+			<xs:enumeration value="dist"/>
+			<xs:enumeration value="dsgn"/>
+			<xs:enumeration value="edu"/>
+			<xs:enumeration value="eng"/>
+			<xs:enumeration value="fin"/>
+			<xs:enumeration value="genb"/>
+			<xs:enumeration value="hr"/>
+			<xs:enumeration value="it"/>
+			<xs:enumeration value="lgl"/>
+			<xs:enumeration value="mgmt"/>
+			<xs:enumeration value="mnfc"/>
+			<xs:enumeration value="mrkt"/>
+			<xs:enumeration value="othr"/>
+			<xs:enumeration value="pr"/>
+			<xs:enumeration value="prch"/>
+			<xs:enumeration value="prdm"/>
+			<xs:enumeration value="prjm"/>
+			<xs:enumeration value="prod"/>
+			<xs:enumeration value="qa"/>
+			<xs:enumeration value="rsch"/>
+			<xs:enumeration value="sale"/>
+			<xs:enumeration value="sci"/>
+			<xs:enumeration value="stra"/>
+			<xs:enumeration value="supl"/>
+			<xs:enumeration value="trng"/>
+			<xs:enumeration value="wrt"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='job-type']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+  	<xs:element name="code">
+  		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="F"/>
+			<xs:enumeration value="P"/>
+			<xs:enumeration value="C"/>
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="O"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='status']/xs:complexType/xs:choice/xs:element[@ref='id']">
+  	<xs:element name="id">
+		<xs:simpleType>
+		    <xs:restriction base="xs:string">
+				<xs:enumeration value="0"/>
+				<xs:enumeration value="1"/>
+		    </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  <xsl:template match="/xs:schema/xs:element[@name='status']/xs:complexType/xs:choice/xs:element[@ref='name']">
+  	<xs:element name="name">
+		<xs:simpleType>
+		    <xs:restriction base="xs:string">
+				<xs:enumeration value="Application"/>
+				<xs:enumeration value="Patent"/>
+		    </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='phone-type']">
+  	<xs:element name="phone-type">
+		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+			<xs:enumeration value="home"/>
+			<xs:enumeration value="work"/>
+			<xs:enumeration value="mobile"/>
+		  </xs:restriction>
+		</xs:simpleType>
+  	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='profile-field']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+  	<xs:element name="code">
+  		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="description"/>
+			<xs:enumeration value="speciality"/>
+			<xs:enumeration value="logo"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='recommendation-type']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+  	<xs:element name="code">
+  		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="business-partner"/>
+			<xs:enumeration value="colleague"/>
+			<xs:enumeration value="education"/>
+			<xs:enumeration value="service-provider"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+  </xsl:template><!--
+  
+  <xsl:template match="/xs:schema/xs:element[@name='recommendation-type']">
+	  <xs:element name="recommendation-type">
+		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+		    <xs:enumeration value="COLLEAGUE"/>
+			<xs:enumeration value="BUSINESS_PARTNER"/>
+			<xs:enumeration value="SERVICE_PROVIDER"/>
+			<xs:enumeration value="STUDENT"/>
+			<xs:enumeration value="EDUCATION"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	  </xs:element>
+  </xsl:template>
+  
+  --><xsl:template match="/xs:schema/xs:element[@name='update-type']">
+	  <xs:element name="update-type">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="ANSW"/>
+				<xs:enumeration value="APPM"/>
+				<xs:enumeration value="APPS"/>
+				<xs:enumeration value="CONN"/>
+				<xs:enumeration value="NCON"/>
+				<xs:enumeration value="CCEM"/>
+				<xs:enumeration value="JOBP"/>  
+				<xs:enumeration value="JGRP"/>
+				<xs:enumeration value="PICU"/>
+				<xs:enumeration value="PREC"/>
+				<xs:enumeration value="PROF"/>
+				<xs:enumeration value="QSTN"/>
+				<xs:enumeration value="STAT"/>
+				<xs:enumeration value="PRFX"/>
+				<xs:enumeration value="SHAR"/>
+				<xs:enumeration value="CMPY"/>
+				<xs:enumeration value="VIRL"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='visibility']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+		<xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="anyone"/>
+				<xs:enumeration value="all-members"/>
+				<xs:enumeration value="connections-only"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='role']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+		<xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="H"/>
+				<xs:enumeration value="R"/>
+				<xs:enumeration value="S"/>
+				<xs:enumeration value="W"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='stock-exchange']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+		<xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="ASE"/>
+				<xs:enumeration value="NYS"/>
+				<xs:enumeration value="NMS"/>
+				<xs:enumeration value="LSE"/>
+				<xs:enumeration value="FRA"/>
+				<xs:enumeration value="GER"/>
+				<xs:enumeration value="PAR"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='membership-state']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+		<xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="blocked"/>
+				<xs:enumeration value="non-member"/>
+				<xs:enumeration value="awaiting-confirmation"/>
+				<xs:enumeration value="awaiting-parent-group-confirmation"/>
+				<xs:enumeration value="member"/>
+				<xs:enumeration value="moderator"/>
+				<xs:enumeration value="manager"/>
+				<xs:enumeration value="owner"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='action']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+		<xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="Add-post"/>
+				<xs:enumeration value="Leave"/>
+				<xs:enumeration value="View-posts"/>
+				
+				<xs:enumeration value="add-comment"/>
+				<xs:enumeration value="flag-as-inappropriate"/>
+				<xs:enumeration value="categorize-as-job"/>
+				<xs:enumeration value="categorize-as-promotion"/>
+				<xs:enumeration value="follow"/>
+				<xs:enumeration value="like"/>
+				<xs:enumeration value="reply-privately"/>
+				
+				<xs:enumeration value="delete"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='category']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+		<xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="discussion"/>
+				<xs:enumeration value="job"/>
+				<xs:enumeration value="promotion"/>
+				<xs:enumeration value="linkedin-job"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  
+  <xsl:template match="/xs:schema/xs:element[@name='email-digest-frequency']/xs:complexType/xs:sequence/xs:element[@ref='code']">
+		<xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+				<xs:enumeration value="none"/>
+				<xs:enumeration value="daily"/>
+				<xs:enumeration value="weekly"/>
+			  </xs:restriction>
+			</xs:simpleType>
+		</xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='post']/xs:complexType/xs:sequence/xs:element[@ref='type']">
+  	<xs:element name="type">
+		<xs:simpleType>
+		  <xs:restriction base="xs:string">
+			<xs:enumeration value="standard"/>
+			<xs:enumeration value="news"/>
+		  </xs:restriction>
+		</xs:simpleType>
+	</xs:element>  
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='job-suggestions']">
+  	<xs:element name="job-suggestions">
+	    <xs:complexType>
+	      <xs:sequence>
+	        <xs:element ref="jobs"/>
+	      </xs:sequence>
+	    </xs:complexType>
+	  </xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:element[@name='job-search']">
+	  <xs:element name="job-search">
+	    <xs:complexType>
+	      <xs:sequence>
+	        <xs:element ref="jobs"/>
+	        <xs:element ref="facets"/>
+	      </xs:sequence>
+	    </xs:complexType>
+	  </xs:element>
+  </xsl:template>
+  
+  <xsl:template match="/xs:schema/xs:complexType[@name='jobs']"/>
+  
+  
+  <xsl:template match="/xs:schema">
+    <xsl:copy>
+      <xsl:apply-templates select="@*|node()"/>
+      
+      <xs:complexType name="group-category">
+	      <xs:sequence>
+	        <xs:element name="code">
+				<xs:simpleType>
+				  <xs:restriction base="xs:string">
+				    <xs:enumeration value="alumni"/>
+					<xs:enumeration value="corporate"/>
+					<xs:enumeration value="conference"/>
+					<xs:enumeration value="network"/>
+					<xs:enumeration value="philanthropic"/>
+					<xs:enumeration value="professional"/>
+					<xs:enumeration value="other"/>
+				  </xs:restriction>
+				</xs:simpleType>
+	        </xs:element>
+	      </xs:sequence>
+	  </xs:complexType>
+	  
+	  <xs:complexType name="post-type">
+	    <xs:sequence>
+	       <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="standard"/>
+				<xs:enumeration value="news"/>
+			  </xs:restriction>
+			</xs:simpleType>
+	       </xs:element>
+	    </xs:sequence>
+	  </xs:complexType>
+	  
+	  <xs:complexType name="patent-status">
+	    <xs:sequence>
+	       <xs:element name="name">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="Application"/>
+				<xs:enumeration value="Patent"/>
+			  </xs:restriction>
+			</xs:simpleType>
+	       </xs:element>
+	      <xs:element name="id">
+	      	<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="0"/>
+				<xs:enumeration value="1"/>
+			  </xs:restriction>
+			</xs:simpleType>
+	      </xs:element>
+	    </xs:sequence>
+	  </xs:complexType>
+	  
+	  <xs:complexType name="company-status">
+	    <xs:sequence>
+	       <xs:element name="code">
+			<xs:simpleType>
+			  <xs:restriction base="xs:string">
+			    <xs:enumeration value="OPR"/>
+				<xs:enumeration value="OPS"/>
+				<xs:enumeration value="RRG"/>
+				<xs:enumeration value="OOB"/>
+				<xs:enumeration value="ACQ"/>
+			  </xs:restriction>
+			</xs:simpleType>
+	       </xs:element>
+	      <xs:element ref="name"/>
+	    </xs:sequence>
+	  </xs:complexType>
+	  
+	  <xs:complexType name="name-type">
+	       <xs:sequence>
+	         <xs:element ref="name"/>
+	       </xs:sequence>
+	  </xs:complexType>
+	  
+	  <xs:complexType name="product-type">
+	    <xs:sequence>
+	      <xs:element ref="code"/>
+	      <xs:element ref="name"/>
+	    </xs:sequence>
+	  </xs:complexType>
+	  
+	  <xs:complexType name="publication-author">
+	     <xs:sequence>
+	       <xs:element ref="id"/>
+	       <xs:element ref="name"/>
+	       <xs:element ref="person"/>
+	     </xs:sequence>
+	  </xs:complexType>
+    </xsl:copy>  
+  </xsl:template>
+  
+<!--  <xsl:template match="/xs:schema/xs:element[@name='update-action']/xs:complexType/xs:sequence/xs:element[@ref='original-update']">-->
+<!--  	<xs:element ref="update"/>-->
+<!--  </xsl:template>-->
+  
+</xsl:stylesheet>

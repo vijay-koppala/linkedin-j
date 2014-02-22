@@ -178,6 +178,8 @@ public final class LinkedInApiUrls {
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompanyByUniversalName");
     public static final String GET_COMPANIES_BY_EMAIL_DOMAIN =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getCompaniesByEmailDomain");
+    public static final String GET_ADMINISTERED_COMPANIES =
+            linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getAdministeredCompanies");
     public static final String SEARCH_COMPANIES =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.searchCompanies");
     public static final String SEARCH_FACETS_FOR_COMPANIES =
@@ -258,6 +260,9 @@ public final class LinkedInApiUrls {
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getSuggestedGroups");
     public static final String DELETE_GROUP_SUGGESTION =
         linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.deleteGroupSuggestion");
+    
+    public static final String COMPANY_UPDATES =
+            linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.companyUpdates");
     /**
      * Instantiates a new linked in api urls.
      */

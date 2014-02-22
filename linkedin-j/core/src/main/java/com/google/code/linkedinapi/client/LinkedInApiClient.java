@@ -16,12 +16,14 @@
  */
 package com.google.code.linkedinapi.client;
 
+import com.google.code.linkedinapi.schema.Companies;
+
 
 /**
  * The Interface LinkedInApiClient. It acts as a facade for the whole LinkedIn API.
  * 
  * @author Nabeel Mukhtar
  */
-public interface LinkedInApiClient extends PeopleApiClient, NetworkUpdatesApiClient, CommunicationsApiClient, JobsApiClient, CompaniesApiClient, GroupsApiClient {
+public interface LinkedInApiClient extends PeopleApiClient, NetworkUpdatesApiClient, CommunicationsApiClient, JobsApiClient, CompaniesApiClient, CompanyUpdatesApiClient, GroupsApiClient {
 
 }

@@ -294,6 +294,8 @@ public interface NetworkUpdatesApiClient extends LinkedInAuthenticationClient {
      * @return the network update comments
      */
     public UpdateComments getNetworkUpdateComments(String networkUpdateId);
+    
+    public UpdateComments getNetworkUpdateCommentsCustom(String networkUpdateId, Long start, Long count);
 
     /**
      * Gets the network update likes.
@@ -414,6 +416,12 @@ public interface NetworkUpdatesApiClient extends LinkedInAuthenticationClient {
      * @param visibility the visibility
      */
     public void postShare(String commentText, String title, String description, String url, String imageUrl, VisibilityType visibility, boolean postToTwitter);
+    
+    public String postShareCustom1(String commentText, VisibilityType visibility);
+    
+    public String postShareCustom2(String commentText, String title, String description, String url, String imageUrl, VisibilityType visibility);
+    
+    public String postShareCustom3(String commentText, String title, String description, String url, String imageUrl, VisibilityType visibilityType, boolean postToTwitter);
     
     /**
      * Re-share.

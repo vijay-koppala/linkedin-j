@@ -1,0 +1,820 @@
+<group-memberships total="2">
+	<group-membership key="3073134">
+		<group>
+			<id>3073134</id>
+			<name>Compliance WatchDog</name>
+			<description>Compliance WatchDog is an internet software application
+				designed to monitor, track and archive changes made to any website
+				or social networking updates for Twitter, Linkedin or Facebook
+				accounts.</description>
+			<short-description>Compliance WatchDog is an internet software
+				application designed to monitor, track and archive changes made to
+				any website or social networking updates for Twitter, Linkedin or
+				Facebook accounts.</short-description>
+			<location>
+				<country>
+					<code>us</code>
+				</country>
+				<postal-code>84025</postal-code>
+			</location>
+			<relation-to-viewer>
+				<membership-state>
+					<code>member</code>
+				</membership-state>
+				<available-actions total="3">
+					<action>
+						<code>add-post</code>
+					</action>
+					<action>
+						<code>leave</code>
+					</action>
+					<action>
+						<code>view-posts</code>
+					</action>
+				</available-actions>
+			</relation-to-viewer>
+			<posts total="4">
+				<post>
+					<id>g-3073134-S-60671639</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>r3Rp6vmPTa</id>
+						<first-name>Jabadu</first-name>
+						<last-name>Ramachandaran</last-name>
+						<headline>An expert in many things</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+						</picture-url>
+					</creator>
+					<title>My first discussion</title>
+					<summary>Here are additional details</summary>
+					<creation-timestamp>1309885631000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>true</is-following>
+						<is-liked>true</is-liked>
+						<available-actions total="6">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>delete</code>
+							</action>
+							<action>
+								<code>unfollow</code>
+							</action>
+							<action>
+								<code>unlike</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="2">
+						<like>
+							<person>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</person>
+						</like>
+						<like>
+							<person>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</person>
+						</like>
+					</likes>
+					<comments total="2">
+						<comment>
+							<id>g-3073134-S-60671639-44203604</id>
+							<text>And now I have commented on it</text>
+							<creator>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</creator>
+							<creation-timestamp>1309885652000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>delete</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+					</comments>
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=60671639&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+				</post>
+				<post>
+					<id>g-3073134-S-29014530</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>5v2AvjVxjM</id>
+						<first-name>Spencer</first-name>
+						<last-name>Mefford</last-name>
+						<headline>Senior Java Developer at SiteQuest Technologies
+						</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_3Y7SZjTos_XqGGpTiJYtZYToni9JGXpT_MU-ZxGoW6Gdj8I3SZxT90nXZSn6TijShgSPB4pzExki
+						</picture-url>
+					</creator>
+					<title>SiteQuest rocks!</title>
+					<creation-timestamp>1283855752000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>false</is-following>
+						<is-liked>false</is-liked>
+						<available-actions total="6">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>flag-as-inappropriate</code>
+							</action>
+							<action>
+								<code>follow</code>
+							</action>
+							<action>
+								<code>like</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="0" />
+					<comments total="0" />
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=29014530&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+					<attachment>
+						<image-url>http://www.google.com/logos/2011/lespaul11-hp.png
+						</image-url>
+						<content-domain>google.com</content-domain>
+						<content-url>http://google.com</content-url>
+						<title>Google asdf</title>
+						<summary>Search the world's information, including webpages,
+							images, videos and more. Google has many special features to help
+							you find exactly what you're looking for.</summary>
+					</attachment>
+				</post>
+				<post>
+					<id>g-3073134-S-27045382</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>g-jfSDjEAc</id>
+						<first-name>James</first-name>
+						<last-name>Cella</last-name>
+						<headline>Social Media Compliance software provider and overall
+							social media geek</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_IP83M2cm0bOMy92_WBPOM7qA16MdKvS_WNNYM7ka2iSJ7AsibvKDcfrhjeJ91tu7oKC0nHs9FWDI
+						</picture-url>
+					</creator>
+					<title>Spencer? This one?</title>
+					<creation-timestamp>1281602535000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>false</is-following>
+						<is-liked>false</is-liked>
+						<available-actions total="7">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>flag-as-inappropriate</code>
+							</action>
+							<action>
+								<code>follow</code>
+							</action>
+							<action>
+								<code>like</code>
+							</action>
+							<action>
+								<code>reply-privately</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="0" />
+					<comments total="0" />
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=27045382&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+					<attachment>
+						<image-url>http://www.google.com/logos/2011/lespaul11-hp.png
+						</image-url>
+						<content-domain>google.com</content-domain>
+						<content-url>http://google.com</content-url>
+						<title>Google asdf</title>
+						<summary>Search the world's information, including webpages,
+							images, videos and more. Google has many special features to help
+							you find exactly what you're looking for.</summary>
+					</attachment>
+				</post>
+				<post>
+					<id>g-3073134-S-27043474</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>g-jfSDjEAc</id>
+						<first-name>James</first-name>
+						<last-name>Cella</last-name>
+						<headline>Social Media Compliance software provider and overall
+							social media geek</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_IP83M2cm0bOMy92_WBPOM7qA16MdKvS_WNNYM7ka2iSJ7AsibvKDcfrhjeJ91tu7oKC0nHs9FWDI
+						</picture-url>
+					</creator>
+					<title>This is the first comment on this group.</title>
+					<creation-timestamp>1281601516000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>true</is-following>
+						<is-liked>true</is-liked>
+						<available-actions total="7">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>flag-as-inappropriate</code>
+							</action>
+							<action>
+								<code>reply-privately</code>
+							</action>
+							<action>
+								<code>unfollow</code>
+							</action>
+							<action>
+								<code>unlike</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="1">
+						<like>
+							<person>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</person>
+						</like>
+					</likes>
+					<comments total="3">
+						<comment>
+							<id>g-3073134-S-27043474-20985798</id>
+							<text>Did you get this?</text>
+							<creator>
+								<id>g-jfSDjEAc</id>
+								<first-name>James</first-name>
+								<last-name>Cella</last-name>
+								<headline>Social Media Compliance software provider and overall
+									social media geek</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_IP83M2cm0bOMy92_WBPOM7qA16MdKvS_WNNYM7ka2iSJ7AsibvKDcfrhjeJ91tu7oKC0nHs9FWDI
+								</picture-url>
+							</creator>
+							<creation-timestamp>1281602511000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>flag-as-inappropriate</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+						<comment>
+							<id>g-3073134-S-27043474-44203721</id>
+							<text>10 months later, I finally got it.</text>
+							<creator>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</creator>
+							<creation-timestamp>1309885700000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>delete</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+						<comment>
+							<id>g-3073134-S-27043474-44203679</id>
+							<text>And boy was I excited to see this group!</text>
+							<creator>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</creator>
+							<creation-timestamp>1309885716000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>delete</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+					</comments>
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=27043474&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+				</post>
+			</posts>
+			<counts-by-category total="2">
+				<count-for-category>
+					<category>
+						<code>discussion</code>
+					</category>
+					<count>0</count>
+				</count-for-category>
+				<count-for-category>
+					<category>
+						<code>job</code>
+					</category>
+					<count>0</count>
+				</count-for-category>
+			</counts-by-category>
+			<is-open-to-non-members>false</is-open-to-non-members>
+			<category>
+				<code>corporate</code>
+			</category>
+			<website-url>http://www.watchdogsites.com</website-url>
+			<site-group-url>http://www.linkedin.com/groups?gid=3073134&amp;trk=api*a108281*s116823*
+			</site-group-url>
+			<contact-email>james.cella@icentris.com</contact-email>
+			<locale>en_US</locale>
+			<allow-member-invites>false</allow-member-invites>
+			<small-logo-url>http://media.linkedin.com/mpr/mpr/p/2/000/05c/39d/05230e2.png
+			</small-logo-url>
+			<large-logo-url>http://media.linkedin.com/mpr/mpr/p/2/000/05c/39d/05230e2.png
+			</large-logo-url>
+		</group>
+		<person>
+			<id>r3Rp6vmPTa</id>
+			<first-name>Jabadu</first-name>
+			<last-name>Ramachandaran</last-name>
+			<headline>An expert in many things</headline>
+			<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+			</picture-url>
+		</person>
+		<membership-state>
+			<code>member</code>
+		</membership-state>
+		<contact-email>spencer.mefford@icentris.com</contact-email>
+		<show-group-logo-in-profile>true</show-group-logo-in-profile>
+		<allow-messages-from-members>true</allow-messages-from-members>
+		<email-digest-frequency>
+			<code>daily</code>
+		</email-digest-frequency>
+		<email-announcements-from-managers>true
+		</email-announcements-from-managers>
+		<email-for-every-new-post>false</email-for-every-new-post>
+	</group-membership>
+	<group-membership key="3073135">
+		<group>
+			<id>3073134</id>
+			<name>Compliance WatchDog</name>
+			<description>Compliance WatchDog is an internet software application
+				designed to monitor, track and archive changes made to any website
+				or social networking updates for Twitter, Linkedin or Facebook
+				accounts.</description>
+			<short-description>Compliance WatchDog is an internet software
+				application designed to monitor, track and archive changes made to
+				any website or social networking updates for Twitter, Linkedin or
+				Facebook accounts.</short-description>
+			<location>
+				<country>
+					<code>us</code>
+				</country>
+				<postal-code>84025</postal-code>
+			</location>
+			<relation-to-viewer>
+				<membership-state>
+					<code>member</code>
+				</membership-state>
+				<available-actions total="3">
+					<action>
+						<code>add-post</code>
+					</action>
+					<action>
+						<code>leave</code>
+					</action>
+					<action>
+						<code>view-posts</code>
+					</action>
+				</available-actions>
+			</relation-to-viewer>
+			<posts total="4">
+				<post>
+					<id>g-3073134-S-60671639</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>r3Rp6vmPTa</id>
+						<first-name>Jabadu</first-name>
+						<last-name>Ramachandaran</last-name>
+						<headline>An expert in many things</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+						</picture-url>
+					</creator>
+					<title>My first discussion</title>
+					<summary>Here are additional details</summary>
+					<creation-timestamp>1309885631000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>true</is-following>
+						<is-liked>true</is-liked>
+						<available-actions total="6">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>delete</code>
+							</action>
+							<action>
+								<code>unfollow</code>
+							</action>
+							<action>
+								<code>unlike</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="1">
+						<like>
+							<person>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</person>
+						</like>
+						<like>
+							<person>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</person>
+						</like>
+					</likes>
+					<comments total="1">
+						<comment>
+							<id>g-3073134-S-60671639-44203604</id>
+							<text>And now I have commented on it</text>
+							<creator>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</creator>
+							<creation-timestamp>1309885652000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>delete</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+					</comments>
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=60671639&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+				</post>
+				<post>
+					<id>g-3073134-S-29014530</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>5v2AvjVxjM</id>
+						<first-name>Spencer</first-name>
+						<last-name>Mefford</last-name>
+						<headline>Senior Java Developer at SiteQuest Technologies
+						</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_3Y7SZjTos_XqGGpTiJYtZYToni9JGXpT_MU-ZxGoW6Gdj8I3SZxT90nXZSn6TijShgSPB4pzExki
+						</picture-url>
+					</creator>
+					<title>SiteQuest rocks!</title>
+					<creation-timestamp>1283855752000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>false</is-following>
+						<is-liked>false</is-liked>
+						<available-actions total="6">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>flag-as-inappropriate</code>
+							</action>
+							<action>
+								<code>follow</code>
+							</action>
+							<action>
+								<code>like</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="0" />
+					<comments total="0" />
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=29014530&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+				</post>
+				<post>
+					<id>g-3073134-S-27045382</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>g-jfSDjEAc</id>
+						<first-name>James</first-name>
+						<last-name>Cella</last-name>
+						<headline>Social Media Compliance software provider and overall
+							social media geek</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_IP83M2cm0bOMy92_WBPOM7qA16MdKvS_WNNYM7ka2iSJ7AsibvKDcfrhjeJ91tu7oKC0nHs9FWDI
+						</picture-url>
+					</creator>
+					<title>Spencer? This one?</title>
+					<creation-timestamp>1281602535000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>false</is-following>
+						<is-liked>false</is-liked>
+						<available-actions total="7">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>flag-as-inappropriate</code>
+							</action>
+							<action>
+								<code>follow</code>
+							</action>
+							<action>
+								<code>like</code>
+							</action>
+							<action>
+								<code>reply-privately</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="0" />
+					<comments total="0" />
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=27045382&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+				</post>
+				<post>
+					<id>g-3073134-S-27043474</id>
+					<type>
+						<code>standard</code>
+					</type>
+					<category>
+						<code>discussion</code>
+					</category>
+					<creator>
+						<id>g-jfSDjEAc</id>
+						<first-name>James</first-name>
+						<last-name>Cella</last-name>
+						<headline>Social Media Compliance software provider and overall
+							social media geek</headline>
+						<picture-url>http://media.linkedin.com/mpr/mprx/0_IP83M2cm0bOMy92_WBPOM7qA16MdKvS_WNNYM7ka2iSJ7AsibvKDcfrhjeJ91tu7oKC0nHs9FWDI
+						</picture-url>
+					</creator>
+					<title>This is the first comment on this group.</title>
+					<creation-timestamp>1281601516000</creation-timestamp>
+					<relation-to-viewer>
+						<is-following>true</is-following>
+						<is-liked>true</is-liked>
+						<available-actions total="7">
+							<action>
+								<code>add-comment</code>
+							</action>
+							<action>
+								<code>categorize-as-job</code>
+							</action>
+							<action>
+								<code>categorize-as-promotion</code>
+							</action>
+							<action>
+								<code>flag-as-inappropriate</code>
+							</action>
+							<action>
+								<code>reply-privately</code>
+							</action>
+							<action>
+								<code>unfollow</code>
+							</action>
+							<action>
+								<code>unlike</code>
+							</action>
+						</available-actions>
+					</relation-to-viewer>
+					<likes total="1">
+						<like>
+							<person>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</person>
+						</like>
+					</likes>
+					<comments total="3">
+						<comment>
+							<id>g-3073134-S-27043474-20985798</id>
+							<text>Did you get this?</text>
+							<creator>
+								<id>g-jfSDjEAc</id>
+								<first-name>James</first-name>
+								<last-name>Cella</last-name>
+								<headline>Social Media Compliance software provider and overall
+									social media geek</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_IP83M2cm0bOMy92_WBPOM7qA16MdKvS_WNNYM7ka2iSJ7AsibvKDcfrhjeJ91tu7oKC0nHs9FWDI
+								</picture-url>
+							</creator>
+							<creation-timestamp>1281602511000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>flag-as-inappropriate</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+						<comment>
+							<id>g-3073134-S-27043474-44203721</id>
+							<text>10 months later, I finally got it.</text>
+							<creator>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</creator>
+							<creation-timestamp>1309885700000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>delete</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+						<comment>
+							<id>g-3073134-S-27043474-44203679</id>
+							<text>And boy was I excited to see this group!</text>
+							<creator>
+								<id>r3Rp6vmPTa</id>
+								<first-name>Jabadu</first-name>
+								<last-name>Ramachandaran</last-name>
+								<headline>An expert in many things</headline>
+								<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+								</picture-url>
+							</creator>
+							<creation-timestamp>1309885716000</creation-timestamp>
+							<relation-to-viewer>
+								<available-actions total="1">
+									<action>
+										<code>delete</code>
+									</action>
+								</available-actions>
+							</relation-to-viewer>
+						</comment>
+					</comments>
+					<site-group-post-url>http://api.linkedin.com/groupItem?view=&amp;gid=3073134&amp;item=27043474&amp;type=member&amp;trk=api*a108281*s116823*
+					</site-group-post-url>
+				</post>
+			</posts>
+			<counts-by-category total="2">
+				<count-for-category>
+					<category>
+						<code>discussion</code>
+					</category>
+					<count>0</count>
+				</count-for-category>
+				<count-for-category>
+					<category>
+						<code>job</code>
+					</category>
+					<count>0</count>
+				</count-for-category>
+			</counts-by-category>
+			<is-open-to-non-members>false</is-open-to-non-members>
+			<category>
+				<code>corporate</code>
+			</category>
+			<website-url>http://www.watchdogsites.com</website-url>
+			<site-group-url>http://www.linkedin.com/groups?gid=3073134&amp;trk=api*a108281*s116823*
+			</site-group-url>
+			<contact-email>james.cella@icentris.com</contact-email>
+			<locale>en_US</locale>
+			<allow-member-invites>false</allow-member-invites>
+			<small-logo-url>http://media.linkedin.com/mpr/mpr/p/2/000/05c/39d/05230e2.png
+			</small-logo-url>
+			<large-logo-url>http://media.linkedin.com/mpr/mpr/p/2/000/05c/39d/05230e2.png
+			</large-logo-url>
+		</group>
+		<person>
+			<id>r3Rp6vmPTa</id>
+			<first-name>Jabadu</first-name>
+			<last-name>Ramachandaran</last-name>
+			<headline>An expert in many things</headline>
+			<picture-url>http://media.linkedin.com/mpr/mprx/0_rOHwyqGMQAll7H3mtxRNyB-JQ-bj7wKmt0pqynTJMcPDKfbay44b-9zceyFG2ulCAjovPAPV7m07
+			</picture-url>
+		</person>
+		<membership-state>
+			<code>member</code>
+		</membership-state>
+		<contact-email>spencer.mefford@icentris.com</contact-email>
+		<show-group-logo-in-profile>true</show-group-logo-in-profile>
+		<allow-messages-from-members>true</allow-messages-from-members>
+		<email-digest-frequency>
+			<code>daily</code>
+		</email-digest-frequency>
+		<email-announcements-from-managers>true
+		</email-announcements-from-managers>
+		<email-for-every-new-post>false</email-for-every-new-post>
+	</group-membership>
+</group-memberships>

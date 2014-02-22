@@ -1,19 +1,3 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema.impl;
 
@@ -22,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
@@ -32,8 +17,8 @@ import com.google.code.linkedinapi.schema.Comments;
 import com.google.code.linkedinapi.schema.Creator;
 import com.google.code.linkedinapi.schema.Likes;
 import com.google.code.linkedinapi.schema.Post;
+import com.google.code.linkedinapi.schema.PostType;
 import com.google.code.linkedinapi.schema.RelationToViewer;
-import com.google.code.linkedinapi.schema.Type;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
@@ -58,13 +43,15 @@ public class PostImpl
     private final static long serialVersionUID = 2461660169443089969L;
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlSchemaType(name = "NMTOKEN")
     protected String id;
-    @XmlElement(required = true, type = TypeImpl.class)
-    protected TypeImpl type;
+    @XmlElement(required = true, type = PostTypeImpl.class)
+    protected PostTypeImpl type;
     @XmlElement(type = CategoryImpl.class)
     protected CategoryImpl category;
     @XmlElement(name = "creation-timestamp", required = true, type = String.class)
     @XmlJavaTypeAdapter(Adapter1 .class)
+    @XmlSchemaType(name = "integer")
     protected Long creationTimestamp;
     @XmlElement(required = true, type = CreatorImpl.class)
     protected CreatorImpl creator;
@@ -81,6 +68,7 @@ public class PostImpl
     @XmlElement(required = true, type = CommentsImpl.class)
     protected CommentsImpl comments;
     @XmlElement(name = "site-group-post-url")
+    @XmlSchemaType(name = "anyURI")
     protected String siteGroupPostUrl;
 
     public String getId() {
@@ -91,12 +79,12 @@ public class PostImpl
         this.id = value;
     }
 
-    public Type getType() {
+    public PostType getType() {
         return type;
     }
 
-    public void setType(Type value) {
-        this.type = ((TypeImpl) value);
+    public void setType(PostType value) {
+        this.type = ((PostTypeImpl) value);
     }
 
     public Category getCategory() {

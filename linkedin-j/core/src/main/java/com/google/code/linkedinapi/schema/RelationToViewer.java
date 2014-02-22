@@ -1,19 +1,3 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema;
 
@@ -29,6 +13,7 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element ref="{}num-related-connections"/>
  *         &lt;element ref="{}related-connections"/>
  *         &lt;element ref="{}distance"/>
  *         &lt;element ref="{}membership-state" minOccurs="0"/>
@@ -47,6 +32,26 @@ public interface RelationToViewer
     extends SchemaEntity
 {
 
+
+    /**
+     * Gets the value of the numRelatedConnections property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getNumRelatedConnections();
+
+    /**
+     * Sets the value of the numRelatedConnections property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setNumRelatedConnections(Long value);
 
     /**
      * Gets the value of the relatedConnections property.

@@ -1,22 +1,7 @@
-/*
- * Copyright 2010-2011 Nabeel Mukhtar 
- * 
- * Licensed under the Apache License, Version 2.0 (the "License"); 
- * you may not use this file except in compliance with the License. 
- * You may obtain a copy of the License at 
- * 
- *  http://www.apache.org/licenses/LICENSE-2.0
- * 
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
- * See the License for the specific language governing permissions and
- * limitations under the License. 
- * 
- */
 
 package com.google.code.linkedinapi.schema;
 
+import java.math.BigDecimal;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
@@ -48,8 +33,10 @@ import com.google.code.linkedinapi.schema.impl.CompaniesImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyJobUpdateImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyPersonUpdateImpl;
+import com.google.code.linkedinapi.schema.impl.CompanyProductUpdateImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyProfileUpdateImpl;
 import com.google.code.linkedinapi.schema.impl.CompanySearchImpl;
+import com.google.code.linkedinapi.schema.impl.CompanyStatisticsImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyStatusImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyStatusUpdateImpl;
 import com.google.code.linkedinapi.schema.impl.CompanyTypeImpl;
@@ -71,11 +58,13 @@ import com.google.code.linkedinapi.schema.impl.EmailDomainsImpl;
 import com.google.code.linkedinapi.schema.impl.EmployeeCountRangeImpl;
 import com.google.code.linkedinapi.schema.impl.EndDateImpl;
 import com.google.code.linkedinapi.schema.impl.ErrorImpl;
+import com.google.code.linkedinapi.schema.impl.EventTypeImpl;
 import com.google.code.linkedinapi.schema.impl.ExperienceLevelImpl;
 import com.google.code.linkedinapi.schema.impl.ExpirationDateImpl;
 import com.google.code.linkedinapi.schema.impl.FacetImpl;
 import com.google.code.linkedinapi.schema.impl.FacetsImpl;
 import com.google.code.linkedinapi.schema.impl.FeaturesImpl;
+import com.google.code.linkedinapi.schema.impl.FollowStatisticsImpl;
 import com.google.code.linkedinapi.schema.impl.GroupCategoryImpl;
 import com.google.code.linkedinapi.schema.impl.GroupImpl;
 import com.google.code.linkedinapi.schema.impl.GroupMembershipImpl;
@@ -122,6 +111,7 @@ import com.google.code.linkedinapi.schema.impl.OfficeImpl;
 import com.google.code.linkedinapi.schema.impl.OldPositionImpl;
 import com.google.code.linkedinapi.schema.impl.OriginalUpdateImpl;
 import com.google.code.linkedinapi.schema.impl.PatentImpl;
+import com.google.code.linkedinapi.schema.impl.PatentStatusImpl;
 import com.google.code.linkedinapi.schema.impl.PatentsImpl;
 import com.google.code.linkedinapi.schema.impl.PeopleImpl;
 import com.google.code.linkedinapi.schema.impl.PeopleSearchImpl;
@@ -132,6 +122,7 @@ import com.google.code.linkedinapi.schema.impl.PhoneNumbersImpl;
 import com.google.code.linkedinapi.schema.impl.PositionImpl;
 import com.google.code.linkedinapi.schema.impl.PositionsImpl;
 import com.google.code.linkedinapi.schema.impl.PostImpl;
+import com.google.code.linkedinapi.schema.impl.PostTypeImpl;
 import com.google.code.linkedinapi.schema.impl.PosterImpl;
 import com.google.code.linkedinapi.schema.impl.PostingDateImpl;
 import com.google.code.linkedinapi.schema.impl.PostsImpl;
@@ -164,8 +155,13 @@ import com.google.code.linkedinapi.schema.impl.RelationToViewerImpl;
 import com.google.code.linkedinapi.schema.impl.RenewalImpl;
 import com.google.code.linkedinapi.schema.impl.RoleImpl;
 import com.google.code.linkedinapi.schema.impl.SalesPersonsImpl;
+import com.google.code.linkedinapi.schema.impl.SenioritiesImpl;
+import com.google.code.linkedinapi.schema.impl.SeniorityImpl;
 import com.google.code.linkedinapi.schema.impl.ServiceProviderImpl;
 import com.google.code.linkedinapi.schema.impl.ShareImpl;
+import com.google.code.linkedinapi.schema.impl.ShareTargetImpl;
+import com.google.code.linkedinapi.schema.impl.ShareTargetReachImpl;
+import com.google.code.linkedinapi.schema.impl.ShareTargetsImpl;
 import com.google.code.linkedinapi.schema.impl.SiteGroupRequestImpl;
 import com.google.code.linkedinapi.schema.impl.SiteJobRequestImpl;
 import com.google.code.linkedinapi.schema.impl.SiteStandardProfileRequestImpl;
@@ -175,12 +171,13 @@ import com.google.code.linkedinapi.schema.impl.SourceImpl;
 import com.google.code.linkedinapi.schema.impl.SpecialtiesImpl;
 import com.google.code.linkedinapi.schema.impl.StartDateImpl;
 import com.google.code.linkedinapi.schema.impl.StatusImpl;
+import com.google.code.linkedinapi.schema.impl.StatusUpdateStatisticsImpl;
 import com.google.code.linkedinapi.schema.impl.StockExchangeImpl;
 import com.google.code.linkedinapi.schema.impl.ThreeCurrentPositionsImpl;
 import com.google.code.linkedinapi.schema.impl.ThreePastPositionsImpl;
+import com.google.code.linkedinapi.schema.impl.TvaluesImpl;
 import com.google.code.linkedinapi.schema.impl.TwitterAccountImpl;
 import com.google.code.linkedinapi.schema.impl.TwitterAccountsImpl;
-import com.google.code.linkedinapi.schema.impl.TypeImpl;
 import com.google.code.linkedinapi.schema.impl.UpdateActionImpl;
 import com.google.code.linkedinapi.schema.impl.UpdateCommentImpl;
 import com.google.code.linkedinapi.schema.impl.UpdateCommentsImpl;
@@ -188,6 +185,8 @@ import com.google.code.linkedinapi.schema.impl.UpdateContentImpl;
 import com.google.code.linkedinapi.schema.impl.UpdateImpl;
 import com.google.code.linkedinapi.schema.impl.UpdatesImpl;
 import com.google.code.linkedinapi.schema.impl.VideoImpl;
+import com.google.code.linkedinapi.schema.impl.ViewByMonthImpl;
+import com.google.code.linkedinapi.schema.impl.ViewsByMonthImpl;
 import com.google.code.linkedinapi.schema.impl.VisibilityImpl;
 import com.google.code.linkedinapi.schema.impl.YearsImpl;
 
@@ -233,6 +232,7 @@ public class ObjectFactory {
     private final static QName _EmailDomain_QNAME = new QName("", "email-domain");
     private final static QName _ProductId_QNAME = new QName("", "product-id");
     private final static QName _IsActive_QNAME = new QName("", "is-active");
+    private final static QName _EntryValue_QNAME = new QName("", "entry-value");
     private final static QName _IsFollowing_QNAME = new QName("", "is-following");
     private final static QName _SkillsAndExperience_QNAME = new QName("", "skills-and-experience");
     private final static QName _SubmittedUrl_QNAME = new QName("", "submitted-url");
@@ -249,6 +249,7 @@ public class ObjectFactory {
     private final static QName _RequestId_QNAME = new QName("", "request-id");
     private final static QName _SiteJobUrl_QNAME = new QName("", "site-job-url");
     private final static QName _PostingTimestamp_QNAME = new QName("", "posting-timestamp");
+    private final static QName _NonEmployeeCount_QNAME = new QName("", "non-employee-count");
     private final static QName _IsCurrent_QNAME = new QName("", "is-current");
     private final static QName _IsLiked_QNAME = new QName("", "is-liked");
     private final static QName _CountryCode_QNAME = new QName("", "country-code");
@@ -257,9 +258,11 @@ public class ObjectFactory {
     private final static QName _Distance_QNAME = new QName("", "distance");
     private final static QName _Title_QNAME = new QName("", "title");
     private final static QName _ExpirationTimestamp_QNAME = new QName("", "expiration-timestamp");
+    private final static QName _NumRelatedConnections_QNAME = new QName("", "num-related-connections");
     private final static QName _WebsiteUrl_QNAME = new QName("", "website-url");
     private final static QName _Reply_QNAME = new QName("", "reply");
     private final static QName _NumConnectionsCapped_QNAME = new QName("", "num-connections-capped");
+    private final static QName _Tvalue_QNAME = new QName("", "tvalue");
     private final static QName _UpdateType_QNAME = new QName("", "update-type");
     private final static QName _IsOpenToNonMembers_QNAME = new QName("", "is-open-to-non-members");
     private final static QName _EyebrowUrl_QNAME = new QName("", "eyebrow-url");
@@ -292,7 +295,6 @@ public class ObjectFactory {
     private final static QName _ContactEmail_QNAME = new QName("", "contact-email");
     private final static QName _ProviderAccountName_QNAME = new QName("", "provider-account-name");
     private final static QName _ConnectType_QNAME = new QName("", "connect-type");
-    private final static QName _Level_QNAME = new QName("", "level");
     private final static QName _Description_QNAME = new QName("", "description");
     private final static QName _Value_QNAME = new QName("", "value");
     private final static QName _ResolvedUrl_QNAME = new QName("", "resolved-url");
@@ -316,6 +318,7 @@ public class ObjectFactory {
     private final static QName _Day_QNAME = new QName("", "day");
     private final static QName _EmailAddress_QNAME = new QName("", "email-address");
     private final static QName _ImageUrl_QNAME = new QName("", "image-url");
+    private final static QName _Engagement_QNAME = new QName("", "engagement");
     private final static QName _Headline_QNAME = new QName("", "headline");
     private final static QName _Interests_QNAME = new QName("", "interests");
     private final static QName _NumFollowers_QNAME = new QName("", "num-followers");
@@ -323,9 +326,10 @@ public class ObjectFactory {
     private final static QName _Locale_QNAME = new QName("", "locale");
     private final static QName _ShortDescription_QNAME = new QName("", "short-description");
     private final static QName _State_QNAME = new QName("", "state");
+    private final static QName _EntryKey_QNAME = new QName("", "entry-key");
     private final static QName _ContractId_QNAME = new QName("", "contract-id");
-    private final static QName _FoundedYear_QNAME = new QName("", "founded-year");
     private final static QName _NumLikes_QNAME = new QName("", "num-likes");
+    private final static QName _FoundedYear_QNAME = new QName("", "founded-year");
     private final static QName _Id_QNAME = new QName("", "id");
     private final static QName _Selected_QNAME = new QName("", "selected");
     private final static QName _ImAccountType_QNAME = new QName("", "im-account-type");
@@ -341,11 +345,13 @@ public class ObjectFactory {
     private final static QName _AllowMemberInvites_QNAME = new QName("", "allow-member-invites");
     private final static QName _Street1_QNAME = new QName("", "street1");
     private final static QName _SchoolName_QNAME = new QName("", "school-name");
+    private final static QName _EmployeeCount_QNAME = new QName("", "employee-count");
     private final static QName _PostalCode_QNAME = new QName("", "postal-code");
     private final static QName _UpdateKey_QNAME = new QName("", "update-key");
     private final static QName _Message_QNAME = new QName("", "message");
     private final static QName _ReferralBonus_QNAME = new QName("", "referral-bonus");
     private final static QName _RegionCode_QNAME = new QName("", "region-code");
+    private final static QName _ProposalComments_QNAME = new QName("", "proposal-comments");
     private final static QName _FieldOfStudy_QNAME = new QName("", "field-of-study");
     private final static QName _Specialty_QNAME = new QName("", "specialty");
 
@@ -357,459 +363,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Poster }
+     * Create an instance of {@link ProductDeal }
      * 
      */
-    public Poster createPoster() {
-        return new PosterImpl();
+    public ProductDeal createProductDeal() {
+        return new ProductDealImpl();
     }
 
     /**
-     * Create an instance of {@link Attribution }
+     * Create an instance of {@link GroupCategory }
      * 
      */
-    public Attribution createAttribution() {
-        return new AttributionImpl();
-    }
-
-    /**
-     * Create an instance of {@link Specialties }
-     * 
-     */
-    public Specialties createSpecialties() {
-        return new SpecialtiesImpl();
-    }
-
-    /**
-     * Create an instance of {@link PublicationAuthor }
-     * 
-     */
-    public PublicationAuthor createPublicationAuthor() {
-        return new PublicationAuthorImpl();
-    }
-
-    /**
-     * Create an instance of {@link Post }
-     * 
-     */
-    public Post createPost() {
-        return new PostImpl();
-    }
-
-    /**
-     * Create an instance of {@link PhoneNumbers }
-     * 
-     */
-    public PhoneNumbers createPhoneNumbers() {
-        return new PhoneNumbersImpl();
-    }
-
-    /**
-     * Create an instance of {@link Comments }
-     * 
-     */
-    public Comments createComments() {
-        return new CommentsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Industry }
-     * 
-     */
-    public Industry createIndustry() {
-        return new IndustryImpl();
-    }
-
-    /**
-     * Create an instance of {@link UpdateComment }
-     * 
-     */
-    public UpdateComment createUpdateComment() {
-        return new UpdateCommentImpl();
-    }
-
-    /**
-     * Create an instance of {@link Renewal }
-     * 
-     */
-    public Renewal createRenewal() {
-        return new RenewalImpl();
-    }
-
-    /**
-     * Create an instance of {@link MemberUrl }
-     * 
-     */
-    public MemberUrl createMemberUrl() {
-        return new MemberUrlImpl();
-    }
-
-    /**
-     * Create an instance of {@link Connections }
-     * 
-     */
-    public Connections createConnections() {
-        return new ConnectionsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Education }
-     * 
-     */
-    public Education createEducation() {
-        return new EducationImpl();
-    }
-
-    /**
-     * Create an instance of {@link Skills }
-     * 
-     */
-    public Skills createSkills() {
-        return new SkillsImpl();
-    }
-
-    /**
-     * Create an instance of {@link RelationToViewer }
-     * 
-     */
-    public RelationToViewer createRelationToViewer() {
-        return new RelationToViewerImpl();
-    }
-
-    /**
-     * Create an instance of {@link Educations }
-     * 
-     */
-    public Educations createEducations() {
-        return new EducationsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Buckets }
-     * 
-     */
-    public Buckets createBuckets() {
-        return new BucketsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Person }
-     * 
-     */
-    public Person createPerson() {
-        return new PersonImpl();
-    }
-
-    /**
-     * Create an instance of {@link ExpirationDate }
-     * 
-     */
-    public ExpirationDate createExpirationDate() {
-        return new ExpirationDateImpl();
-    }
-
-    /**
-     * Create an instance of {@link Language }
-     * 
-     */
-    public Language createLanguage() {
-        return new LanguageImpl();
-    }
-
-    /**
-     * Create an instance of {@link Visibility }
-     * 
-     */
-    public Visibility createVisibility() {
-        return new VisibilityImpl();
-    }
-
-    /**
-     * Create an instance of {@link ImAccounts }
-     * 
-     */
-    public ImAccounts createImAccounts() {
-        return new ImAccountsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Video }
-     * 
-     */
-    public Video createVideo() {
-        return new VideoImpl();
-    }
-
-    /**
-     * Create an instance of {@link MembershipState }
-     * 
-     */
-    public MembershipState createMembershipState() {
-        return new MembershipStateImpl();
-    }
-
-    /**
-     * Create an instance of {@link ProductType }
-     * 
-     */
-    public ProductType createProductType() {
-        return new ProductTypeImpl();
-    }
-
-    /**
-     * Create an instance of {@link HowToApply }
-     * 
-     */
-    public HowToApply createHowToApply() {
-        return new HowToApplyImpl();
-    }
-
-    /**
-     * Create an instance of {@link StartDate }
-     * 
-     */
-    public StartDate createStartDate() {
-        return new StartDateImpl();
-    }
-
-    /**
-     * Create an instance of {@link GroupMembership }
-     * 
-     */
-    public GroupMembership createGroupMembership() {
-        return new GroupMembershipImpl();
-    }
-
-    /**
-     * Create an instance of {@link ProductCategory }
-     * 
-     */
-    public ProductCategory createProductCategory() {
-        return new ProductCategoryImpl();
-    }
-
-    /**
-     * Create an instance of {@link ApiStandardProfileRequest }
-     * 
-     */
-    public ApiStandardProfileRequest createApiStandardProfileRequest() {
-        return new ApiStandardProfileRequestImpl();
-    }
-
-    /**
-     * Create an instance of {@link UpdateComments }
-     * 
-     */
-    public UpdateComments createUpdateComments() {
-        return new UpdateCommentsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Position }
-     * 
-     */
-    public Position createPosition() {
-        return new PositionImpl();
-    }
-
-    /**
-     * Create an instance of {@link CompanySearch }
-     * 
-     */
-    public CompanySearch createCompanySearch() {
-        return new CompanySearchImpl();
-    }
-
-    /**
-     * Create an instance of {@link Author }
-     * 
-     */
-    public Author createAuthor() {
-        return new AuthorImpl();
-    }
-
-    /**
-     * Create an instance of {@link Patents }
-     * 
-     */
-    public Patents createPatents() {
-        return new PatentsImpl();
-    }
-
-    /**
-     * Create an instance of {@link ExperienceLevel }
-     * 
-     */
-    public ExperienceLevel createExperienceLevel() {
-        return new ExperienceLevelImpl();
-    }
-
-    /**
-     * Create an instance of {@link EmailDomains }
-     * 
-     */
-    public EmailDomains createEmailDomains() {
-        return new EmailDomainsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Facet }
-     * 
-     */
-    public Facet createFacet() {
-        return new FacetImpl();
-    }
-
-    /**
-     * Create an instance of {@link Skill }
-     * 
-     */
-    public Skill createSkill() {
-        return new SkillImpl();
-    }
-
-    /**
-     * Create an instance of {@link Certification }
-     * 
-     */
-    public Certification createCertification() {
-        return new CertificationImpl();
-    }
-
-    /**
-     * Create an instance of {@link Headers }
-     * 
-     */
-    public Headers createHeaders() {
-        return new HeadersImpl();
-    }
-
-    /**
-     * Create an instance of {@link Group }
-     * 
-     */
-    public Group createGroup() {
-        return new GroupImpl();
-    }
-
-    /**
-     * Create an instance of {@link RecommendationsReceived }
-     * 
-     */
-    public RecommendationsReceived createRecommendationsReceived() {
-        return new RecommendationsReceivedImpl();
-    }
-
-    /**
-     * Create an instance of {@link JobPoster }
-     * 
-     */
-    public JobPoster createJobPoster() {
-        return new JobPosterImpl();
-    }
-
-    /**
-     * Create an instance of {@link QuestionCategory }
-     * 
-     */
-    public QuestionCategory createQuestionCategory() {
-        return new QuestionCategoryImpl();
-    }
-
-    /**
-     * Create an instance of {@link JobSuggestions }
-     * 
-     */
-    public JobSuggestions createJobSuggestions() {
-        return new JobSuggestionsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Facets }
-     * 
-     */
-    public Facets createFacets() {
-        return new FacetsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Likes }
-     * 
-     */
-    public Likes createLikes() {
-        return new LikesImpl();
-    }
-
-    /**
-     * Create an instance of {@link Posts }
-     * 
-     */
-    public Posts createPosts() {
-        return new PostsImpl();
-    }
-
-    /**
-     * Create an instance of {@link OldPosition }
-     * 
-     */
-    public OldPosition createOldPosition() {
-        return new OldPositionImpl();
-    }
-
-    /**
-     * Create an instance of {@link PostingDate }
-     * 
-     */
-    public PostingDate createPostingDate() {
-        return new PostingDateImpl();
-    }
-
-    /**
-     * Create an instance of {@link CountForCategory }
-     * 
-     */
-    public CountForCategory createCountForCategory() {
-        return new CountForCategoryImpl();
-    }
-
-    /**
-     * Create an instance of {@link MemberGroup }
-     * 
-     */
-    public MemberGroup createMemberGroup() {
-        return new MemberGroupImpl();
-    }
-
-    /**
-     * Create an instance of {@link TwitterAccount }
-     * 
-     */
-    public TwitterAccount createTwitterAccount() {
-        return new TwitterAccountImpl();
-    }
-
-    /**
-     * Create an instance of {@link OriginalUpdate }
-     * 
-     */
-    public OriginalUpdate createOriginalUpdate() {
-        return new OriginalUpdateImpl();
-    }
-
-    /**
-     * Create an instance of {@link Bucket }
-     * 
-     */
-    public Bucket createBucket() {
-        return new BucketImpl();
-    }
-
-    /**
-     * Create an instance of {@link ServiceProvider }
-     * 
-     */
-    public ServiceProvider createServiceProvider() {
-        return new ServiceProviderImpl();
+    public GroupCategory createGroupCategory() {
+        return new GroupCategoryImpl();
     }
 
     /**
@@ -821,323 +387,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link EmployeeCountRange }
+     * Create an instance of {@link FollowStatistics }
      * 
      */
-    public EmployeeCountRange createEmployeeCountRange() {
-        return new EmployeeCountRangeImpl();
+    public FollowStatistics createFollowStatistics() {
+        return new FollowStatisticsImpl();
     }
 
     /**
-     * Create an instance of {@link JobType }
+     * Create an instance of {@link PhoneNumbers }
      * 
      */
-    public JobType createJobType() {
-        return new JobTypeImpl();
-    }
-
-    /**
-     * Create an instance of {@link ThreeCurrentPositions }
-     * 
-     */
-    public ThreeCurrentPositions createThreeCurrentPositions() {
-        return new ThreeCurrentPositionsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Features }
-     * 
-     */
-    public Features createFeatures() {
-        return new FeaturesImpl();
-    }
-
-    /**
-     * Create an instance of {@link JobBookmarks }
-     * 
-     */
-    public JobBookmarks createJobBookmarks() {
-        return new JobBookmarksImpl();
-    }
-
-    /**
-     * Create an instance of {@link Property }
-     * 
-     */
-    public Property createProperty() {
-        return new PropertyImpl();
-    }
-
-    /**
-     * Create an instance of {@link Groups }
-     * 
-     */
-    public Groups createGroups() {
-        return new GroupsImpl();
-    }
-
-    /**
-     * Create an instance of {@link EndDate }
-     * 
-     */
-    public EndDate createEndDate() {
-        return new EndDateImpl();
-    }
-
-    /**
-     * Create an instance of {@link Inventors }
-     * 
-     */
-    public Inventors createInventors() {
-        return new InventorsImpl();
-    }
-
-    /**
-     * Create an instance of {@link MemberGroups }
-     * 
-     */
-    public MemberGroups createMemberGroups() {
-        return new MemberGroupsImpl();
-    }
-
-    /**
-     * Create an instance of {@link SiteStandardProfileRequest }
-     * 
-     */
-    public SiteStandardProfileRequest createSiteStandardProfileRequest() {
-        return new SiteStandardProfileRequestImpl();
-    }
-
-    /**
-     * Create an instance of {@link NetworkStats }
-     * 
-     */
-    public NetworkStats createNetworkStats() {
-        return new NetworkStatsImpl();
-    }
-
-    /**
-     * Create an instance of {@link JobFunctions }
-     * 
-     */
-    public JobFunctions createJobFunctions() {
-        return new JobFunctionsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Error }
-     * 
-     */
-    public Error createError() {
-        return new ErrorImpl();
-    }
-
-    /**
-     * Create an instance of {@link Recommender }
-     * 
-     */
-    public Recommender createRecommender() {
-        return new RecommenderImpl();
-    }
-
-    /**
-     * Create an instance of {@link RecommendationsGiven }
-     * 
-     */
-    public RecommendationsGiven createRecommendationsGiven() {
-        return new RecommendationsGivenImpl();
-    }
-
-    /**
-     * Create an instance of {@link DateOfBirth }
-     * 
-     */
-    public DateOfBirth createDateOfBirth() {
-        return new DateOfBirthImpl();
-    }
-
-    /**
-     * Create an instance of {@link Comment }
-     * 
-     */
-    public Comment createComment() {
-        return new CommentImpl();
-    }
-
-    /**
-     * Create an instance of {@link MailboxItem }
-     * 
-     */
-    public MailboxItem createMailboxItem() {
-        return new MailboxItemImpl();
-    }
-
-    /**
-     * Create an instance of {@link ContactInfo }
-     * 
-     */
-    public ContactInfo createContactInfo() {
-        return new ContactInfoImpl();
-    }
-
-    /**
-     * Create an instance of {@link Action }
-     * 
-     */
-    public Action createAction() {
-        return new ActionImpl();
-    }
-
-    /**
-     * Create an instance of {@link Company }
-     * 
-     */
-    public Company createCompany() {
-        return new CompanyImpl();
-    }
-
-    /**
-     * Create an instance of {@link QuestionCategories }
-     * 
-     */
-    public QuestionCategories createQuestionCategories() {
-        return new QuestionCategoriesImpl();
-    }
-
-    /**
-     * Create an instance of {@link Inventor }
-     * 
-     */
-    public Inventor createInventor() {
-        return new InventorImpl();
-    }
-
-    /**
-     * Create an instance of {@link Status }
-     * 
-     */
-    public Status createStatus() {
-        return new StatusImpl();
-    }
-
-    /**
-     * Create an instance of {@link Positions }
-     * 
-     */
-    public Positions createPositions() {
-        return new PositionsImpl();
-    }
-
-    /**
-     * Create an instance of {@link SalesPersons }
-     * 
-     */
-    public SalesPersons createSalesPersons() {
-        return new SalesPersonsImpl();
-    }
-
-    /**
-     * Create an instance of {@link TwitterAccounts }
-     * 
-     */
-    public TwitterAccounts createTwitterAccounts() {
-        return new TwitterAccountsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Answer }
-     * 
-     */
-    public Answer createAnswer() {
-        return new AnswerImpl();
-    }
-
-    /**
-     * Create an instance of {@link CurrentShare }
-     * 
-     */
-    public CurrentShare createCurrentShare() {
-        return new CurrentShareImpl();
-    }
-
-    /**
-     * Create an instance of {@link Job }
-     * 
-     */
-    public Job createJob() {
-        return new JobImpl();
-    }
-
-    /**
-     * Create an instance of {@link Patent }
-     * 
-     */
-    public Patent createPatent() {
-        return new PatentImpl();
-    }
-
-    /**
-     * Create an instance of {@link Recipient }
-     * 
-     */
-    public Recipient createRecipient() {
-        return new RecipientImpl();
-    }
-
-    /**
-     * Create an instance of {@link Content }
-     * 
-     */
-    public Content createContent() {
-        return new ContentImpl();
-    }
-
-    /**
-     * Create an instance of {@link Role }
-     * 
-     */
-    public Role createRole() {
-        return new RoleImpl();
-    }
-
-    /**
-     * Create an instance of {@link Category }
-     * 
-     */
-    public Category createCategory() {
-        return new CategoryImpl();
-    }
-
-    /**
-     * Create an instance of {@link Recommendee }
-     * 
-     */
-    public Recommendee createRecommendee() {
-        return new RecommendeeImpl();
-    }
-
-    /**
-     * Create an instance of {@link Network }
-     * 
-     */
-    public Network createNetwork() {
-        return new NetworkImpl();
-    }
-
-    /**
-     * Create an instance of {@link Office }
-     * 
-     */
-    public Office createOffice() {
-        return new OfficeImpl();
-    }
-
-    /**
-     * Create an instance of {@link Question }
-     * 
-     */
-    public Question createQuestion() {
-        return new QuestionImpl();
+    public PhoneNumbers createPhoneNumbers() {
+        return new PhoneNumbersImpl();
     }
 
     /**
@@ -1149,59 +411,171 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Creator }
+     * Create an instance of {@link Company }
      * 
      */
-    public Creator createCreator() {
-        return new CreatorImpl();
+    public Company createCompany() {
+        return new CompanyImpl();
     }
 
     /**
-     * Create an instance of {@link Update }
+     * Create an instance of {@link Recipient }
      * 
      */
-    public Update createUpdate() {
-        return new UpdateImpl();
+    public Recipient createRecipient() {
+        return new RecipientImpl();
     }
 
     /**
-     * Create an instance of {@link CompanyType }
+     * Create an instance of {@link RecommendationsReceived }
      * 
      */
-    public CompanyType createCompanyType() {
-        return new CompanyTypeImpl();
+    public RecommendationsReceived createRecommendationsReceived() {
+        return new RecommendationsReceivedImpl();
     }
 
     /**
-     * Create an instance of {@link PersonActivities }
+     * Create an instance of {@link NetworkStats }
      * 
      */
-    public PersonActivities createPersonActivities() {
-        return new PersonActivitiesImpl();
+    public NetworkStats createNetworkStats() {
+        return new NetworkStatsImpl();
     }
 
     /**
-     * Create an instance of {@link PeopleSearch }
+     * Create an instance of {@link Skill }
      * 
      */
-    public PeopleSearch createPeopleSearch() {
-        return new PeopleSearchImpl();
+    public Skill createSkill() {
+        return new SkillImpl();
     }
 
     /**
-     * Create an instance of {@link Authority }
+     * Create an instance of {@link PatentStatus }
      * 
      */
-    public Authority createAuthority() {
-        return new AuthorityImpl();
+    public PatentStatus createPatentStatus() {
+        return new PatentStatusImpl();
     }
 
     /**
-     * Create an instance of {@link HttpHeader }
+     * Create an instance of {@link SalesPersons }
      * 
      */
-    public HttpHeader createHttpHeader() {
-        return new HttpHeaderImpl();
+    public SalesPersons createSalesPersons() {
+        return new SalesPersonsImpl();
+    }
+
+    /**
+     * Create an instance of {@link PublicationAuthor }
+     * 
+     */
+    public PublicationAuthor createPublicationAuthor() {
+        return new PublicationAuthorImpl();
+    }
+
+    /**
+     * Create an instance of {@link Inventor }
+     * 
+     */
+    public Inventor createInventor() {
+        return new InventorImpl();
+    }
+
+    /**
+     * Create an instance of {@link Date }
+     * 
+     */
+    public Date createDate() {
+        return new DateImpl();
+    }
+
+    /**
+     * Create an instance of {@link Recommendee }
+     * 
+     */
+    public Recommendee createRecommendee() {
+        return new RecommendeeImpl();
+    }
+
+    /**
+     * Create an instance of {@link UpdateAction }
+     * 
+     */
+    public UpdateAction createUpdateAction() {
+        return new UpdateActionImpl();
+    }
+
+    /**
+     * Create an instance of {@link Patent }
+     * 
+     */
+    public Patent createPatent() {
+        return new PatentImpl();
+    }
+
+    /**
+     * Create an instance of {@link UpdateComments }
+     * 
+     */
+    public UpdateComments createUpdateComments() {
+        return new UpdateCommentsImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberGroup }
+     * 
+     */
+    public MemberGroup createMemberGroup() {
+        return new MemberGroupImpl();
+    }
+
+    /**
+     * Create an instance of {@link EndDate }
+     * 
+     */
+    public EndDate createEndDate() {
+        return new EndDateImpl();
+    }
+
+    /**
+     * Create an instance of {@link ShareTarget }
+     * 
+     */
+    public ShareTarget createShareTarget() {
+        return new ShareTargetImpl();
+    }
+
+    /**
+     * Create an instance of {@link CurrentShare }
+     * 
+     */
+    public CurrentShare createCurrentShare() {
+        return new CurrentShareImpl();
+    }
+
+    /**
+     * Create an instance of {@link UpdateComment }
+     * 
+     */
+    public UpdateComment createUpdateComment() {
+        return new UpdateCommentImpl();
+    }
+
+    /**
+     * Create an instance of {@link People }
+     * 
+     */
+    public People createPeople() {
+        return new PeopleImpl();
+    }
+
+    /**
+     * Create an instance of {@link JobSearch }
+     * 
+     */
+    public JobSearch createJobSearch() {
+        return new JobSearchImpl();
     }
 
     /**
@@ -1213,35 +587,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Industries }
+     * Create an instance of {@link NameType }
      * 
      */
-    public Industries createIndustries() {
-        return new IndustriesImpl();
+    public NameType createNameType() {
+        return new NameTypeImpl();
     }
 
     /**
-     * Create an instance of {@link CompanyJobUpdate }
+     * Create an instance of {@link Category }
      * 
      */
-    public CompanyJobUpdate createCompanyJobUpdate() {
-        return new CompanyJobUpdateImpl();
+    public Category createCategory() {
+        return new CategoryImpl();
     }
 
     /**
-     * Create an instance of {@link MemberUrlResources }
+     * Create an instance of {@link Country }
      * 
      */
-    public MemberUrlResources createMemberUrlResources() {
-        return new MemberUrlResourcesImpl();
-    }
-
-    /**
-     * Create an instance of {@link Products }
-     * 
-     */
-    public Products createProducts() {
-        return new ProductsImpl();
+    public Country createCountry() {
+        return new CountryImpl();
     }
 
     /**
@@ -1253,11 +619,251 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Authorization }
+     * 
+     */
+    public Authorization createAuthorization() {
+        return new AuthorizationImpl();
+    }
+
+    /**
+     * Create an instance of {@link Office }
+     * 
+     */
+    public Office createOffice() {
+        return new OfficeImpl();
+    }
+
+    /**
+     * Create an instance of {@link Renewal }
+     * 
+     */
+    public Renewal createRenewal() {
+        return new RenewalImpl();
+    }
+
+    /**
+     * Create an instance of {@link Answers }
+     * 
+     */
+    public Answers createAnswers() {
+        return new AnswersImpl();
+    }
+
+    /**
+     * Create an instance of {@link Updates }
+     * 
+     */
+    public Updates createUpdates() {
+        return new UpdatesImpl();
+    }
+
+    /**
+     * Create an instance of {@link OldPosition }
+     * 
+     */
+    public OldPosition createOldPosition() {
+        return new OldPositionImpl();
+    }
+
+    /**
+     * Create an instance of {@link AvailableActions }
+     * 
+     */
+    public AvailableActions createAvailableActions() {
+        return new AvailableActionsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Education }
+     * 
+     */
+    public Education createEducation() {
+        return new EducationImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyProfileUpdate }
+     * 
+     */
+    public CompanyProfileUpdate createCompanyProfileUpdate() {
+        return new CompanyProfileUpdateImpl();
+    }
+
+    /**
+     * Create an instance of {@link Proficiency }
+     * 
+     */
+    public Proficiency createProficiency() {
+        return new ProficiencyImpl();
+    }
+
+    /**
+     * Create an instance of {@link JobFunctions }
+     * 
+     */
+    public JobFunctions createJobFunctions() {
+        return new JobFunctionsImpl();
+    }
+
+    /**
+     * Create an instance of {@link MembershipState }
+     * 
+     */
+    public MembershipState createMembershipState() {
+        return new MembershipStateImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyProductUpdate }
+     * 
+     */
+    public CompanyProductUpdate createCompanyProductUpdate() {
+        return new CompanyProductUpdateImpl();
+    }
+
+    /**
      * Create an instance of {@link UpdateContent }
      * 
      */
     public UpdateContent createUpdateContent() {
         return new UpdateContentImpl();
+    }
+
+    /**
+     * Create an instance of {@link Jobs }
+     * 
+     */
+    public Jobs createJobs() {
+        return new JobsImpl();
+    }
+
+    /**
+     * Create an instance of {@link ProfileField }
+     * 
+     */
+    public ProfileField createProfileField() {
+        return new ProfileFieldImpl();
+    }
+
+    /**
+     * Create an instance of {@link Specialties }
+     * 
+     */
+    public Specialties createSpecialties() {
+        return new SpecialtiesImpl();
+    }
+
+    /**
+     * Create an instance of {@link Source }
+     * 
+     */
+    public Source createSource() {
+        return new SourceImpl();
+    }
+
+    /**
+     * Create an instance of {@link JobBookmark }
+     * 
+     */
+    public JobBookmark createJobBookmark() {
+        return new JobBookmarkImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyType }
+     * 
+     */
+    public CompanyType createCompanyType() {
+        return new CompanyTypeImpl();
+    }
+
+    /**
+     * Create an instance of {@link ApiStandardProfileRequest }
+     * 
+     */
+    public ApiStandardProfileRequest createApiStandardProfileRequest() {
+        return new ApiStandardProfileRequestImpl();
+    }
+
+    /**
+     * Create an instance of {@link ViewByMonth }
+     * 
+     */
+    public ViewByMonth createViewByMonth() {
+        return new ViewByMonthImpl();
+    }
+
+    /**
+     * Create an instance of {@link ServiceProvider }
+     * 
+     */
+    public ServiceProvider createServiceProvider() {
+        return new ServiceProviderImpl();
+    }
+
+    /**
+     * Create an instance of {@link PersonActivities }
+     * 
+     */
+    public PersonActivities createPersonActivities() {
+        return new PersonActivitiesImpl();
+    }
+
+    /**
+     * Create an instance of {@link JobPoster }
+     * 
+     */
+    public JobPoster createJobPoster() {
+        return new JobPosterImpl();
+    }
+
+    /**
+     * Create an instance of {@link Industries }
+     * 
+     */
+    public Industries createIndustries() {
+        return new IndustriesImpl();
+    }
+
+    /**
+     * Create an instance of {@link JobBookmarks }
+     * 
+     */
+    public JobBookmarks createJobBookmarks() {
+        return new JobBookmarksImpl();
+    }
+
+    /**
+     * Create an instance of {@link Facets }
+     * 
+     */
+    public Facets createFacets() {
+        return new FacetsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Poster }
+     * 
+     */
+    public Poster createPoster() {
+        return new PosterImpl();
+    }
+
+    /**
+     * Create an instance of {@link Attachment }
+     * 
+     */
+    public Attachment createAttachment() {
+        return new AttachmentImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyPersonUpdate }
+     * 
+     */
+    public CompanyPersonUpdate createCompanyPersonUpdate() {
+        return new CompanyPersonUpdateImpl();
     }
 
     /**
@@ -1277,83 +883,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ImAccount }
+     * Create an instance of {@link Certifications }
      * 
      */
-    public ImAccount createImAccount() {
-        return new ImAccountImpl();
-    }
-
-    /**
-     * Create an instance of {@link CompanyPersonUpdate }
-     * 
-     */
-    public CompanyPersonUpdate createCompanyPersonUpdate() {
-        return new CompanyPersonUpdateImpl();
-    }
-
-    /**
-     * Create an instance of {@link CountsByCategory }
-     * 
-     */
-    public CountsByCategory createCountsByCategory() {
-        return new CountsByCategoryImpl();
-    }
-
-    /**
-     * Create an instance of {@link People }
-     * 
-     */
-    public People createPeople() {
-        return new PeopleImpl();
-    }
-
-    /**
-     * Create an instance of {@link Like }
-     * 
-     */
-    public Like createLike() {
-        return new LikeImpl();
-    }
-
-    /**
-     * Create an instance of {@link JobBookmark }
-     * 
-     */
-    public JobBookmark createJobBookmark() {
-        return new JobBookmarkImpl();
-    }
-
-    /**
-     * Create an instance of {@link Recommendations }
-     * 
-     */
-    public Recommendations createRecommendations() {
-        return new RecommendationsImpl();
-    }
-
-    /**
-     * Create an instance of {@link UpdateAction }
-     * 
-     */
-    public UpdateAction createUpdateAction() {
-        return new UpdateActionImpl();
-    }
-
-    /**
-     * Create an instance of {@link Years }
-     * 
-     */
-    public Years createYears() {
-        return new YearsImpl();
-    }
-
-    /**
-     * Create an instance of {@link RecommendationType }
-     * 
-     */
-    public RecommendationType createRecommendationType() {
-        return new RecommendationTypeImpl();
+    public Certifications createCertifications() {
+        return new CertificationsImpl();
     }
 
     /**
@@ -1365,211 +899,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Share }
+     * Create an instance of {@link Buckets }
      * 
      */
-    public Share createShare() {
-        return new ShareImpl();
+    public Buckets createBuckets() {
+        return new BucketsImpl();
     }
 
     /**
-     * Create an instance of {@link NameType }
+     * Create an instance of {@link Action }
      * 
      */
-    public NameType createNameType() {
-        return new NameTypeImpl();
+    public Action createAction() {
+        return new ActionImpl();
     }
 
     /**
-     * Create an instance of {@link Updates }
+     * Create an instance of {@link Answer }
      * 
      */
-    public Updates createUpdates() {
-        return new UpdatesImpl();
+    public Answer createAnswer() {
+        return new AnswerImpl();
     }
 
     /**
-     * Create an instance of {@link Authorization }
+     * Create an instance of {@link Groups }
      * 
      */
-    public Authorization createAuthorization() {
-        return new AuthorizationImpl();
+    public Groups createGroups() {
+        return new GroupsImpl();
     }
 
     /**
-     * Create an instance of {@link Publication }
+     * Create an instance of {@link Video }
      * 
      */
-    public Publication createPublication() {
-        return new PublicationImpl();
-    }
-
-    /**
-     * Create an instance of {@link EmailDigestFrequency }
-     * 
-     */
-    public EmailDigestFrequency createEmailDigestFrequency() {
-        return new EmailDigestFrequencyImpl();
-    }
-
-    /**
-     * Create an instance of {@link Country }
-     * 
-     */
-    public Country createCountry() {
-        return new CountryImpl();
-    }
-
-    /**
-     * Create an instance of {@link Address }
-     * 
-     */
-    public Address createAddress() {
-        return new AddressImpl();
-    }
-
-    /**
-     * Create an instance of {@link Recommendation }
-     * 
-     */
-    public Recommendation createRecommendation() {
-        return new RecommendationImpl();
-    }
-
-    /**
-     * Create an instance of {@link Type }
-     * 
-     */
-    public Type createType() {
-        return new TypeImpl();
-    }
-
-    /**
-     * Create an instance of {@link CompanyProfileUpdate }
-     * 
-     */
-    public CompanyProfileUpdate createCompanyProfileUpdate() {
-        return new CompanyProfileUpdateImpl();
-    }
-
-    /**
-     * Create an instance of {@link Recipients }
-     * 
-     */
-    public Recipients createRecipients() {
-        return new RecipientsImpl();
-    }
-
-    /**
-     * Create an instance of {@link Authors }
-     * 
-     */
-    public Authors createAuthors() {
-        return new AuthorsImpl();
-    }
-
-    /**
-     * Create an instance of {@link ProductDeal }
-     * 
-     */
-    public ProductDeal createProductDeal() {
-        return new ProductDealImpl();
-    }
-
-    /**
-     * Create an instance of {@link Application }
-     * 
-     */
-    public Application createApplication() {
-        return new ApplicationImpl();
-    }
-
-    /**
-     * Create an instance of {@link CompanyStatus }
-     * 
-     */
-    public CompanyStatus createCompanyStatus() {
-        return new CompanyStatusImpl();
-    }
-
-    /**
-     * Create an instance of {@link Source }
-     * 
-     */
-    public Source createSource() {
-        return new SourceImpl();
-    }
-
-    /**
-     * Create an instance of {@link Attachment }
-     * 
-     */
-    public Attachment createAttachment() {
-        return new AttachmentImpl();
-    }
-
-    /**
-     * Create an instance of {@link JobSearch }
-     * 
-     */
-    public JobSearch createJobSearch() {
-        return new JobSearchImpl();
-    }
-
-    /**
-     * Create an instance of {@link ItemContent }
-     * 
-     */
-    public ItemContent createItemContent() {
-        return new ItemContentImpl();
-    }
-
-    /**
-     * Create an instance of {@link Certifications }
-     * 
-     */
-    public Certifications createCertifications() {
-        return new CertificationsImpl();
-    }
-
-    /**
-     * Create an instance of {@link AvailableActions }
-     * 
-     */
-    public AvailableActions createAvailableActions() {
-        return new AvailableActionsImpl();
-    }
-
-    /**
-     * Create an instance of {@link CompanyStatusUpdate }
-     * 
-     */
-    public CompanyStatusUpdate createCompanyStatusUpdate() {
-        return new CompanyStatusUpdateImpl();
-    }
-
-    /**
-     * Create an instance of {@link Product }
-     * 
-     */
-    public Product createProduct() {
-        return new ProductImpl();
-    }
-
-    /**
-     * Create an instance of {@link NewPosition }
-     * 
-     */
-    public NewPosition createNewPosition() {
-        return new NewPositionImpl();
-    }
-
-    /**
-     * Create an instance of {@link Locations }
-     * 
-     */
-    public Locations createLocations() {
-        return new LocationsImpl();
+    public Video createVideo() {
+        return new VideoImpl();
     }
 
     /**
@@ -1581,43 +947,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Publisher }
+     * Create an instance of {@link Educations }
      * 
      */
-    public Publisher createPublisher() {
-        return new PublisherImpl();
+    public Educations createEducations() {
+        return new EducationsImpl();
     }
 
     /**
-     * Create an instance of {@link ProfileField }
+     * Create an instance of {@link Address }
      * 
      */
-    public ProfileField createProfileField() {
-        return new ProfileFieldImpl();
+    public Address createAddress() {
+        return new AddressImpl();
     }
 
     /**
-     * Create an instance of {@link SiteJobRequest }
+     * Create an instance of {@link ShareTargetReach }
      * 
      */
-    public SiteJobRequest createSiteJobRequest() {
-        return new SiteJobRequestImpl();
-    }
-
-    /**
-     * Create an instance of {@link Answers }
-     * 
-     */
-    public Answers createAnswers() {
-        return new AnswersImpl();
-    }
-
-    /**
-     * Create an instance of {@link Editor }
-     * 
-     */
-    public Editor createEditor() {
-        return new EditorImpl();
+    public ShareTargetReach createShareTargetReach() {
+        return new ShareTargetReachImpl();
     }
 
     /**
@@ -1629,43 +979,251 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GroupCategory }
+     * Create an instance of {@link SiteStandardProfileRequest }
      * 
      */
-    public GroupCategory createGroupCategory() {
-        return new GroupCategoryImpl();
+    public SiteStandardProfileRequest createSiteStandardProfileRequest() {
+        return new SiteStandardProfileRequestImpl();
     }
 
     /**
-     * Create an instance of {@link Languages }
+     * Create an instance of {@link Group }
      * 
      */
-    public Languages createLanguages() {
-        return new LanguagesImpl();
+    public Group createGroup() {
+        return new GroupImpl();
     }
 
     /**
-     * Create an instance of {@link Jobs }
+     * Create an instance of {@link Recommendation }
      * 
      */
-    public Jobs createJobs() {
-        return new JobsImpl();
+    public Recommendation createRecommendation() {
+        return new RecommendationImpl();
     }
 
     /**
-     * Create an instance of {@link Proficiency }
+     * Create an instance of {@link ExperienceLevel }
      * 
      */
-    public Proficiency createProficiency() {
-        return new ProficiencyImpl();
+    public ExperienceLevel createExperienceLevel() {
+        return new ExperienceLevelImpl();
     }
 
     /**
-     * Create an instance of {@link Publications }
+     * Create an instance of {@link StartDate }
      * 
      */
-    public Publications createPublications() {
-        return new PublicationsImpl();
+    public StartDate createStartDate() {
+        return new StartDateImpl();
+    }
+
+    /**
+     * Create an instance of {@link ProductType }
+     * 
+     */
+    public ProductType createProductType() {
+        return new ProductTypeImpl();
+    }
+
+    /**
+     * Create an instance of {@link Bucket }
+     * 
+     */
+    public Bucket createBucket() {
+        return new BucketImpl();
+    }
+
+    /**
+     * Create an instance of {@link QuestionCategories }
+     * 
+     */
+    public QuestionCategories createQuestionCategories() {
+        return new QuestionCategoriesImpl();
+    }
+
+    /**
+     * Create an instance of {@link Publisher }
+     * 
+     */
+    public Publisher createPublisher() {
+        return new PublisherImpl();
+    }
+
+    /**
+     * Create an instance of {@link Product }
+     * 
+     */
+    public Product createProduct() {
+        return new ProductImpl();
+    }
+
+    /**
+     * Create an instance of {@link Certification }
+     * 
+     */
+    public Certification createCertification() {
+        return new CertificationImpl();
+    }
+
+    /**
+     * Create an instance of {@link Seniority }
+     * 
+     */
+    public Seniority createSeniority() {
+        return new SeniorityImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyStatus }
+     * 
+     */
+    public CompanyStatus createCompanyStatus() {
+        return new CompanyStatusImpl();
+    }
+
+    /**
+     * Create an instance of {@link Likes }
+     * 
+     */
+    public Likes createLikes() {
+        return new LikesImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberUrlResources }
+     * 
+     */
+    public MemberUrlResources createMemberUrlResources() {
+        return new MemberUrlResourcesImpl();
+    }
+
+    /**
+     * Create an instance of {@link StatusUpdateStatistics }
+     * 
+     */
+    public StatusUpdateStatistics createStatusUpdateStatistics() {
+        return new StatusUpdateStatisticsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Status }
+     * 
+     */
+    public Status createStatus() {
+        return new StatusImpl();
+    }
+
+    /**
+     * Create an instance of {@link Share }
+     * 
+     */
+    public Share createShare() {
+        return new ShareImpl();
+    }
+
+    /**
+     * Create an instance of {@link Language }
+     * 
+     */
+    public Language createLanguage() {
+        return new LanguageImpl();
+    }
+
+    /**
+     * Create an instance of {@link Question }
+     * 
+     */
+    public Question createQuestion() {
+        return new QuestionImpl();
+    }
+
+    /**
+     * Create an instance of {@link ViewsByMonth }
+     * 
+     */
+    public ViewsByMonth createViewsByMonth() {
+        return new ViewsByMonthImpl();
+    }
+
+    /**
+     * Create an instance of {@link ImAccount }
+     * 
+     */
+    public ImAccount createImAccount() {
+        return new ImAccountImpl();
+    }
+
+    /**
+     * Create an instance of {@link TwitterAccounts }
+     * 
+     */
+    public TwitterAccounts createTwitterAccounts() {
+        return new TwitterAccountsImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyStatusUpdate }
+     * 
+     */
+    public CompanyStatusUpdate createCompanyStatusUpdate() {
+        return new CompanyStatusUpdateImpl();
+    }
+
+    /**
+     * Create an instance of {@link Inventors }
+     * 
+     */
+    public Inventors createInventors() {
+        return new InventorsImpl();
+    }
+
+    /**
+     * Create an instance of {@link MailboxItem }
+     * 
+     */
+    public MailboxItem createMailboxItem() {
+        return new MailboxItemImpl();
+    }
+
+    /**
+     * Create an instance of {@link ItemContent }
+     * 
+     */
+    public ItemContent createItemContent() {
+        return new ItemContentImpl();
+    }
+
+    /**
+     * Create an instance of {@link DateOfBirth }
+     * 
+     */
+    public DateOfBirth createDateOfBirth() {
+        return new DateOfBirthImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberUrl }
+     * 
+     */
+    public MemberUrl createMemberUrl() {
+        return new MemberUrlImpl();
+    }
+
+    /**
+     * Create an instance of {@link ProductCategory }
+     * 
+     */
+    public ProductCategory createProductCategory() {
+        return new ProductCategoryImpl();
+    }
+
+    /**
+     * Create an instance of {@link ImAccounts }
+     * 
+     */
+    public ImAccounts createImAccounts() {
+        return new ImAccountsImpl();
     }
 
     /**
@@ -1677,11 +1235,435 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Date }
+     * Create an instance of {@link Products }
      * 
      */
-    public Date createDate() {
-        return new DateImpl();
+    public Products createProducts() {
+        return new ProductsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Person }
+     * 
+     */
+    public Person createPerson() {
+        return new PersonImpl();
+    }
+
+    /**
+     * Create an instance of {@link EmailDigestFrequency }
+     * 
+     */
+    public EmailDigestFrequency createEmailDigestFrequency() {
+        return new EmailDigestFrequencyImpl();
+    }
+
+    /**
+     * Create an instance of {@link ExpirationDate }
+     * 
+     */
+    public ExpirationDate createExpirationDate() {
+        return new ExpirationDateImpl();
+    }
+
+    /**
+     * Create an instance of {@link ThreeCurrentPositions }
+     * 
+     */
+    public ThreeCurrentPositions createThreeCurrentPositions() {
+        return new ThreeCurrentPositionsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Languages }
+     * 
+     */
+    public Languages createLanguages() {
+        return new LanguagesImpl();
+    }
+
+    /**
+     * Create an instance of {@link Recipients }
+     * 
+     */
+    public Recipients createRecipients() {
+        return new RecipientsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Author }
+     * 
+     */
+    public Author createAuthor() {
+        return new AuthorImpl();
+    }
+
+    /**
+     * Create an instance of {@link Industry }
+     * 
+     */
+    public Industry createIndustry() {
+        return new IndustryImpl();
+    }
+
+    /**
+     * Create an instance of {@link Posts }
+     * 
+     */
+    public Posts createPosts() {
+        return new PostsImpl();
+    }
+
+    /**
+     * Create an instance of {@link NewPosition }
+     * 
+     */
+    public NewPosition createNewPosition() {
+        return new NewPositionImpl();
+    }
+
+    /**
+     * Create an instance of {@link RelationToViewer }
+     * 
+     */
+    public RelationToViewer createRelationToViewer() {
+        return new RelationToViewerImpl();
+    }
+
+    /**
+     * Create an instance of {@link Attribution }
+     * 
+     */
+    public Attribution createAttribution() {
+        return new AttributionImpl();
+    }
+
+    /**
+     * Create an instance of {@link Recommendations }
+     * 
+     */
+    public Recommendations createRecommendations() {
+        return new RecommendationsImpl();
+    }
+
+    /**
+     * Create an instance of {@link PostingDate }
+     * 
+     */
+    public PostingDate createPostingDate() {
+        return new PostingDateImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanySearch }
+     * 
+     */
+    public CompanySearch createCompanySearch() {
+        return new CompanySearchImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyJobUpdate }
+     * 
+     */
+    public CompanyJobUpdate createCompanyJobUpdate() {
+        return new CompanyJobUpdateImpl();
+    }
+
+    /**
+     * Create an instance of {@link EmailDomains }
+     * 
+     */
+    public EmailDomains createEmailDomains() {
+        return new EmailDomainsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Publication }
+     * 
+     */
+    public Publication createPublication() {
+        return new PublicationImpl();
+    }
+
+    /**
+     * Create an instance of {@link Patents }
+     * 
+     */
+    public Patents createPatents() {
+        return new PatentsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Comment }
+     * 
+     */
+    public Comment createComment() {
+        return new CommentImpl();
+    }
+
+    /**
+     * Create an instance of {@link Connections }
+     * 
+     */
+    public Connections createConnections() {
+        return new ConnectionsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Seniorities }
+     * 
+     */
+    public Seniorities createSeniorities() {
+        return new SenioritiesImpl();
+    }
+
+    /**
+     * Create an instance of {@link Creator }
+     * 
+     */
+    public Creator createCreator() {
+        return new CreatorImpl();
+    }
+
+    /**
+     * Create an instance of {@link Authority }
+     * 
+     */
+    public Authority createAuthority() {
+        return new AuthorityImpl();
+    }
+
+    /**
+     * Create an instance of {@link QuestionCategory }
+     * 
+     */
+    public QuestionCategory createQuestionCategory() {
+        return new QuestionCategoryImpl();
+    }
+
+    /**
+     * Create an instance of {@link Comments }
+     * 
+     */
+    public Comments createComments() {
+        return new CommentsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Publications }
+     * 
+     */
+    public Publications createPublications() {
+        return new PublicationsImpl();
+    }
+
+    /**
+     * Create an instance of {@link HttpHeader }
+     * 
+     */
+    public HttpHeader createHttpHeader() {
+        return new HttpHeaderImpl();
+    }
+
+    /**
+     * Create an instance of {@link HowToApply }
+     * 
+     */
+    public HowToApply createHowToApply() {
+        return new HowToApplyImpl();
+    }
+
+    /**
+     * Create an instance of {@link Update }
+     * 
+     */
+    public Update createUpdate() {
+        return new UpdateImpl();
+    }
+
+    /**
+     * Create an instance of {@link PeopleSearch }
+     * 
+     */
+    public PeopleSearch createPeopleSearch() {
+        return new PeopleSearchImpl();
+    }
+
+    /**
+     * Create an instance of {@link Positions }
+     * 
+     */
+    public Positions createPositions() {
+        return new PositionsImpl();
+    }
+
+    /**
+     * Create an instance of {@link GroupMembership }
+     * 
+     */
+    public GroupMembership createGroupMembership() {
+        return new GroupMembershipImpl();
+    }
+
+    /**
+     * Create an instance of {@link Post }
+     * 
+     */
+    public Post createPost() {
+        return new PostImpl();
+    }
+
+    /**
+     * Create an instance of {@link Content }
+     * 
+     */
+    public Content createContent() {
+        return new ContentImpl();
+    }
+
+    /**
+     * Create an instance of {@link CountForCategory }
+     * 
+     */
+    public CountForCategory createCountForCategory() {
+        return new CountForCategoryImpl();
+    }
+
+    /**
+     * Create an instance of {@link JobType }
+     * 
+     */
+    public JobType createJobType() {
+        return new JobTypeImpl();
+    }
+
+    /**
+     * Create an instance of {@link Like }
+     * 
+     */
+    public Like createLike() {
+        return new LikeImpl();
+    }
+
+    /**
+     * Create an instance of {@link Network }
+     * 
+     */
+    public Network createNetwork() {
+        return new NetworkImpl();
+    }
+
+    /**
+     * Create an instance of {@link Facet }
+     * 
+     */
+    public Facet createFacet() {
+        return new FacetImpl();
+    }
+
+    /**
+     * Create an instance of {@link ContactInfo }
+     * 
+     */
+    public ContactInfo createContactInfo() {
+        return new ContactInfoImpl();
+    }
+
+    /**
+     * Create an instance of {@link Position }
+     * 
+     */
+    public Position createPosition() {
+        return new PositionImpl();
+    }
+
+    /**
+     * Create an instance of {@link Role }
+     * 
+     */
+    public Role createRole() {
+        return new RoleImpl();
+    }
+
+    /**
+     * Create an instance of {@link Years }
+     * 
+     */
+    public Years createYears() {
+        return new YearsImpl();
+    }
+
+    /**
+     * Create an instance of {@link PostType }
+     * 
+     */
+    public PostType createPostType() {
+        return new PostTypeImpl();
+    }
+
+    /**
+     * Create an instance of {@link Visibility }
+     * 
+     */
+    public Visibility createVisibility() {
+        return new VisibilityImpl();
+    }
+
+    /**
+     * Create an instance of {@link EventType }
+     * 
+     */
+    public EventType createEventType() {
+        return new EventTypeImpl();
+    }
+
+    /**
+     * Create an instance of {@link RecommendationsGiven }
+     * 
+     */
+    public RecommendationsGiven createRecommendationsGiven() {
+        return new RecommendationsGivenImpl();
+    }
+
+    /**
+     * Create an instance of {@link RecommendationType }
+     * 
+     */
+    public RecommendationType createRecommendationType() {
+        return new RecommendationTypeImpl();
+    }
+
+    /**
+     * Create an instance of {@link JobSuggestions }
+     * 
+     */
+    public JobSuggestions createJobSuggestions() {
+        return new JobSuggestionsImpl();
+    }
+
+    /**
+     * Create an instance of {@link OriginalUpdate }
+     * 
+     */
+    public OriginalUpdate createOriginalUpdate() {
+        return new OriginalUpdateImpl();
+    }
+
+    /**
+     * Create an instance of {@link Headers }
+     * 
+     */
+    public Headers createHeaders() {
+        return new HeadersImpl();
+    }
+
+    /**
+     * Create an instance of {@link MemberGroups }
+     * 
+     */
+    public MemberGroups createMemberGroups() {
+        return new MemberGroupsImpl();
     }
 
     /**
@@ -1690,6 +1672,142 @@ public class ObjectFactory {
      */
     public InvitationRequest createInvitationRequest() {
         return new InvitationRequestImpl();
+    }
+
+    /**
+     * Create an instance of {@link TwitterAccount }
+     * 
+     */
+    public TwitterAccount createTwitterAccount() {
+        return new TwitterAccountImpl();
+    }
+
+    /**
+     * Create an instance of {@link Editor }
+     * 
+     */
+    public Editor createEditor() {
+        return new EditorImpl();
+    }
+
+    /**
+     * Create an instance of {@link CompanyStatistics }
+     * 
+     */
+    public CompanyStatistics createCompanyStatistics() {
+        return new CompanyStatisticsImpl();
+    }
+
+    /**
+     * Create an instance of {@link EmployeeCountRange }
+     * 
+     */
+    public EmployeeCountRange createEmployeeCountRange() {
+        return new EmployeeCountRangeImpl();
+    }
+
+    /**
+     * Create an instance of {@link Features }
+     * 
+     */
+    public Features createFeatures() {
+        return new FeaturesImpl();
+    }
+
+    /**
+     * Create an instance of {@link Tvalues }
+     * 
+     */
+    public Tvalues createTvalues() {
+        return new TvaluesImpl();
+    }
+
+    /**
+     * Create an instance of {@link ShareTargets }
+     * 
+     */
+    public ShareTargets createShareTargets() {
+        return new ShareTargetsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Application }
+     * 
+     */
+    public Application createApplication() {
+        return new ApplicationImpl();
+    }
+
+    /**
+     * Create an instance of {@link CountsByCategory }
+     * 
+     */
+    public CountsByCategory createCountsByCategory() {
+        return new CountsByCategoryImpl();
+    }
+
+    /**
+     * Create an instance of {@link Skills }
+     * 
+     */
+    public Skills createSkills() {
+        return new SkillsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Job }
+     * 
+     */
+    public Job createJob() {
+        return new JobImpl();
+    }
+
+    /**
+     * Create an instance of {@link SiteJobRequest }
+     * 
+     */
+    public SiteJobRequest createSiteJobRequest() {
+        return new SiteJobRequestImpl();
+    }
+
+    /**
+     * Create an instance of {@link Locations }
+     * 
+     */
+    public Locations createLocations() {
+        return new LocationsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Error }
+     * 
+     */
+    public Error createError() {
+        return new ErrorImpl();
+    }
+
+    /**
+     * Create an instance of {@link Authors }
+     * 
+     */
+    public Authors createAuthors() {
+        return new AuthorsImpl();
+    }
+
+    /**
+     * Create an instance of {@link Property }
+     * 
+     */
+    public Property createProperty() {
+        return new PropertyImpl();
+    }
+
+    /**
+     * Create an instance of {@link Recommender }
+     * 
+     */
+    public Recommender createRecommender() {
+        return new RecommenderImpl();
     }
 
     /**
@@ -1905,6 +2023,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "entry-value")
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    public JAXBElement<Long> createEntryValue(Long value) {
+        return new JAXBElement<Long>(_EntryValue_QNAME, Long.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Boolean }{@code >}}
      * 
      */
@@ -2051,6 +2179,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "non-employee-count")
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    public JAXBElement<Long> createNonEmployeeCount(Long value) {
+        return new JAXBElement<Long>(_NonEmployeeCount_QNAME, Long.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Boolean }{@code >}}
      * 
      */
@@ -2127,6 +2265,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "num-related-connections")
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    public JAXBElement<Long> createNumRelatedConnections(Long value) {
+        return new JAXBElement<Long>(_NumRelatedConnections_QNAME, Long.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
@@ -2151,6 +2299,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "num-connections-capped")
     public JAXBElement<Boolean> createNumConnectionsCapped(Boolean value) {
         return new JAXBElement<Boolean>(_NumConnectionsCapped_QNAME, Boolean.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "tvalue")
+    public JAXBElement<String> createTvalue(String value) {
+        return new JAXBElement<String>(_Tvalue_QNAME, String.class, null, value);
     }
 
     /**
@@ -2447,15 +2604,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ProficiencyLevelType }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "level")
-    public JAXBElement<ProficiencyLevelType> createLevel(ProficiencyLevelType value) {
-        return new JAXBElement<ProficiencyLevelType>(_Level_QNAME, ProficiencyLevelType.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
@@ -2668,6 +2816,15 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link BigDecimal }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "engagement")
+    public JAXBElement<BigDecimal> createEngagement(BigDecimal value) {
+        return new JAXBElement<BigDecimal>(_Engagement_QNAME, BigDecimal.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
@@ -2737,6 +2894,16 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
      * 
      */
+    @XmlElementDecl(namespace = "", name = "entry-key")
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    public JAXBElement<Long> createEntryKey(Long value) {
+        return new JAXBElement<Long>(_EntryKey_QNAME, Long.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+     * 
+     */
     @XmlElementDecl(namespace = "", name = "contract-id")
     @XmlJavaTypeAdapter(Adapter1 .class)
     public JAXBElement<Long> createContractId(Long value) {
@@ -2747,20 +2914,20 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "", name = "founded-year")
+    @XmlElementDecl(namespace = "", name = "num-likes")
     @XmlJavaTypeAdapter(Adapter1 .class)
-    public JAXBElement<Long> createFoundedYear(Long value) {
-        return new JAXBElement<Long>(_FoundedYear_QNAME, Long.class, null, value);
+    public JAXBElement<Long> createNumLikes(Long value) {
+        return new JAXBElement<Long>(_NumLikes_QNAME, Long.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "", name = "num-likes")
+    @XmlElementDecl(namespace = "", name = "founded-year")
     @XmlJavaTypeAdapter(Adapter1 .class)
-    public JAXBElement<Long> createNumLikes(Long value) {
-        return new JAXBElement<Long>(_NumLikes_QNAME, Long.class, null, value);
+    public JAXBElement<Long> createFoundedYear(Long value) {
+        return new JAXBElement<Long>(_FoundedYear_QNAME, Long.class, null, value);
     }
 
     /**
@@ -2902,6 +3069,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Long }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "employee-count")
+    @XmlJavaTypeAdapter(Adapter1 .class)
+    public JAXBElement<Long> createEmployeeCount(Long value) {
+        return new JAXBElement<Long>(_EmployeeCount_QNAME, Long.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
@@ -2944,6 +3121,15 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "", name = "region-code")
     public JAXBElement<String> createRegionCode(String value) {
         return new JAXBElement<String>(_RegionCode_QNAME, String.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "", name = "proposal-comments")
+    public JAXBElement<String> createProposalComments(String value) {
+        return new JAXBElement<String>(_ProposalComments_QNAME, String.class, null, value);
     }
 
     /**
