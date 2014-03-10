@@ -40,6 +40,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.GZIPInputStream;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.google.code.linkedinapi.client.LinkedInApiClient;
 import com.google.code.linkedinapi.client.LinkedInApiClientException;
 import com.google.code.linkedinapi.client.Parameter;
@@ -145,6 +148,8 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
     /** Field description */
     private Map<String, String> requestHeaders;
+    
+    private static final Log logger = LogFactory.getLog(BaseLinkedInApiClient.class);
 
     /**
      * Constructs ...
@@ -3731,10 +3736,19 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, String role, int start, int count,
 			PostSortOrder order, PostCategoryCode category) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
-        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId)
+        builder  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId)
         		.withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count))
-        		.withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.CATEGORY, category.value())
-        		.withParameter("role", role).buildUrl();
+        		.withParameter(ParameterNames.CATEGORY, category.value());
+        		
+        if(role != null) {
+        	builder = builder.withParameter("role", role);
+        }
+        
+        if(order != null) {
+        	builder = builder.withParameterEnum(ParameterNames.ORDER, order);
+        }
+        
+        String                apiUrl  = builder.buildUrl();
 
         return readResponse(Posts.class, callApiMethod(apiUrl));
 	}
@@ -3882,6 +3896,17 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected <T> T readResponse(Class<T> clazz, InputStream is) {
+    	if(logger.isDebugEnabled()) {
+    		is = printResponse(is);
+    	}
+		try {
+            return unmarshallObject(clazz, is);
+        } finally {
+            closeStream(is);
+        }
+    }
+    
+    private InputStream printResponse(InputStream is) {
     	BufferedInputStream bis = new BufferedInputStream(is);
     	try {
         	byte[] b = new byte[4096];
@@ -3892,21 +3917,14 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 	        		sb.append(new String(b, 0, n));
 	        	}
         	}catch(Exception e) {
-        		//logger.error("Error Parsing the LinkedIn API response -- "  + e.getMessage());
+        		logger.error("Error Parsing the LinkedIn API response -- "  + e.getMessage());
         	}
-        	//logger.debug("LinkedIn API Response: \n" + sb.toString());
-        	System.out.println("LinkedIn API Response: \n" + sb.toString());
+        	logger.debug("LinkedIn API Response: \n" + sb.toString());
         	is = new ByteArrayInputStream(sb.toString().getBytes());
         } finally {
             closeStream(bis);
         }
-        //return is;
-        
-        try {
-            return unmarshallObject(clazz, is);
-        } finally {
-            closeStream(is);
-        }
+        return is;
     }
 
     /**
@@ -3949,7 +3967,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                     apiConsumer.getConsumerSecret());
             URL               url     = new URL(apiUrl);
             
-            System.out.println("LinkedIn API URL : " + apiUrl);
+            if(logger.isDebugEnabled()) {
+            	logger.debug("LinkedIn API URL : " + apiUrl);
+            }
             
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
 
@@ -4055,6 +4075,11 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
     }
     
     private HttpURLConnection sendRequest(String apiUrl, String xmlContent, String contentType, HttpMethod method) throws IOException{
+    	if(logger.isDebugEnabled()) {
+    		logger.debug("Sending request "+method.toString() + " " + apiUrl + " " + contentType);
+    		logger.debug(xmlContent);
+    	}
+    	
         LinkedInOAuthService oAuthService =
                 LinkedInOAuthServiceFactory.getInstance().createLinkedInOAuthService(apiConsumer.getConsumerKey(),
                     apiConsumer.getConsumerSecret());
@@ -4346,4 +4371,44 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 
         return readResponse(Updates.class, callApiMethod(apiUrl));
     }
+    
+	@Override
+	public String postCompanyShare(String companyId, String commentText, VisibilityType visibility) {
+		return postCompanyShare(companyId, commentText, null, null, null, null, visibility);
+	}
+
+	@Override
+	public String postCompanyShare(String companyId, String commentText, String title, String description, String url,
+			String imageUrl, VisibilityType visibilityType) {
+		LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.POST_COMPANY_SHARE);
+        String                apiUrl  = builder.withField(ParameterNames.ID, companyId).buildUrl();
+        Share share = OBJECT_FACTORY.createShare();
+        share.setComment(commentText);
+        if(title != null && url != null) {
+        	Content content = OBJECT_FACTORY.createContent();
+        	content.setTitle(title);
+        	content.setDescription(description);
+            content.setSubmittedUrl(url);
+            content.setSubmittedImageUrl(imageUrl);
+            share.setContent(content);
+        }
+        
+        Visibility visibility = OBJECT_FACTORY.createVisibility();
+        visibility.setCode(visibilityType);
+        share.setVisibility(visibility);
+        Map<String, List<String>> fields = callApiMethodForHeaders(apiUrl, marshallObject(share), ApplicationConstants.CONTENT_TYPE_XML, HttpMethod.POST,
+                HttpURLConnection.HTTP_CREATED);
+        String location = null;
+    	for(String key: fields.keySet()) {
+    		if("Location".equalsIgnoreCase(key) && fields.get(key) != null && fields.get(key).size() > 0) {
+    			location = fields.get(key).get(0);
+    			if(location != null && location.lastIndexOf("/") > 0) {
+    				location = location.substring(location.lastIndexOf("/")+1);
+    			}
+    		}
+    	}
+        return location;
+	}
+	
+
 }

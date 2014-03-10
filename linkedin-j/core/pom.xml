@@ -3,7 +3,7 @@
   <parent>
     <groupId>com.googlecode.linkedin-j</groupId>
     <artifactId>linkedin-j</artifactId>
-    <version>1.0.417-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
   </parent>
   <artifactId>linkedin-j-core</artifactId>
   <packaging>jar</packaging>
@@ -27,6 +27,32 @@
     </testResources>     
   </build>
   <dependencies>
+  	<dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<type>jar</type>
+		<version>1.1</version>
+		<optional>yes</optional>
+		<scope>compile</scope>
+		<exclusions>
+			<exclusion>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>logkit</groupId>
+				<artifactId>logkit</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>avalon-framework</groupId>
+				<artifactId>avalon-framework</artifactId>
+			</exclusion>
+			<exclusion>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
   	<dependency>
   		<groupId>oauth.signpost</groupId>
   		<artifactId>signpost-core</artifactId>
