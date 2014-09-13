@@ -3753,6 +3753,33 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         return readResponse(Posts.class, callApiMethod(apiUrl));
 	}
 	
+	
+	
+	@Override
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, String role, int start, int count,
+			PostSortOrder order, PostCategoryCode category, Date modifiedSince) {
+        LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
+        builder  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId)
+        		.withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count))
+        		.withParameter(ParameterNames.CATEGORY, category.value());
+        
+        if(modifiedSince != null) {
+        	builder = builder.withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime()));
+        }
+        		
+        if(role != null) {
+        	builder = builder.withParameter("role", role);
+        }
+        
+        if(order != null) {
+        	builder = builder.withParameterEnum(ParameterNames.ORDER, order);
+        }
+        
+        String                apiUrl  = builder.buildUrl();
+
+        return readResponse(Posts.class, callApiMethod(apiUrl));
+	}
+	
 	@Override
 	public Posts getPostsByGroup(String groupId, int start, int count,
 			Date modifiedSince) {
@@ -3802,7 +3829,13 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
 	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, int start, int count,
 			PostSortOrder order, PostCategoryCode category, Date modifiedSince) {
         LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_POSTS_BY_GROUP);
-        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).withField(ParameterNames.ID, groupId).withParameter(ParameterNames.START, String.valueOf(start)).withParameter(ParameterNames.COUNT, String.valueOf(count)).withParameterEnum(ParameterNames.ORDER, order).withParameter(ParameterNames.CATEGORY, category.value()).withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
+        String                apiUrl  = builder.withFieldEnumSet(ParameterNames.FIELD_SELECTORS, postFields).
+        		withField(ParameterNames.ID, groupId).
+        		withParameter(ParameterNames.START, String.valueOf(start)).
+        		withParameter(ParameterNames.COUNT, String.valueOf(count)).
+        		withParameterEnum(ParameterNames.ORDER, order).
+        		withParameter(ParameterNames.CATEGORY, category.value()).
+        		withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime())).buildUrl();
 
         return readResponse(Posts.class, callApiMethod(apiUrl));
 	}

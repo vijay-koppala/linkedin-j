@@ -272,6 +272,21 @@ public interface GroupsApiClient extends LinkedInAuthenticationClient {
 	 */
 	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, String role, int start, int count, PostSortOrder order, PostCategoryCode category);
 	
+	
+	/**
+	 * 
+	 * @param groupId
+	 * @param postFields
+	 * @param role
+	 * @param start
+	 * @param count
+	 * @param order
+	 * @param category
+	 * @param modifiedSince
+	 * @return
+	 */
+	public Posts getPostsByGroup(String groupId, Set<PostField> postFields, String role, int start, int count, PostSortOrder order, PostCategoryCode category, Date modifiedSince);
+	
 	/**
 	 * Gets the posts by group.
 	 * 
