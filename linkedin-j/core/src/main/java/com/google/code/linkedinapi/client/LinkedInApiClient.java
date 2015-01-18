@@ -16,7 +16,6 @@
  */
 package com.google.code.linkedinapi.client;
 
-import com.google.code.linkedinapi.schema.Companies;
 
 
 /**
@@ -24,6 +23,6 @@ import com.google.code.linkedinapi.schema.Companies;
  * 
  * @author Nabeel Mukhtar
  */
-public interface LinkedInApiClient extends PeopleApiClient, NetworkUpdatesApiClient, CommunicationsApiClient, JobsApiClient, CompaniesApiClient, CompanyUpdatesApiClient, GroupsApiClient {
+public interface LinkedInApiClient extends PeopleApiClient, NetworkUpdatesApiClient, CommunicationsApiClient, MailboxApiClient, JobsApiClient, CompaniesApiClient, CompanyUpdatesApiClient, GroupsApiClient {
 
 }

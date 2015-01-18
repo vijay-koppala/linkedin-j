@@ -28,6 +28,9 @@ import java.util.concurrent.Future;
 import com.google.code.linkedinapi.client.AsyncHandlerLinkedInApiClient;
 import com.google.code.linkedinapi.client.AsyncResponseHandler;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
+import com.google.code.linkedinapi.client.enumeration.MailFolderRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailMessageRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailboxField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
@@ -37,6 +40,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Mailbox;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
@@ -589,6 +593,20 @@ public class AsyncHandlerLinkedInApiClientAdapter implements AsyncHandlerLinkedI
             @Override
             public void run() {
                 client.sendMessage(recepientIds, subject, message);
+            }
+        }));
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+	@Override
+    public void getMailbox(final MailFolderRequestType requestFolderType, final Set<MailMessageRequestType> messageTypes, final Set<MailboxField> mailboxFields, final int start, final int count, final Date modifiedSince, final AsyncResponseHandler<Mailbox> handler) {
+        handler.setFuture(execute(new Callable<Mailbox>() {
+            @Override
+            public Mailbox call() throws Exception {
+                return client.getMailbox(requestFolderType, messageTypes, mailboxFields, start, count, modifiedSince);
             }
         }));
     }

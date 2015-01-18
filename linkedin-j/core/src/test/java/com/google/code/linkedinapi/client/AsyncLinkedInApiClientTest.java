@@ -17,16 +17,22 @@
 package com.google.code.linkedinapi.client;
 
 import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Future;
 
 import org.junit.Test;
 
 import com.google.code.linkedinapi.client.constant.TestConstants;
+import com.google.code.linkedinapi.client.enumeration.MailFolderRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailMessageRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailboxField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Mailbox;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
@@ -146,6 +152,14 @@ public class AsyncLinkedInApiClientTest extends LinkedInApiClientTest {
 	public void testGetNetworkUpdates() {
 		Future<Network> network = client.getNetworkUpdates();
 		assertNotNull("Network Updates should never be null.", network);
+	}
+	
+	@Test
+	public void testGetMailbox() {
+		Set<MailMessageRequestType> messageTypes = new HashSet<MailMessageRequestType>();
+		Set<MailboxField> mailboxFields = new HashSet<MailboxField>();
+		Future<Mailbox> mailbox = client.getMailbox(MailFolderRequestType.INBOX, messageTypes, mailboxFields, 0, 50, getLastWeekDate());
+		assertNotNull("Mailbox Updates should never be null.", mailbox);
 	}
 
 	/**

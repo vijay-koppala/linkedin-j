@@ -13,9 +13,21 @@ package com.google.code.linkedinapi.schema;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}recipients"/>
- *         &lt;element ref="{}subject"/>
- *         &lt;element ref="{}body"/>
+ *         &lt;sequence>
+ *           &lt;element ref="{}id"/>
+ *           &lt;element ref="{}timestamp"/>
+ *           &lt;element ref="{}action-status"/>
+ *           &lt;element ref="{}folder"/>
+ *           &lt;element ref="{}from"/>
+ *           &lt;element ref="{}item-read"/>
+ *           &lt;element ref="{}item-type"/>
+ *           &lt;element ref="{}last-modified"/>
+ *           &lt;element ref="{}message-type"/>
+ *           &lt;element ref="{}recipients"/>
+ *           &lt;element ref="{}short-body"/>
+ *           &lt;element ref="{}subject"/>
+ *         &lt;/sequence>
+ *         &lt;element ref="{}body" minOccurs="0"/>
  *         &lt;element ref="{}item-content" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -29,6 +41,178 @@ public interface MailboxItem
     extends SchemaEntity
 {
 
+
+    /**
+     * Gets the value of the id property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getId();
+
+    /**
+     * Sets the value of the id property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setId(String value);
+
+    /**
+     * Gets the value of the timestamp property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getTimestamp();
+
+    /**
+     * Sets the value of the timestamp property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setTimestamp(Long value);
+
+    /**
+     * Gets the value of the actionStatus property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getActionStatus();
+
+    /**
+     * Sets the value of the actionStatus property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setActionStatus(String value);
+
+    /**
+     * Gets the value of the folder property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MailFolderType }
+     *     
+     */
+    MailFolderType getFolder();
+
+    /**
+     * Sets the value of the folder property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MailFolderType }
+     *     
+     */
+    void setFolder(MailFolderType value);
+
+    /**
+     * Gets the value of the from property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link From }
+     *     
+     */
+    From getFrom();
+
+    /**
+     * Sets the value of the from property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link From }
+     *     
+     */
+    void setFrom(From value);
+
+    /**
+     * Gets the value of the itemRead property.
+     * 
+     */
+    boolean isItemRead();
+
+    /**
+     * Sets the value of the itemRead property.
+     * 
+     */
+    void setItemRead(boolean value);
+
+    /**
+     * Gets the value of the itemType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getItemType();
+
+    /**
+     * Sets the value of the itemType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setItemType(String value);
+
+    /**
+     * Gets the value of the lastModified property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    Long getLastModified();
+
+    /**
+     * Sets the value of the lastModified property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setLastModified(Long value);
+
+    /**
+     * Gets the value of the messageType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MailMessageType }
+     *     
+     */
+    MailMessageType getMessageType();
+
+    /**
+     * Sets the value of the messageType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MailMessageType }
+     *     
+     */
+    void setMessageType(MailMessageType value);
 
     /**
      * Gets the value of the recipients property.
@@ -49,6 +233,26 @@ public interface MailboxItem
      *     
      */
     void setRecipients(Recipients value);
+
+    /**
+     * Gets the value of the shortBody property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    String getShortBody();
+
+    /**
+     * Sets the value of the shortBody property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    void setShortBody(String value);
 
     /**
      * Gets the value of the subject property.

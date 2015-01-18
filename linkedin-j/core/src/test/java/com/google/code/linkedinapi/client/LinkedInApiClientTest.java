@@ -19,12 +19,15 @@ package com.google.code.linkedinapi.client;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Future;
 
 import junit.framework.TestCase;
 
@@ -59,6 +62,9 @@ import com.google.code.linkedinapi.schema.JobFunctionCode;
 import com.google.code.linkedinapi.schema.JobSearch;
 import com.google.code.linkedinapi.schema.Jobs;
 import com.google.code.linkedinapi.schema.Likes;
+import com.google.code.linkedinapi.schema.MailFolderType;
+import com.google.code.linkedinapi.schema.MailMessageType;
+import com.google.code.linkedinapi.schema.Mailbox;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.PeopleSearch;

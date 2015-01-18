@@ -22,6 +22,9 @@ import java.util.Map;
 import java.util.Set;
 
 import com.google.code.linkedinapi.client.constant.ApplicationConstants;
+import com.google.code.linkedinapi.client.enumeration.MailFolderRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailMessageRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailboxField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
@@ -29,6 +32,7 @@ import com.google.code.linkedinapi.client.enumeration.SearchParameter;
 import com.google.code.linkedinapi.client.enumeration.SearchSortOrder;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Mailbox;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
@@ -505,6 +509,9 @@ public interface AsyncHandlerLinkedInApiClient extends LinkedInAuthenticationCli
      * @return the future<?>
      */
     public void sendMessage(List<String> recepientIds, String subject, String message, AsyncResponseHandler<?> handler);
+    
+    
+    public void getMailbox(MailFolderRequestType requestFolderType, Set<MailMessageRequestType> messageTypes, Set<MailboxField> mailboxFields, int start, int count, Date modifiedSince, AsyncResponseHandler<Mailbox> handler);
 
     // Invitation API
 

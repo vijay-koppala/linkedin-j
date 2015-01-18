@@ -45,5 +45,8 @@ public interface ParameterNames {
 	String MEMBERSHIP_STATE = "membership-state";
 	String ORDER = "order";
 	String CATEGORY = "category";
+	String MAIL_FOLDER = "folder";
+	String MAIL_MESSAGE_TYPE = "message-type";
+	String ITEM_READ = "item-read";
 
 }

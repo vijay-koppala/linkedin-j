@@ -23,6 +23,53 @@
 			<typesafeEnumMember name="FRIEND" value="friend"/>
 		</typesafeEnumClass>
 	</bindings>
+	<!--
+	<bindings node="//xs:element[@name='message-type']/xs:simpleType">
+		<typesafeEnumClass name="MailMessageType" >
+			<typesafeEnumMember name="MESSAGE_CONNECTIONS" value="message-connections"/>
+            <typesafeEnumMember name="GROUP_MESSAGE" value="group-message"/>
+            <typesafeEnumMember name="NEWS" value="news"/>
+            <typesafeEnumMember name="MESSAGE_GROUP_SHARING" value="message-group-sharing"/>
+            <typesafeEnumMember name="JOB_SUPER_VIRAL_FORWARD" value="job-super-viral-forward"/>
+            <typesafeEnumMember name="REPLY_PROFILE_FORWARD_OON" value="reply-profile-forward-oon"/>
+            <typesafeEnumMember name="REPLY_PROFILE_FORWARD" value="reply-profile-forward"/>
+            <typesafeEnumMember name="JOB_FORWARD" value="job-forward"/>
+            <typesafeEnumMember name="FORWARD_PUBLIC_QUESTION" value="forward-public-question"/>
+            <typesafeEnumMember name="INVITATION_ACCEPTANCE" value="invitation-acceptance"/>
+            <typesafeEnumMember name="PROFILE_FORWARD_OON" value="profile-forward-oon"/>
+            <typesafeEnumMember name="SPONSORED_INMAIL" value="sponsored-inmail"/>
+            <typesafeEnumMember name="GROUP_APPLICANT" value="group-applicant"/>
+            <typesafeEnumMember name="FORWARD_PRIVATE_QUESTION" value="forward-private-question"/>
+            <typesafeEnumMember name="REPLY_ANSWER" value="reply-answer"/>
+            <typesafeEnumMember name="SHARING" value="sharing"/>
+            <typesafeEnumMember name="JOB_SUPER_VIRAL_FORWARD" value="job-super-viral-forward"/>
+            <typesafeEnumMember name="INVITATION_REQUEST" value="invitation-request"/>
+            <typesafeEnumMember name="INMAIL_GROUP_DIRECT_CONNECTION" value="inmail-group-direct-connection"/>
+            <typesafeEnumMember name="INMAIL_DIRECT_CONNECTION" value="inmail-direct-connection"/>
+            <typesafeEnumMember name="PROFILE_FORWARD" value="profile-forward"/>
+            <typesafeEnumMember name="GROUP_INVITATION" value="group-invitation"/>
+            <typesafeEnumMember name="PUBLIC_ANSWER" value="public-answer"/>
+            <typesafeEnumMember name="RECOMMENDATION" value="recommendation"/>
+            <typesafeEnumMember name="NUDGE" value="nudge"/>
+            <typesafeEnumMember name="RECOMMENDATION_REQUEST" value="recommendation-request"/>
+            <typesafeEnumMember name="INVITATION_REPLY" value="invitation-reply"/>
+            <typesafeEnumMember name="INMAIL_OPENLINK" value="inmail-openlink"/>
+            <typesafeEnumMember name="PRIVATE_ANSWER" value="private-answer"/>
+            <typesafeEnumMember name="MESSAGE_WELCOME" value="message-welcome"/>
+            <typesafeEnumMember name="INTRODUCTION" value="introduction"/>
+		</typesafeEnumClass>
+	</bindings>
+	
+	<bindings node="//xs:element[@name='folder']/xs:simpleType">
+		<typesafeEnumClass name="MailFolderType" >
+			<typesafeEnumMember name="INBOX" value="inbox"/>
+            <typesafeEnumMember name="ARCHIVE" value="archive"/>
+            <typesafeEnumMember name="SENT" value="sent"/>
+            <typesafeEnumMember name="TRASH" value="trash"/>
+		</typesafeEnumClass>
+	</bindings>
+	-->
+	
 	<bindings node="//xs:element[@name='update-type']/xs:simpleType">
 		<typesafeEnumClass name="NetworkUpdateReturnType">
 			<typesafeEnumMember name="ANSWER_UPDATE" value="ANSW"/>
@@ -283,7 +330,7 @@
 			<typesafeEnumMember name="PATENT_GRANTED" value="Patent"/>
 		</typesafeEnumClass>
 	</bindings>
-	
+		
 	<!--
 	<bindings node="//xs:element[@name='action']/xs:complexType/xs:sequence/xs:element[@name='code']/xs:simpleType">
 		<typesafeEnumClass name="AvailableActionType">
@@ -451,5 +498,9 @@
 	</bindings>
 	<bindings node="//xs:element[@name='counts-by-category']/xs:complexType/xs:sequence/xs:element[@ref='count-for-category']">
 		<property name="countByCategoryList"/>
+	</bindings>
+	
+	<bindings node="//xs:element[@name='mailbox']/xs:complexType/xs:sequence/xs:element[@ref='mailbox-item']">
+		<property name="mailboxItemList"/>
 	</bindings>
 </bindings>

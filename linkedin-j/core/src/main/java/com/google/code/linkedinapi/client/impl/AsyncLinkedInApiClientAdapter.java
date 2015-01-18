@@ -27,6 +27,9 @@ import java.util.concurrent.Future;
 import com.google.code.linkedinapi.client.AsyncLinkedInApiClient;
 import com.google.code.linkedinapi.client.AsyncResponseHandler;
 import com.google.code.linkedinapi.client.LinkedInApiClient;
+import com.google.code.linkedinapi.client.enumeration.MailFolderRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailMessageRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailboxField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.ProfileField;
 import com.google.code.linkedinapi.client.enumeration.ProfileType;
@@ -36,6 +39,7 @@ import com.google.code.linkedinapi.client.oauth.LinkedInAccessToken;
 import com.google.code.linkedinapi.client.oauth.LinkedInApiConsumer;
 import com.google.code.linkedinapi.schema.ApiStandardProfileRequest;
 import com.google.code.linkedinapi.schema.Connections;
+import com.google.code.linkedinapi.schema.Mailbox;
 import com.google.code.linkedinapi.schema.Network;
 import com.google.code.linkedinapi.schema.People;
 import com.google.code.linkedinapi.schema.Person;
@@ -485,6 +489,15 @@ public class AsyncLinkedInApiClientAdapter implements AsyncLinkedInApiClient {
     public Future<?> sendMessage(final List<String> recepientIds, final String subject, final String message) {
     	final NullResponseHandler handler = new NullResponseHandler();
     	client.sendMessage(recepientIds, subject, message, handler);
+    	
+    	return handler.getFuture();
+    }
+    
+    @SuppressWarnings("unchecked")
+	@Override
+    public Future<Mailbox> getMailbox(final MailFolderRequestType requestFolderType, final Set<MailMessageRequestType> messageTypes, final Set<MailboxField> mailboxFields, final int start, final int count, final Date modifiedSince) {
+    	final NullResponseHandler<Mailbox> handler = new NullResponseHandler<Mailbox>();
+    	client.getMailbox(requestFolderType, messageTypes, mailboxFields, start, count, modifiedSince, handler);
     	
     	return handler.getFuture();
     }

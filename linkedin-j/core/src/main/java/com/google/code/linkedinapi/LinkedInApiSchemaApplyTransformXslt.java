@@ -16,9 +16,9 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 public class LinkedInApiSchemaApplyTransformXslt {
-	
-	public static String XSLT_DIR = "/home/vijaykumar/dev/code/icentris/sitequest/git-linkedin/linkedin-j/linkedin-j/core/src/main/resources/com/google/code/linkedinapi/schema/xslt";
-	public static String SCHEMA_DIR = "/home/vijaykumar/dev/code/icentris/sitequest/git-linkedin/linkedin-j/linkedin-j/core/src/main/resources/com/google/code/linkedinapi/schema/";
+
+	public static String XSLT_DIR = "/home/vijay/dev/code/icentris/sitequest/git-linkedin/workspace-code/linkedin-j/linkedin-j/core/src/main/resources/com/google/code/linkedinapi/schema/xslt";
+	public static String SCHEMA_DIR = "/home/vijay/dev/code/icentris/sitequest/git-linkedin/workspace-code/linkedin-j/linkedin-j/core/src/main/resources/com/google/code/linkedinapi/schema/";
 	
 	public static void main(String[] args) {
 		if(args.length > 0 && args[0].equals("sort")) {
@@ -32,7 +32,7 @@ public class LinkedInApiSchemaApplyTransformXslt {
 //		} 
 		else {
 			performTransformations(SCHEMA_DIR,
-				"linkedinapi-schema-generated-all");
+				"linkedinapi-schema-generated-new");
 		}
 	}
 	

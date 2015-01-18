@@ -265,6 +265,12 @@ public final class LinkedInApiUrls {
             linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.companyUpdates");
     public static final String POST_COMPANY_SHARE =
             linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.postCompanyShare");
+    
+    public static final String GET_MAIL_MESSAGES =
+            linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getMessages");
+    
+    public static final String GET_MAIL_MESSAGE_BY_ID =
+            linkedInApiUrls.getProperty("com.google.code.linkedinapi.client.getMessageById");
     /**
      * Instantiates a new linked in api urls.
      */

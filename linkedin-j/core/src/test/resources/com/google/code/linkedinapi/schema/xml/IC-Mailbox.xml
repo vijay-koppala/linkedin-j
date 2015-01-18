@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mailbox total="99" count="25" start="0">
+	<mailbox-item>
+	    <id>I971769383_9</id>
+	    <message-type>message-connections</message-type>
+	    <item-type>message</item-type>
+	    <item-read>false</item-read>
+	    <from>
+	      <person>
+	        <id>it-db_1a5p</id>
+	        <first-name>Hassan</first-name>
+	        <last-name>Bawab</last-name>
+	      </person>
+	    </from>
+	    <recipients total="1">
+	      <recipient>
+	        <person>
+	          <id>FX8JVlrune</id>
+	          <first-name>Katherine</first-name>
+	          <last-name>Kirkpatrick</last-name>
+	        </person>
+	      </recipient>
+	    </recipients>
+	    <subject>10 year anniversary</subject>
+	    <action-status>actioned</action-status>
+	    <timestamp>1411146943087</timestamp>
+	</mailbox-item>
+			
+	<mailbox-item>
+	    <item-type>invitation</item-type>
+	    <last-modified>1317521614564</last-modified>
+	    <subject>Join my network on LinkedIn</subject>
+	    <from>
+	      <person>
+	        <id>rYe27gr1Fs</id>
+	        <first-name>Joe</first-name>
+	        <last-name>Smith</last-name>
+	      </person>
+	    </from>
+	    <recipients total="1">
+			<recipient>
+				<person>
+					<id>un0BmXMXOh</id>
+				</person>
+			</recipient>
+			<recipient>
+				<person>
+					<id>un0BmXMXOh1</id>
+				</person>
+			</recipient>
+		</recipients>
+	    <timestamp>1317521614505</timestamp>
+	    <folder>inbox</folder>
+	    <id>I188008797_15</id>
+	    <short-body>Connect with me!</short-body>
+	    <message-type>invitation-request</message-type>
+	    <body>What am I?</body>
+  </mailbox-item>
+  <mailbox-item>
+	    <item-type>invitation</item-type>
+	    <last-modified>1317521614564</last-modified>
+	    <subject>Join my network on LinkedIn</subject>
+	    <from>
+	      <person>
+	        <id>rYe27gr1Fs</id>
+	        <first-name>Joe</first-name>
+	        <last-name>Smith</last-name>
+	      </person>
+	    </from>
+	    <recipients>
+			<recipient>
+				<person>
+					<id>un0BmXMXOh</id>
+				</person>
+			</recipient>
+			<recipient>
+				<person>
+					<id>un0BmXMXOh1</id>
+				</person>
+			</recipient>
+		</recipients>
+	    <timestamp>1317521614505</timestamp>
+	    <folder>inbox</folder>
+	    <id>I188008797_15</id>
+	    <short-body>Connect with me!</short-body>
+	    <message-type>invitation-request</message-type>
+	    <body>What am I?</body>
+  </mailbox-item>
+</mailbox>

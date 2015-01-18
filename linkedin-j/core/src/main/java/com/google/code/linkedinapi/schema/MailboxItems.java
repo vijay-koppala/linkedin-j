@@ -14,9 +14,8 @@ import java.util.List;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}recipient" maxOccurs="unbounded"/>
+ *         &lt;element ref="{}mailbox-item" maxOccurs="unbounded"/>
  *       &lt;/sequence>
- *       &lt;attribute name="total" type="{http://www.w3.org/2001/XMLSchema}integer" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -24,53 +23,33 @@ import java.util.List;
  * 
  * 
  */
-public interface Recipients
+public interface MailboxItems
     extends SchemaEntity
 {
 
 
     /**
-     * Gets the value of the recipientList property.
+     * Gets the value of the mailboxItem property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the recipientList property.
+     * This is why there is not a <CODE>set</CODE> method for the mailboxItem property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getRecipientList().add(newItem);
+     *    getMailboxItem().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Recipient }
+     * {@link MailboxItem }
      * 
      * 
      */
-    List<Recipient> getRecipientList();
-
-    /**
-     * Gets the value of the total property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    Long getTotal();
-
-    /**
-     * Sets the value of the total property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    void setTotal(Long value);
+    List<MailboxItem> getMailboxItem();
 
 }

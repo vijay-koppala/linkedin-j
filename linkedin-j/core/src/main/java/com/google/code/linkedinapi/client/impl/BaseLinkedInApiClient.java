@@ -27,6 +27,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -59,6 +60,9 @@ import com.google.code.linkedinapi.client.enumeration.GroupField;
 import com.google.code.linkedinapi.client.enumeration.GroupMembershipField;
 import com.google.code.linkedinapi.client.enumeration.HttpMethod;
 import com.google.code.linkedinapi.client.enumeration.JobField;
+import com.google.code.linkedinapi.client.enumeration.MailFolderRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailMessageRequestType;
+import com.google.code.linkedinapi.client.enumeration.MailboxField;
 import com.google.code.linkedinapi.client.enumeration.NetworkUpdateType;
 import com.google.code.linkedinapi.client.enumeration.PostField;
 import com.google.code.linkedinapi.client.enumeration.PostSortOrder;
@@ -101,6 +105,7 @@ import com.google.code.linkedinapi.schema.JobSearch;
 import com.google.code.linkedinapi.schema.JobSuggestions;
 import com.google.code.linkedinapi.schema.Jobs;
 import com.google.code.linkedinapi.schema.Likes;
+import com.google.code.linkedinapi.schema.Mailbox;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.MembershipState;
 import com.google.code.linkedinapi.schema.MembershipStateCode;
@@ -3916,6 +3921,28 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
                 HttpURLConnection.HTTP_OK);
 	}
 	
+	
+	public Mailbox getMailbox(MailFolderRequestType folderType, Set<MailMessageRequestType> messageTypes, Set<MailboxField> mailboxFields, int start, int count, Date modifiedSince) {
+		LinkedInApiUrlBuilder builder = createLinkedInApiUrlBuilder(LinkedInApiUrls.GET_MAIL_MESSAGES);
+		
+		List<String> messageTypesList = new ArrayList<String>();
+        for(MailMessageRequestType type: messageTypes) {
+        	messageTypesList.add(type.value());
+        }
+        
+        builder  = builder
+        	.withFieldEnumSet("mailboxFields", mailboxFields)
+        	.withParameter(ParameterNames.MAIL_FOLDER, folderType.value())
+        	.withParameter(ParameterNames.START, String.valueOf(start))
+        	.withParameter(ParameterNames.COUNT, String.valueOf(count))
+        	.withParameter(ParameterNames.MODIFIED_SINCE, String.valueOf(modifiedSince.getTime()))
+        	.withParameters(ParameterNames.MAIL_MESSAGE_TYPE, messageTypesList);
+        
+        String apiUrl = builder.buildUrl();
+        
+        return readResponse(Mailbox.class, callApiMethod(apiUrl));
+	}
+	
     /**
      * Method description
      *
@@ -3929,9 +3956,10 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
      * @return
      */
     protected <T> T readResponse(Class<T> clazz, InputStream is) {
-    	if(logger.isDebugEnabled()) {
-    		is = printResponse(is);
-    	}
+//    	if(logger.isDebugEnabled()) {
+//    		is = printResponse(is);
+//    	}
+    	is = printResponse(is);
 		try {
             return unmarshallObject(clazz, is);
         } finally {
@@ -3953,6 +3981,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         		logger.error("Error Parsing the LinkedIn API response -- "  + e.getMessage());
         	}
         	logger.debug("LinkedIn API Response: \n" + sb.toString());
+        	//System.out.println("LinkedIn API Response: \n" + sb.toString());
         	is = new ByteArrayInputStream(sb.toString().getBytes());
         } finally {
             closeStream(bis);
@@ -4003,6 +4032,7 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
             if(logger.isDebugEnabled()) {
             	logger.debug("LinkedIn API URL : " + apiUrl);
             }
+//            System.out.println("LinkedIn API URL : " + apiUrl);
             
             HttpURLConnection request = (HttpURLConnection) url.openConnection();
 

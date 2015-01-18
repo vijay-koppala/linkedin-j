@@ -33,30 +33,7 @@
   <xs:element name="error-code" type="xs:string"/>
   <xs:element name="message" type="xs:string"/>
   <xs:element name="request-id" type="xs:string"/>
-  <xs:element name="mailbox-item">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="recipients"/>
-        <xs:element ref="subject"/>
-        <xs:element ref="body"/>
-        <xs:element minOccurs="0" ref="item-content"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="recipients">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="recipient"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="recipient">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="person"/>
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
+  
   <xs:element name="subject" type="xs:string"/>
   <xs:element name="item-content">
     <xs:complexType>
@@ -2207,5 +2184,120 @@
             </xs:element>
           </xs:sequence>
       </xs:complexType>
+      
+      <xs:element name="mailbox">
+    	<xs:complexType>
+      		<xs:sequence>
+        		<xs:element maxOccurs="unbounded" ref="mailbox-item"/>
+      		</xs:sequence>
+      		<xs:attribute name="count" use="required" type="xs:integer"/>
+      		<xs:attribute name="start" use="required" type="xs:integer"/>
+      		<xs:attribute name="total" use="required" type="xs:integer"/>
+    	</xs:complexType>
+  	  </xs:element>
+  	
+  	<xs:element name="action-status" type="xs:NCName"/>      
+       <!-- <xs:element name="folder">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="inbox"/>
+              <xs:enumeration value="sent"/>
+              <xs:enumeration value="archive"/>
+              <xs:enumeration value="trash"/>
+            </xs:restriction>
+          </xs:simpleType>
+       </xs:element>
+
+       <xs:element name="message-type">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="message-connections"/>
+              <xs:enumeration value="group-message"/>
+              <xs:enumeration value="news"/>
+              <xs:enumeration value="message-group-sharing"/>
+              <xs:enumeration value="job-super-viral-forward"/>
+              <xs:enumeration value="reply-profile-forward-oon"/>
+              <xs:enumeration value="reply-profile-forward"/>
+              <xs:enumeration value="job-forward"/>
+              <xs:enumeration value="forward-public-question"/>
+              <xs:enumeration value="invitation-acceptance"/>
+              <xs:enumeration value="profile-forward-oon"/>
+              <xs:enumeration value="sponsored-inmail"/>
+              <xs:enumeration value="group-applicant"/>
+              <xs:enumeration value="forward-private-question"/>
+              <xs:enumeration value="reply-answer"/>
+              <xs:enumeration value="sharing"/>
+              <xs:enumeration value="job-super-viral-forward"/>
+              <xs:enumeration value="invitation-request"/>
+              <xs:enumeration value="inmail-group-direct-connection"/>
+              <xs:enumeration value="inmail-direct-connection"/>
+              <xs:enumeration value="profile-forward"/>
+              <xs:enumeration value="group-invitation"/>
+              <xs:enumeration value="public-answer"/>
+              <xs:enumeration value="recommendation"/>
+              <xs:enumeration value="nudge"/>
+              <xs:enumeration value="recommendation-request"/>
+              <xs:enumeration value="invitation-reply"/>
+              <xs:enumeration value="inmail-openlink"/>
+              <xs:enumeration value="private-answer"/>
+              <xs:enumeration value="message-welcome"/>
+              <xs:enumeration value="introduction"/>
+            </xs:restriction>
+          </xs:simpleType>
+       </xs:element> -->
+       
+  <xs:element name="mailbox-item">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:sequence>
+          <xs:element ref="id"/>
+          <xs:element ref="timestamp"/>
+          <xs:element ref="action-status"/>
+          <xs:element name="folder" type="xs:string"/>
+          <xs:element ref="from"/>
+          <xs:element ref="item-read"/>
+          <xs:element ref="item-type"/>
+          <xs:element ref="last-modified"/>
+          <xs:element name="message-type" type="xs:string"/>
+          <xs:element ref="recipients"/>
+          <xs:element ref="short-body"/>
+          <xs:element ref="subject"/>
+        </xs:sequence>
+        <xs:element minOccurs="0" ref="body"/>
+        <xs:element minOccurs="0" ref="item-content"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="from">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="item-read" type="xs:boolean"/>
+  <xs:element name="item-type" type="xs:NCName"/>
+  <xs:element name="last-modified" type="xs:integer"/>
+  
+  <xs:element name="recipients">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="recipient"/>
+      </xs:sequence>
+      <xs:attribute name="total" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <xs:element name="recipient">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="person"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="short-body" type="xs:string"/>
+       
 
 </xs:schema>
