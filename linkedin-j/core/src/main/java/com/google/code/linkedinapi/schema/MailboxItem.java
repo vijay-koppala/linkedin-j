@@ -17,12 +17,12 @@ package com.google.code.linkedinapi.schema;
  *           &lt;element ref="{}id"/>
  *           &lt;element ref="{}timestamp"/>
  *           &lt;element ref="{}action-status"/>
- *           &lt;element ref="{}folder"/>
+ *           &lt;element name="folder" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *           &lt;element ref="{}from"/>
  *           &lt;element ref="{}item-read"/>
  *           &lt;element ref="{}item-type"/>
  *           &lt;element ref="{}last-modified"/>
- *           &lt;element ref="{}message-type"/>
+ *           &lt;element name="message-type" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *           &lt;element ref="{}recipients"/>
  *           &lt;element ref="{}short-body"/>
  *           &lt;element ref="{}subject"/>
@@ -107,20 +107,20 @@ public interface MailboxItem
      * 
      * @return
      *     possible object is
-     *     {@link MailFolderType }
+     *     {@link String }
      *     
      */
-    MailFolderType getFolder();
+    String getFolder();
 
     /**
      * Sets the value of the folder property.
      * 
      * @param value
      *     allowed object is
-     *     {@link MailFolderType }
+     *     {@link String }
      *     
      */
-    void setFolder(MailFolderType value);
+    void setFolder(String value);
 
     /**
      * Gets the value of the from property.
@@ -199,20 +199,20 @@ public interface MailboxItem
      * 
      * @return
      *     possible object is
-     *     {@link MailMessageType }
+     *     {@link String }
      *     
      */
-    MailMessageType getMessageType();
+    String getMessageType();
 
     /**
      * Sets the value of the messageType property.
      * 
      * @param value
      *     allowed object is
-     *     {@link MailMessageType }
+     *     {@link String }
      *     
      */
-    void setMessageType(MailMessageType value);
+    void setMessageType(String value);
 
     /**
      * Gets the value of the recipients property.

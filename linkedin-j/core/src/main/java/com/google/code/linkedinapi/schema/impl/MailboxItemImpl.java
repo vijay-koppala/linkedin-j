@@ -13,8 +13,6 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import com.google.code.linkedinapi.schema.Adapter1;
 import com.google.code.linkedinapi.schema.From;
 import com.google.code.linkedinapi.schema.ItemContent;
-import com.google.code.linkedinapi.schema.MailFolderType;
-import com.google.code.linkedinapi.schema.MailMessageType;
 import com.google.code.linkedinapi.schema.MailboxItem;
 import com.google.code.linkedinapi.schema.Recipients;
 
@@ -54,7 +52,7 @@ public class MailboxItemImpl
     @XmlSchemaType(name = "NCName")
     protected String actionStatus;
     @XmlElement(required = true)
-    protected MailFolderType folder;
+    protected String folder;
     @XmlElement(required = true, type = FromImpl.class)
     protected FromImpl from;
     @XmlElement(name = "item-read")
@@ -68,7 +66,7 @@ public class MailboxItemImpl
     @XmlSchemaType(name = "integer")
     protected Long lastModified;
     @XmlElement(name = "message-type", required = true)
-    protected MailMessageType messageType;
+    protected String messageType;
     @XmlElement(required = true, type = RecipientsImpl.class)
     protected RecipientsImpl recipients;
     @XmlElement(name = "short-body", required = true)
@@ -103,11 +101,11 @@ public class MailboxItemImpl
         this.actionStatus = value;
     }
 
-    public MailFolderType getFolder() {
+    public String getFolder() {
         return folder;
     }
 
-    public void setFolder(MailFolderType value) {
+    public void setFolder(String value) {
         this.folder = value;
     }
 
@@ -143,11 +141,11 @@ public class MailboxItemImpl
         this.lastModified = value;
     }
 
-    public MailMessageType getMessageType() {
+    public String getMessageType() {
         return messageType;
     }
 
-    public void setMessageType(MailMessageType value) {
+    public void setMessageType(String value) {
         this.messageType = value;
     }
 
