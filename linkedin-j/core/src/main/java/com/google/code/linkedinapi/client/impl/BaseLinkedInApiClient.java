@@ -1962,8 +1962,9 @@ public abstract class BaseLinkedInApiClient implements LinkedInApiClient {
         String                apiUrl  = builder.buildUrl();
         Share share = OBJECT_FACTORY.createShare();
         share.setComment(commentText);
-        if(title != null && url != null) {
+        if(url != null) {
         	Content content = OBJECT_FACTORY.createContent();
+        	if(title == null) title = "";
         	content.setTitle(title);
         	content.setDescription(description);
             content.setSubmittedUrl(url);

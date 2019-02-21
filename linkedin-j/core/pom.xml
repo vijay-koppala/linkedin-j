@@ -32,7 +32,7 @@
 		<artifactId>commons-logging</artifactId>
 		<type>jar</type>
 		<version>1.1</version>
-		<optional>yes</optional>
+		<optional>true</optional>
 		<scope>compile</scope>
 		<exclusions>
 			<exclusion>

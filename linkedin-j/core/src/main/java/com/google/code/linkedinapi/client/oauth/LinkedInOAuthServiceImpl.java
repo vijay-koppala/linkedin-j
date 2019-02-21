@@ -189,13 +189,17 @@ class LinkedInOAuthServiceImpl implements LinkedInOAuthService {
     	if (accessToken == null) {
     		throw new IllegalArgumentException("access token cannot be null.");
     	}
-        try {
-        	final OAuthConsumer consumer = getOAuthConsumer();
-            consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
-            consumer.sign(request);
-        } catch (Exception e) {
-            throw new LinkedInOAuthServiceException(e);
-        }
+    	if("success-oauth20".equalsIgnoreCase(accessToken.getTokenSecret())) {
+            request.setRequestProperty("Authorization", "Bearer " + accessToken.getToken());
+    	} else {
+    		try {
+            	final OAuthConsumer consumer = getOAuthConsumer();
+                consumer.setTokenWithSecret(accessToken.getToken(), accessToken.getTokenSecret());
+                consumer.sign(request);
+            } catch (Exception e) {
+                throw new LinkedInOAuthServiceException(e);
+            }
+    	}
     }
     
     /**
